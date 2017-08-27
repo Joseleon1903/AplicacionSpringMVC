@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.tools.example.springmvc.test;
+package com.aplication.spring.mvc.dao.test;
 
 //
 //@RunWith(SpringJUnit4ClassRunner.class)

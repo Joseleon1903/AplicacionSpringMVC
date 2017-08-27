@@ -1,4 +1,4 @@
-package com.aplicacion.rest.html.test;
+package com.aplication.spring.mvc.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;

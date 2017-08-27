@@ -1,4 +1,4 @@
-package com.aplicacion.rest.html.test;
+package com.aplication.spring.mvc.test;
 
 import java.io.BufferedReader;
 import java.io.IOException;

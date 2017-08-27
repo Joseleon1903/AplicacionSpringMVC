@@ -1,4 +1,4 @@
-AplicacionSpringMVC: Kitchensink Example using Spring 4.x
+AplicacionSpringMVC: Example using Spring 4.x
 ==============================================================
 Author: Marius Bogoevici, Tejas Mehta, Joshua Wilson  
 Level: Intermediate  
@@ -13,7 +13,7 @@ What is it?
 The `AplicacionSpringMVC` quickstart is an example of a Java EE 6 application using JSP, JPA 2.0 and Spring 4.x. It 
 includes a persistence unit and some sample persistence and transaction code to introduce you to database access in enterprise Java:
 
-* In `jboss-as-spring-mvc-context.xml` `<context:component-scan base-package="org.jboss.tools.example.springmvc.controller"/>` 
+* In `jboss-as-spring-mvc-context.xml` `<context:component-scan base-package="com.aplication.spring.mvccontroller"/>` 
 and `<mvc:annotation-driven/>` are used to register both the non-rest and rest controllers.
 
 * The controllers map the respective urls to methods using `@RequestMapping(url)`.
@@ -31,10 +31,9 @@ later with the Red Hat JBoss Web Framework Kit (WFK) 2.7.
 
 To run the quickstart with the provided build script, you need the following:
 
-1. Java 1.6, to run JBoss and Maven. You can choose from the following:
+1. Java 1.8, to run JBoss and Maven. You can choose from the following:
     * OpenJDK
     * Oracle Java SE
-    * Oracle JRockit
 
 2. Maven 3.0.0 or later, to build and deploy the examples
     * If you have not yet installed Maven, see the [Maven Getting Started Guide](http://maven.apache.org/guides/getting-started/index.html) for details.
