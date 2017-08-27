@@ -1,0 +1,9 @@
+/*-----------------------------DETALLE_CONTACTO------------------------------*/
+
+  CREATE TABLE `aplicacion_web_rest`.`detalle_contacto` (
+  `DETALLE_CONTACTO_ID` INT NOT NULL AUTO_INCREMENT,
+  `EMAIL_ALTERNATIVA` VARCHAR(50) NOT NULL,
+  `DIRECCION` VARCHAR(255) NULL,
+  `TELEFONO` VARCHAR(11) NULL,
+  `CELULAR` VARCHAR(11) NULL,
+  PRIMARY KEY (`DETALLE_CONTACTO_ID`));

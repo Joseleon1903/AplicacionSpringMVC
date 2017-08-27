@@ -1,0 +1,8 @@
+@CHARSET "ISO-8859-1";
+
+<!-- resolucion standar para pantalla de telefono -->
+@MEDIA screen and (min-width: 480px) {
+	body {
+		background: green;
+	}
+}

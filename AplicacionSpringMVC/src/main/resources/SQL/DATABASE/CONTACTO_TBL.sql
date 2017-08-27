@@ -1,0 +1,21 @@
+ /*-----------------------------CONTACTO------------------------------*/
+  
+  CREATE TABLE `aplicacion_web_rest`.`contacto` (
+  `CONTACTO_ID` INT NOT NULL AUTO_INCREMENT,
+  `NOMBRE` VARCHAR(25) NOT NULL,
+  `APELLIDO` VARCHAR(25) NOT NULL,
+  `SEXO` VARCHAR(1) NOT NULL,
+  `FECHA_NACIMIENTO` DATETIME NOT NULL,
+  `EMAIL` VARCHAR(50) NOT NULL,
+  `DETALLE_CONTACTO_ID` INT NULL,
+  `ESTADO` VARCHAR(2) NOT NULL,
+  PRIMARY KEY (`CONTACTO_ID`));
+  
+  ALTER TABLE `aplicacion_web_rest`.`contacto` 
+  ADD INDEX `FK_CONTACTO_DETALLE_idx` (`DETALLE_CONTACTO_ID` ASC);
+  ALTER TABLE `aplicacion_web_rest`.`contacto` 
+  ADD CONSTRAINT `FK_CONTACTO_DETALLE`
+  FOREIGN KEY (`DETALLE_CONTACTO_ID`)
+  REFERENCES `aplicacion_web_rest`.`detalle_contacto` (`DETALLE_CONTACTO_ID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;

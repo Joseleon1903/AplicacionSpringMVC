@@ -1,0 +1,56 @@
+rest service UsuarioES
+
+link 
+http://localhost:8081/AplicacionWebRestHtml/rest/usuario/buscarUsuarioPorCodigo/{parametro}
+
+
+respuesta Json:
+
+{
+   "error": null,
+   "respuesta":    {
+      "contacto":       {
+         "contactoId": 1,
+         "detalleContactoId": null,
+         "nombre": "ALBERTO",
+         "apellido": "SANCHEZ",
+         "sexo": "M",
+         "edad": null,
+         "email": "JOSELEON1903@OUTLLOK.COM"
+      },
+      "password": "ADMIN123",
+      "fechaCreacion": 1497915171000,
+      "fechaUltimoAcceso": 1497915171000,
+      "nombre": "ADMIN",
+      "usuario": 1
+   }
+}
+
+*****************************************************************************************************
+link 
+http://localhost:8081/AplicacionWebRestHtml/rest/usuario/validarSessionUsuario/{codigoUsuario}{password}"
+
+
+respuesta Json:
+//respuesta afirmativa
+{"error":null,"respuesta":true}
+//respuesta negativa
+{"error":null,"respuesta":false}
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+rest service   MotivoEstadoES
+
+link http://localhost:8081/AplicacionWebRestHtml/rest/motivoEstado/buscarListaMotivosEstadoSistema
+
+respuesta Json 
+
+{"error":null,"respuesta":[{"motivoId":404,"descripcion":"[NOT FOUND  ERROR] OBJETO SOLICITADO NO ENCONTRADO","estado":"AC"},
+{"motivoId":405,"descripcion":"[NOT FOUND  CONNECTION] NO FUE POSIBLE ESTABLECER LA CONEXIÃ“N","estado":"AC"},
+{"motivoId":500,"descripcion":"[INTERNAL SERVER ERROR] ERROR INTERNO EN EL SERVIDOR","estado":"AC"},
+{"motivoId":501,"descripcion":"[INTERNAL SERVER ERROR] PERMISOS DE EJECUCIÃ“N INCORRECTOS","estado":"AC"},
+{"motivoId":502,"descripcion":"[INVALID USER ERROR] ERROR EN EL INICIO DE SESIÃ“N DEL SERVICIO DE PERFIL DE USUARIO","estado":"AC"},
+{"motivoId":503,"descripcion":"[NOT FOUND  OBJECT] EXISTEN DATOS REQUERIDOS NO PORPORCIONADOS","estado":"AC"},
+{"motivoId":504,"descripcion":"[INVALID OBJECT ERROR] ATENCIÃ“N LAS PASSWORDS DEBEN DE COINCIDIR","estado":"AC"},
+{"motivoId":505,"descripcion":"[INTERNAL SERVER ERROR] POR FAVOR CONTACTAR EL ADMINISTRADOR","estado":"AC"},
+{"motivoId":801,"descripcion":"[DUPLICATE OBJECT ERROR] EL OBJETO SE ENCUENTRA DUPLICADO","estado":"AC"}]}

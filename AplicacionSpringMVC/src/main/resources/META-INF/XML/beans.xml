@@ -1,0 +1,85 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="mundo" class="com.aplicacion.ejemplo.beans.Mundo">
+		<property name="saludo" value="Hola usuario."></property>
+	</bean>
+
+<!-- 	<bean id="persona" class="com.aplicacion.ejemplo.beans.Persona"> -->
+<!-- 	 atributo index para identificar el orden de los atributo -->
+<!-- 		<constructor-arg type="int" value="1"></constructor-arg> -->
+<!-- 		<constructor-arg value="Mario"></constructor-arg> -->
+<!-- 		<constructor-arg value="Rossi"></constructor-arg> -->
+<!-- 	</bean> -->
+	
+	
+	<bean id="persona" class="com.aplicacion.ejemplo.beans.Persona" scope="singleton">
+		<property name="pais" ref="pais"></property>
+	</bean>
+
+	<bean id="pais" class="com.aplicacion.ejemplo.beans.Pais">
+		<property name="nombre" value="Mexico"></property>
+		<property name="ciudades">
+		<list>
+		<ref bean="ciudad1"/>
+		<ref bean="ciudad2"/>
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="ciudad1" class="com.aplicacion.ejemplo.beans.Ciudad">
+		<property name="codigo" value="1"></property>
+		<property name="nombre" value="Santo Domingo"></property>
+	</bean>
+	
+	<bean id="ciudad2" class="com.aplicacion.ejemplo.beans.Ciudad">
+		<property name="codigo" value="2"></property>
+		<property name="nombre" value="Mexico"></property>
+	</bean>
+		  	<!-- 	tutotial 11 Autowire -->
+	<bean id="pasajero" class="com.aplicacion.ejemplo.beans.Pasajero" autowire="byName">
+	<property name="id" value="1"></property>
+	<property name="nombre" value="Mexico"></property>
+	</bean>
+
+ 	<!-- 	tutotial 13 los beans (lazy) -->
+<!--  	inicializar los beans de manera tardía (lazy)  es util cuando no queremos que los bean -->
+<!--  	se instancie al principio de la aplicacion, si no que se instancie cuante se utiliza  -->
+<!--  	el metodo (get) para invocarlos -->
+	<bean id="telefono" class="com.aplicacion.ejemplo.beans.Telefono" lazy-init="true">
+		<property name="id" value="1"></property>
+		<property name="prefijo" value="101"></property>
+		<property name="numero" value="809-447-6932"></property>
+	</bean>
+	
+	<!-- 	tutotial 14 Ciclo de Vida de los Beans -->
+<!-- 	Se puede usar la anotacion default-init-method y default-destroy-method en el tag principal para definir  -->
+<!-- 	los metodos de init y destroy iguales para todos los beans  -->
+	<bean id="ciudadano" class="com.aplicacion.ejemplo.beans.Ciudadano" init-method="init" destroy-method="destroy">
+		<property name="identificador" value="1"></property>
+		<property name="nombre" value="Manuel"></property>
+		<property name="matricula" value="809001"></property>
+	</bean>
+	
+	<!-- 	tutotial 15 metodos  PostConstruct y PreDestroy -->
+	<bean id="movil" class="com.aplicacion.ejemplo.beans.Movil" >
+		<property name="id" value="1"></property>
+		<property name="prefijo" value="25"></property>
+		<property name="numero" value="809001"></property>
+	</bean>
+	<!-- 	bean necesario para el utilizo de anotaciones  PostConstruct y PreDestroy -->
+	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"> </bean>
+
+
+	<!-- 16 Ciclo de Vida de los Beans (Interfaces) -->
+	<bean id="manzana" class="com.aplicacion.ejemplo.beans.Manzana">
+		<property name="codigo" value="1"></property>
+		<property name="nombre" value="Comun"></property>
+		<property name="tipo" value="Roja"></property>
+	</bean>
+	
+</beans>
+ 
