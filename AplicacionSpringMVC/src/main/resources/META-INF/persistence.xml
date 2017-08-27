@@ -7,12 +7,12 @@
 
 		<jta-data-source>java:/DsAplicacionWeb</jta-data-source>
 
-		<class>com.aplicacion.rest.html.entity.Usuario</class>
-		<class>com.aplicacion.rest.html.entity.Contacto</class>
-		<class>com.aplicacion.rest.html.entity.DetalleContacto</class>
-		<class>com.aplicacion.rest.html.entity.MotivoEstado</class>
-		<class>com.aplicacion.rest.html.entity.EventoSistema</class>
-		<class>com.aplicacion.rest.html.entity.EnvioSistema</class>
+		<class>com.aplication.spring.mvc.entity.Usuario</class>
+		<class>com.aplication.spring.mvc.entity.Contacto</class>
+		<class>com.aplication.spring.mvc.entity.DetalleContacto</class>
+		<class>com.aplication.spring.mvc.entity.MotivoEstado</class>
+		<class>com.aplication.spring.mvc.entity.EventoSistema</class>
+		<class>com.aplication.spring.mvc.entity.EnvioSistema</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/aplicacion_web_rest" />

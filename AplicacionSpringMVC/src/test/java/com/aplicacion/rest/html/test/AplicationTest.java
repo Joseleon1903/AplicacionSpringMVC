@@ -2,15 +2,15 @@ package com.aplicacion.rest.html.test;
 
 import java.util.Date;
 
-import com.aplicacion.rest.html.ejb.impl.ContactoEjbImpl;
-import com.aplicacion.rest.html.ejb.impl.EventoSistemaEjbImpl;
-import com.aplicacion.rest.html.exception.DuplicateObjectException;
-import com.aplicacion.rest.html.exception.InternalServiceException;
-import com.aplicacion.rest.html.exception.InvalidDataException;
-import com.aplicacion.rest.html.layer.type.ContactoType;
-import com.aplicacion.rest.html.layer.type.EnvioSistemaType;
-import com.aplicacion.rest.html.layer.type.EventoSistemaType;
-import com.aplicacion.rest.html.layer.type.MotivoEstadoType;
+import com.aplication.spring.mvc.ejb.impl.ContactoEjbImpl;
+import com.aplication.spring.mvc.ejb.impl.EventoSistemaEjbImpl;
+import com.aplication.spring.mvc.exception.DuplicateObjectException;
+import com.aplication.spring.mvc.exception.InternalServiceException;
+import com.aplication.spring.mvc.exception.InvalidDataException;
+import com.aplication.spring.mvc.layer.type.ContactoType;
+import com.aplication.spring.mvc.layer.type.EnvioSistemaType;
+import com.aplication.spring.mvc.layer.type.EventoSistemaType;
+import com.aplication.spring.mvc.layer.type.MotivoEstadoType;
 
 public class AplicationTest {
 	
