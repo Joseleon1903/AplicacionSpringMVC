@@ -18,7 +18,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
 		 @NamedQuery(name="Usuario.BuscarTodos", query="SELECT u FROM Usuario u") ,
 		 @NamedQuery(name="Usuario.BuscarPorId", query="SELECT u FROM Usuario u WHERE u.usuarioId = :usuarioId"),
-		 @NamedQuery(name= "Usuario.BuscarPorCodigoUsuario", query= "SELECT u FROM Usuario u WHERE u.codigoUsuario = :codigoUsuario ")
+		 @NamedQuery(name= "Usuario.BuscarPorCodigoUsuario", query= "SELECT u FROM Usuario u WHERE u.codigoUsuario = :codigoUsuario"),
+		 @NamedQuery(name= "Usuario.ActualizarfechaUltimoAcceso", query= "UPDATE Usuario u SET u.fechaUltimoAcceso = u.fechaUltimoAcceso")
 })
 public class Usuario {
 	
@@ -29,10 +30,19 @@ public class Usuario {
 	private Date fechaUltimoAcceso;
 	private Contacto contacto_id;;
 	
-	public Usuario() {
-		// TODO Auto-generated constructor stub
+	public Usuario() {}
+		
+	public Usuario(Integer usuarioId, String codigoUsuario, String password, Date fechaCreacion, Date fechaUltimoAcceso,
+			Contacto contacto_id) {
+		super();
+		this.usuarioId = usuarioId;
+		this.codigoUsuario = codigoUsuario;
+		this.password = password;
+		this.fechaCreacion = fechaCreacion;
+		this.fechaUltimoAcceso = fechaUltimoAcceso;
+		this.contacto_id = contacto_id;
 	}
-	
+
 	@Id
     @Column(name="USUARIO_ID", nullable= false)
 	public Integer getUsuarioId() {
@@ -117,10 +127,10 @@ public class Usuario {
 	 *
 	 */
 	public static interface Query{
-		
 		String BUSCA_POR_ID = "Usuario.BuscarPorId";
 		String BUSCAR_TODOS = "Usuario.BuscarTodos";
 		String BUSCAR_POR_CODIGO_USUARIO = "Usuario.BuscarPorCodigoUsuario";
+		String ACTUALIZAR_FECHA_ULTIMO_ACCESO = "Usuario.ActualizarfechaUltimoAcceso";
 	}
 	
 	/**

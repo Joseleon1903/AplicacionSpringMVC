@@ -1,86 +1,28 @@
-/*
- * JBoss, Home of Professional Open Source
- * Copyright 2014, Red Hat, Inc. and/or its affiliates, and individual
- * contributors by the @authors tag. See the copyright.txt in the
- * distribution for a full listing of individual contributors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.aplication.spring.mvc.dao.test;
 
-//
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(locations = {"classpath:test-context.xml",
-//                                   "classpath:/META-INF/spring/applicationContext.xml"})
-//@Transactional
-//@TransactionConfiguration(defaultRollback = true)
+import java.util.Date;
+
+import com.aplicacion.spring.mvc.interfaces.beans.IUsuarioES;
+import com.aplicacion.spring.mvc.interfaces.impl.beans.UsuarioESImpl;
+import com.aplication.spring.mvc.entity.Usuario;
+import com.aplication.spring.mvc.jpa.util.PersistenceManager;
+import com.aplication.spring.mvc.layer.type.UsuarioType;
+
 public class MemberDaoTest {
-//    @Autowired
-//    private MemberDao memberDao;
-//
-//    @Test
-//    public void testFindById() {
-//        Member member = memberDao.findById(0l);
-//
-//        assertEquals("John Smith", member.getName());
-//        assertEquals("john.smith@mailinator.com", member.getEmail());
-//        assertEquals("2125551212", member.getPhoneNumber());
-//        return;
-//    }
-//
-//    @Test
-//    public void testFindByEmail() {
-//        Member member = memberDao.findByEmail("john.smith@mailinator.com");
-//
-//        assertEquals("John Smith", member.getName());
-//        assertEquals("john.smith@mailinator.com", member.getEmail());
-//        assertEquals("2125551212", member.getPhoneNumber());
-//        return;
-//    }
-//
-//    @Test
-//    public void testRegister() {
-//        Member member = new Member();
-//        member.setEmail("jane.doe@mailinator.com");
-//        member.setName("Jane Doe");
-//        member.setPhoneNumber("2125552121");
-//
-//        memberDao.register(member);
-//        Long id = member.getId();
-//        assertNotNull(id);
-//
-//        assertEquals(2, memberDao.findAllOrderedByName().size());
-//        Member newMember = memberDao.findById(id);
-//
-//        assertEquals("Jane Doe", newMember.getName());
-//        assertEquals("jane.doe@mailinator.com", newMember.getEmail());
-//        assertEquals("2125552121", newMember.getPhoneNumber());
-//        return;
-//    }
-//
-//    @Test
-//    public void testFindAllOrderedByName() {
-//        Member member = new Member();
-//        member.setEmail("jane.doe@mailinator.com");
-//        member.setName("Jane Doe");
-//        member.setPhoneNumber("2125552121");
-//        memberDao.register(member);
-//
-//        List<Member> members = memberDao.findAllOrderedByName();
-//        assertEquals(2, members.size());
-//        Member newMember = members.get(0);
-//
-//        assertEquals("Jane Doe", newMember.getName());
-//        assertEquals("jane.doe@mailinator.com", newMember.getEmail());
-//        assertEquals("2125552121", newMember.getPhoneNumber());
-//        return;
-//    }
+	
+	private static PersistenceManager persistence;
+	
+	public static void main(String args[]){
+		System.out.println("com.aplication.spring.mvc.dao.test");
+		IUsuarioES usuarioESDao = new UsuarioESImpl(persistence);
+		UsuarioType usertype = usuarioESDao.buscarUsuarioPorCodigo("ADMiN");
+		System.out.println(usertype);
+		System.out.println("--------------**************----------------------");
+		Usuario usuarioUlti =new UsuarioType().toEntity(usertype);
+		usuarioUlti.setFechaUltimoAcceso(new Date());
+		boolean actualizado = usuarioESDao.ActualizarAccesoUsuario(usuarioUlti);
+		System.out.println("Actualizado: "+actualizado);
+	}
+	
+	
 }
