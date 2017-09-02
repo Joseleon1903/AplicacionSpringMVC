@@ -13,5 +13,7 @@ public interface IUsuarioES {
 	public UsuarioType buscarUsuarioPorCodigo(String nombre);
 	
 	public boolean ActualizarAccesoUsuario(Usuario usuario);
+	
+	public boolean registrarUsuario(Usuario usuario);
 
 }

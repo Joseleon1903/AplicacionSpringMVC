@@ -33,4 +33,10 @@ public class UsuarioESImpl extends AbstractJpaDao<Integer, Usuario> implements I
 		return exitoso;
 	}
 
+	@Override
+	public boolean registrarUsuario(Usuario usuario) {
+		 registrarEntity(usuario);
+		return true;
+	}
+
 }

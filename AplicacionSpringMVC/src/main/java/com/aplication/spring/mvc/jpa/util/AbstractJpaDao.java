@@ -127,7 +127,6 @@ public abstract class AbstractJpaDao<ID, E> {
      * Descripcion: Metodo para registrar una entidad
      * 
      * @param entity
-     * @return Id
      */
 	public void registrarEntity(E entity) throws PersistenceException, EntityExistsException {
 		try {
