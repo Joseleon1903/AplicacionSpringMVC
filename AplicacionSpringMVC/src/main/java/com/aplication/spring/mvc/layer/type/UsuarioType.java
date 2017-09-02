@@ -40,14 +40,12 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 		this.fechaCreacion = fechaCreacion;
 		this.fechaUltimoAcceso = fechaUltimoAcceso;
 	}
-
-
-
-	public Integer getUsuario() {
+	
+	public Integer getUsuarioId() {
 		return usuarioId;
 	}
 
-	public void setUsuario(Integer usuario) {
+	public void setUsuarioId(Integer usuario) {
 		this.usuarioId = usuario;
 	}
 
@@ -113,7 +111,7 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 	@Override
 	public Usuario toEntity(UsuarioType type) {
 		Usuario entity = new Usuario();
-		entity.setUsuarioId(type.getUsuario());
+		entity.setUsuarioId(type.getUsuarioId());
 		entity.setContacto_id(new ContactoType().toEntity(type.getContacto()));
 		entity.setCodigoUsuario(type.getNombre());
 		entity.setPassword(type.getPassword());

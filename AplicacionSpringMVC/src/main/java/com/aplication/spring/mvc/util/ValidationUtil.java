@@ -19,4 +19,17 @@ public final class ValidationUtil {
 		return false;		
 	}
 
+	/**
+	 * Descripcion: devuelve true si el objeto por parametro esta nulo.
+	 * 
+	 * @param string
+	 * @return
+	 */
+	public static boolean isStringNotNullOrEmpty(String string) {
+		if (string == null || string.isEmpty()) {
+			return true;
+		}
+		return false;
+	}
+
 }
