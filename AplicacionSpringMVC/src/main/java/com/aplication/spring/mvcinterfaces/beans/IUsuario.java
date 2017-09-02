@@ -1,4 +1,4 @@
-package com.aplication.spring.mvc.ejb.interfaces;
+package com.aplication.spring.mvcinterfaces.beans;
 
 import javax.ejb.Remote;
 

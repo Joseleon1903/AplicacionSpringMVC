@@ -6,8 +6,8 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.aplication.interfaces.comunes.BuscableType;
 import com.aplication.spring.mvc.entity.MotivoEstado;
-import com.aplication.spring.mvc.interfaces.comunes.BuscableType;
 
 @XmlRootElement(name="MotivoEstadoType")
 public class MotivoEstadoType implements BuscableType<MotivoEstadoType, MotivoEstado>, Serializable {

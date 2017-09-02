@@ -7,8 +7,8 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.aplication.interfaces.comunes.BuscableType;
 import com.aplication.spring.mvc.entity.EnvioSistema;
-import com.aplication.spring.mvc.interfaces.comunes.BuscableType;
 
 @XmlRootElement(name="EnvioSistemaType")
 public class EnvioSistemaType implements BuscableType<EnvioSistemaType, EnvioSistema>, Serializable{
