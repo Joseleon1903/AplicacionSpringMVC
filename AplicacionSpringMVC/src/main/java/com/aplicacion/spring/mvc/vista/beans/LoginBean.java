@@ -2,7 +2,7 @@ package com.aplicacion.spring.mvc.vista.beans;
 
 import org.springframework.stereotype.Component;
 
-@Component("LoginBean")
+@Component
 public class LoginBean {
 	
 	private String codigoUsuario;

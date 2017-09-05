@@ -14,10 +14,10 @@
 	crossorigin="anonymous">
 </head>
 <script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/logger-script.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-servicios-rest.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-servicios-contantes.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-validacion.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/logger-script.js"/>"></script>
+<%-- <script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-servicios-rest.js"/>"></script> --%>
+<%-- <script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-servicios-contantes.js"/>"></script> --%>
+<%-- <script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-validacion.js"/>"></script> --%>
+<%-- <script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/logger-script.js"/>"></script> --%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <body>
 <body>
@@ -65,7 +65,7 @@
 				<fieldset>
 					<div class="pure-control-group">
 						<label for="name">Username</label> 
-						<input id="name" type="text" onblur="validarNotNull('name')" placeholder="Username" required/> 
+						<input id="name" type="text" onblur="validarNotNull('name')" placeholder="Username" value="<c:out value="${LoginBean.codigoUsuario}"/>" required/> 
 					</div>
 				</fieldset>
 	

@@ -2,18 +2,33 @@ package com.aplication.spring.mvc.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.aplicacion.spring.mvc.vista.beans.LoginBean;
+import com.aplicacion.spring.mvc.vista.beans.ManejadorUsuarioLoginBean;
+
 @Controller
 @RequestMapping(value = "/")
 public class LoginController {
+	
+	@Autowired
+	@Qualifier("manejadorUsuarioLoginBean")
+	private ManejadorUsuarioLoginBean manejadorUsuario;
+	
+	@Autowired
+	@Qualifier("loginBean")
+	private LoginBean loginBean;
   
 
     @RequestMapping(method = RequestMethod.GET)
     public String displayLoginController(HttpServletRequest request,  Model model) {
+    	loginBean.setCodigoUsuario("Mario");
+    	model.addAttribute("LoginBean", loginBean);
         return "index";
     }
     

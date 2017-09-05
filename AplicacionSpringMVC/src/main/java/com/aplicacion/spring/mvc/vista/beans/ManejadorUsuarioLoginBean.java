@@ -2,15 +2,9 @@ package com.aplicacion.spring.mvc.vista.beans;
 
 import org.springframework.stereotype.Component;
 
-@Component("ManejadorUsuarioLoginBean")
+@Component
 public class ManejadorUsuarioLoginBean {
 	
-//	@Autowired
-//	private UsuarioSession sessionUsuario;
-//	
-//	@Autowired
-//	private IUsuarioES usuarioES;
-
 	public ManejadorUsuarioLoginBean() {
 	}
 	
