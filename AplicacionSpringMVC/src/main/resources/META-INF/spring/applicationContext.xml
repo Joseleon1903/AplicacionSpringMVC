@@ -7,9 +7,14 @@
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
-<!--     <context:component-scan base-package="org.jboss.tools.example.springmvc.model" /> -->
 
-<!--     <context:component-scan base-package="org.jboss.tools.example.springmvc.data" /> -->
+    <context:component-scan base-package="com.aplicacion.spring.mvc.interfaces.beans" />
+
+    <context:component-scan base-package="com.aplicacion.spring.mvc.interfaces.impl.beans" />
+
+    <context:component-scan base-package="com.aplicacion.spring.mvc.session.beans" />
+
+    <context:component-scan base-package="com.aplicacion.spring.mvc.vista.beans" />
 
     <tx:annotation-driven />
 

@@ -1,5 +1,7 @@
 package com.aplication.spring.mvc.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +13,10 @@ public class LoginController {
   
 
     @RequestMapping(method = RequestMethod.GET)
-    public String displaySortedMembers(Model model) {
+    public String displayLoginController(HttpServletRequest request,  Model model) {
         return "index";
     }
+    
 
 //    @RequestMapping(method = RequestMethod.POST)
 //    public String registerNewMember(@Valid @ModelAttribute("newMember") Member newMember, BindingResult result, Model model) {
