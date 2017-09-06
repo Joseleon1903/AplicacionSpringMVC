@@ -1,9 +1,9 @@
-package com.aplicacion.spring.mvc.interfaces.impl.beans;
+package com.aplicacion.spring.mvc.interfaces.impl;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aplicacion.spring.mvc.interfaces.beans.IMotivoEstadoES;
+import com.aplicacion.spring.mvc.interfaces.IMotivoEstadoES;
 import com.aplication.spring.mvc.layer.type.MotivoEstadoType;
 
 @Repository

@@ -30,7 +30,7 @@
 					<a href="index.jsp" class="pure-menu-link">Home</a>
 					</li>
 					<li class="pure-menu-item">
-					<a href="portal/pagina/jsp/registrarUsuario.jsp" class="pure-menu-link">Registrar usuario</a>
+					<a href="<c:url value="/static/portal/pagina/jsp/registrarUsuario.jsp"/>" class="pure-menu-link">Registrar usuario</a>
 					</li>
 					<li class="pure-menu-item">
 					<a href="portal/pagina/jsp/actualizarContacto.jsp" class="pure-menu-link">Actualizar usuario</a>
@@ -61,7 +61,7 @@
 	
 		<div class="form-login">
 		  <img alt="[NOT FOUND  ERROR] Objeto solicitado no encontrado" src="<c:url value="/static/resources/inmagenes/png/free-icon/login-inmg.png"/>">
-			<form name="login" id="form-1" method="post"  onsubmit="event.preventDefault()" class="pure-form pure-form-aligned">
+			<form name="login" id="form-1" method="post" class="pure-form pure-form-aligned">
 				<fieldset>
 					<div class="pure-control-group">
 						<label for="name">Username</label> 
@@ -72,7 +72,7 @@
 				<fieldset>
 					<div class="pure-control-group">
 						<label for="password">Password</label>
-						<input id="password" type="password"  onblur="validarNotNull('password')" placeholder="Password" required/> 
+						<input id="password" type="password"  onblur="validarNotNull('password')" placeholder="Password" value="<c:out value="${LoginBean.password}"/>" required/> 
 					</div>
 				</fieldset>
 	

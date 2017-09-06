@@ -38,20 +38,10 @@ public class LoginController {
     }
     
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    public String registerNewMember(@Valid @ModelAttribute("newMember") Member newMember, BindingResult result, Model model) {
-//        if (!result.hasErrors()) {
-//            try {
-//                memberDao.register(newMember);
-//                return "redirect:/";
-//            } catch (UnexpectedRollbackException e) {
-//                model.addAttribute("members", memberDao.findAllOrderedByName());
-//                model.addAttribute("error", e.getCause().getCause());
-//                return "index";
-//            }
-//        } else {
-//            model.addAttribute("members", memberDao.findAllOrderedByName());
-//            return "index";
-//        }
-//    }
+    @RequestMapping(method=RequestMethod.POST)
+    public String procesaForm(HttpServletRequest request,  Model model) {
+    	String pagina = "portal/pagina/jsp/Home";
+    	pagina = manejadorUsuario.loginUsuario(loginBean.getCodigoUsuario(), loginBean.getPassword(), sessionUsuario);
+    	return pagina;
+    }
 }
