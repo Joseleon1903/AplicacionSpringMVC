@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@Scope("session")
+@Scope(value="session")
 public class UsuarioSession {
 	
 	private boolean autenticado;

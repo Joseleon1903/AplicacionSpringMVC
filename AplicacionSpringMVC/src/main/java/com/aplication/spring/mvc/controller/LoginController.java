@@ -9,27 +9,32 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
 import com.aplicacion.spring.mvc.vista.beans.LoginBean;
-import com.aplicacion.spring.mvc.vista.beans.ManejadorUsuarioLoginBean;
+import com.aplicacion.spring.mvc.vista.beans.ManejadorUsuarioBean;
 
 @Controller
 @RequestMapping(value = "/")
 public class LoginController {
 	
 	@Autowired
-	@Qualifier("manejadorUsuarioLoginBean")
-	private ManejadorUsuarioLoginBean manejadorUsuario;
+	@Qualifier("manejadorUsuarioBean")
+	private ManejadorUsuarioBean manejadorUsuario;
 	
 	@Autowired
 	@Qualifier("loginBean")
 	private LoginBean loginBean;
+	
+	@Autowired
+	@Qualifier("usuarioSession")
+	private UsuarioSession sessionUsuario;
   
 
     @RequestMapping(method = RequestMethod.GET)
     public String displayLoginController(HttpServletRequest request,  Model model) {
-    	loginBean.setCodigoUsuario("Mario");
+    	String pagina =manejadorUsuario.validandoSession(sessionUsuario);
     	model.addAttribute("LoginBean", loginBean);
-        return "index";
+        return pagina;
     }
     
 

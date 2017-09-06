@@ -1,11 +1,15 @@
 package com.aplicacion.spring.mvc.vista.beans;
 
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
-@Component
-public class ManejadorUsuarioLoginBean {
+import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
+
+@Service
+@Scope(value="prototype")
+public class ManejadorUsuarioBean {
 	
-	public ManejadorUsuarioLoginBean() {
+	public ManejadorUsuarioBean() {
 	}
 	
 	public void loginUsuario(String nombre, String password){
@@ -20,6 +24,11 @@ public class ManejadorUsuarioLoginBean {
 //		}
 	}
 	
-	
+	public String validandoSession(UsuarioSession session){
+		if (session.isAutenticado()) {
+			return "portal/pagina/jsp/Home";
+		}
+		return "index";		
+	}
 
 }
