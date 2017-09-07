@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RegistrarUsuarioPageController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String redirectHome() {
+	public String displayRegistrarUsuarioPage() {
 		return "portal/pagina/jsp/registrarUsuario";
 	}
 

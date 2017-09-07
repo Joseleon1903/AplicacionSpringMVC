@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ListaEmailEnviadasPageController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String redirectHome() {
+	public String displayListaEmailEnviadasPage() {
 		return "portal/pagina/jsp/listaEmailEnviadas";
 	}
 

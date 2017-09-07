@@ -1,17 +1,15 @@
 /**
  * variable globales
  */
-var erroPagina =  true;
+var erroPagina = false;
 var menuAdicional= true;
 
 /** ----------------------------------------------*/ 
 
-alert('inicio');
 /**
  * funcion al cargar la pagina
  */
 window.onload = function() {
-	alert('Al cargar la pagina');
 	entering('entrando en el metodo para inicialisacion al carcar la pagina..');
 	exiting('saliendo en el metodo inicialisacion al carcar la pagina..');
 }

@@ -1,27 +1,116 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="../../../css/estilo.css">
+    <title>SpringMVC Application</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/resources/css/estilo.css"/>"/>
 <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
 	integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
 	crossorigin="anonymous">
-<title>Actualizar Contacto App</title>
 </head>
+<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/logger-script.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-servicios-contantes.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-validacion.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/Proxy-Menu-Navegacion.js"/>"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <body>
-<!--     incluyendo header de la pagina html  -->
-	<jsp:include page="../html/header.html" flush="true"></jsp:include>
-<!--  terminando de incluir header de la pagina html  -->
 
+   <!-- *************contenedor menu de navegacion inicio codigo ************ -->
+     <%@ include file="../html/header.html" %>
+   <!-- *************contenedor menu de navegacion Fin codigo ************ -->
 
+   <!-- ********* inicio DIV contenido principal ***********-->
 	<div class="container-contenido">
-	<h1>contenido pagina 1</h1>
-	</div>
+	
+		<div class="form-actualizar-usuario">
+		<h1>Actualizar informacion usuario sistema</h1>
+		    <form name="actualizarUsuario" id="form-3" method="post" class="pure-form pure-form-aligned">
+					<fieldset>
+						<div class="pure-control-group">
+							<label for="nombre">Nombre</label> 
+							<input id="nombre" type="text" placeholder="Nombre Usuario"> 
+						</div>
+					</fieldset>
+					
+					<fieldset>
+						<div class="pure-control-group">
+							<label for="apellido">Apellido</label> 
+							<input id="apellido" type="text" placeholder="Apellido Usuario"> 
+						</div>
+					</fieldset>
+		
+					<fieldset>
+						 <div class="pure-control-group">				
+						<label for="sexo" class="pure-radio">Sexo</label>
+						<input id="sexo" type="radio" name="sexo" value="F" checked> female
+						<input id="sexo" type="radio" name="sexo" value="M"> male
+						</div>
+					</fieldset>
+					
+					<fieldset>
+						<div class="pure-control-group">
+						<label for="fechaNacimiento" class="pure-radio">Fecha nacimiento</label>
+						<input id="fechaNacimiento" type="date" name="fecha">
+						</div>
+					</fieldset>
+		
+					<fieldset>
+					<div class="pure-control-group">
+					<label for="email">Email usuario</label>
+					<input id="email" type="email" placeholder="Email">
+					</div>
+					</fieldset>
+		
+					<fieldset>
+						<div class="pure-control-group">
+							<label for="name">Username</label>
+							 <input id="name" type="text" placeholder="Username"> 
+						</div>
+					</fieldset>
+				
+		            <fieldset>
+						<div class="pure-control-group">
+							<label for="emailAlternatriva">Email alternatriva</label>
+							 <input id="emailAlternatriva" type="text" placeholder="Email alternatriva"> 
+						</div>
+					</fieldset>
+					<fieldset>
+						<div class="pure-control-group">
+							<label for="Direccion">Direccion</label>
+							 <input id="Direccion" type="text" placeholder="Direccion"> 
+						</div>
+					</fieldset>
+					<fieldset>
+						<div class="pure-control-group">
+							<label for="Telefono">Telefono</label>
+							 <input id="Telefono" type="text" placeholder="Telefono"> 
+						</div>
+					</fieldset>
+					<fieldset>
+						<div class="pure-control-group">
+							<label for="Celular">Celular</label>
+							 <input id="Celular" type="text" placeholder="Celular"> 
+						</div>
+					</fieldset>
+					
+					<fieldset>
+						<div>
+							<button type="submit" class="pure-button pure-button-primary">Actualiza</button>
+							<button type="submit" class="pure-button pure-button-primary">Salir</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<!-- ********* Final DIV principal *********** -->
 
 
-<!--     incluyendo header de la pagina html  -->
-	<jsp:include page="../html/footer.html" flush="true"></jsp:include>
-<!--  terminando de incluir header de la pagina html  -->
+   <!-- *************contenedor footer de fin de pagina inicio codigo ************ -->
+     <%@ include file="../html/footer.html" %>
+   <!-- *************contenedor footer de fin de pagina final codigo ************ -->
+
 </body>
 </html>

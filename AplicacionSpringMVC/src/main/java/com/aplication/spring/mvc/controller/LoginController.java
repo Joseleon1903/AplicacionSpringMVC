@@ -33,9 +33,8 @@ public class LoginController {
 	@Qualifier("usuarioSession")
 	private UsuarioSession sessionUsuario;
   
-
     @RequestMapping(method = RequestMethod.GET)
-    public String displayLoginController(HttpServletRequest request,  Model model) {
+    public String displayLogin(HttpServletRequest request,  Model model) {
     	logger.info("Redirigiendo a pagina de inicio....");
     	logger.info("procediendo a validar la session del usuario.");
     	String pagina =manejadorUsuario.validandoSession(sessionUsuario);
@@ -44,11 +43,11 @@ public class LoginController {
         return pagina;
     }
     
-
     @RequestMapping(method=RequestMethod.POST)
     public String procesaForm(@ModelAttribute("LoginBean") LoginBean loginBeanOutput, HttpServletRequest request,  Model model) {
     	String pagina = "portal/pagina/jsp/Home";
     	pagina = manejadorUsuario.loginUsuario(loginBeanOutput.getCodigoUsuario(), loginBeanOutput.getPassword(), sessionUsuario);
     	return pagina;
     }
+    
 }

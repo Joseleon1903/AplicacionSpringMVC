@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomePageController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String redirectHome() {
-		return "portal/pagina/jsp/Home";
+	public String displayHomePage() {
+		return "/portal/pagina/jsp/Home";
 	}
 
 }

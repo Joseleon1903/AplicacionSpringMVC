@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class EnviarEmailPageController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String redirectHome() {
+	public String displayEnviarEmailPage() {
 		return "portal/pagina/jsp/enviarEmail";
 	}
 

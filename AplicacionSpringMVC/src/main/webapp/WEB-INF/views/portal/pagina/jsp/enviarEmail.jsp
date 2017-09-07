@@ -1,28 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="../../../css/estilo.css">
+    <title>SpringMVC Application</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/resources/css/estilo.css"/>"/>
 <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
 	integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
 	crossorigin="anonymous">
-<title>Enviar Email App</title>
 </head>
+<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/logger-script.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-servicios-contantes.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-validacion.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/Proxy-Menu-Navegacion.js"/>"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <body>
-<!--     incluyendo header de la pagina html  -->
-	<jsp:include page="../html/header.html" flush="true"></jsp:include>
-<!--  terminando de incluir header de la pagina html  -->
 
+   <!-- *************contenedor menu de navegacion inicio codigo ************ -->
+     <%@ include file="../html/header.html" %>
+   <!-- *************contenedor menu de navegacion Fin codigo ************ -->
 
-	<div class="container-contenido">
-	<h1>contenido pagina 1</h1>
+    <!-- *************contenedor contenido codigo inicio ************ -->
+	<div class="form-envio-email">
+	    <h1>Formaulario para enviar email</h1>
+		<form name="envio-email" id="form-4" method="post" class="pure-form">
+			  <fieldset>
+			  	<div class="pure-group">
+				<input type="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" placeholder="Destinatario">
+			</div>
+			</fieldset>
+			 <fieldset>
+			  	<div class="pure-group">
+				<input type="text"  placeholder="Asunto">
+			</div>
+			</fieldset>
+
+			<fieldset>
+			<div class="pure-group">
+				<textarea placeholder="Textareas work too"></textarea>
+			</div>
+			</fieldset>
+
+			<div class="pure-group">
+			<button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Envio</button>
+			</div>
+
+		</form>
 	</div>
+    <!-- *************contenedor contenido codigo final ************ -->
 
-
-<!--     incluyendo header de la pagina html  -->
-	<jsp:include page="../html/footer.html" flush="true"></jsp:include>
-<!--  terminando de incluir header de la pagina html  -->
+   <!-- *************contenedor footer de fin de pagina inicio codigo ************ -->
+     <%@ include file="../html/footer.html" %>
+   <!-- *************contenedor footer de fin de pagina final codigo ************ -->
 
 </body>
 </html>
