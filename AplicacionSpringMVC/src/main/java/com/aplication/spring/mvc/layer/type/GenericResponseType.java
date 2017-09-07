@@ -2,11 +2,8 @@ package com.aplication.spring.mvc.layer.type;
 
 import java.io.Serializable;
 
-import org.codehaus.jackson.annotate.JsonTypeName;
-
 import com.aplication.spring.mvc.exception.ServiceFault;
 
-@JsonTypeName(value="GenericResponseType")
 public class GenericResponseType implements Serializable {
 	
 	/**

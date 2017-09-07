@@ -7,8 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<properties>
-		<!-- Explicitly declaring the source encoding eliminates the following 
-			message: -->
+		<!-- Explicitly declaring the source encoding eliminates the following message: -->
 		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
 			resources, i.e. build is platform dependent! -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -86,28 +85,9 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>4.3.9.RELEASE</version>
 		</dependency>
-
-		<!-- Needed for running tests (you may also use TestNG) -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-		</dependency>
-		<!-- dependencia para resolver erros de classNotFaounb en run time -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.5.2</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -149,12 +129,6 @@
 			<artifactId>standard</artifactId>
 			<version>1.1.2</version>
 		</dependency>
-		<!-- libreria para manejar datos JSon de google -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.8.1</version>
-		</dependency>
 		<!-- mvnrepository.com mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -168,25 +142,33 @@
 			<version>2.5.0-RC1</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- dependencias parar Resteasy -->
+
+		<!-- dependenci para la inyeccion de dependencia de spring framework -->
 		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jackson-provider</artifactId>
-			<version>2.3.2.Final</version>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+		
+		<!-- Needed for running tests (you may also use TestNG) -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+		<!-- dependencia para resolver erros de classNotFaounb en run time -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.5.2</version>
+		</dependency>
+		<!-- dependencia para los logger -->
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>3.1.4.GA</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxrs</artifactId>
-			<version>2.3.2.Final</version>
-			<scope>provided</scope>
-		</dependency>
-<!--     dependenci para la inyeccion de dependencia de spring framework -->
-	<dependency>
-		<groupId>javax.inject</groupId>
-		<artifactId>javax.inject</artifactId>
-		<version>1</version>
-	</dependency>
 	</dependencies>
 
 	<build>

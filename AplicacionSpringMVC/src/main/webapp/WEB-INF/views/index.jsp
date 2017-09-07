@@ -14,10 +14,8 @@
 	crossorigin="anonymous">
 </head>
 <script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/logger-script.js"/>"></script>
-<%-- <script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-servicios-rest.js"/>"></script> --%>
-<%-- <script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-servicios-contantes.js"/>"></script> --%>
-<%-- <script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-validacion.js"/>"></script> --%>
-<%-- <script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/logger-script.js"/>"></script> --%>
+<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-servicios-contantes.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-validacion.js"/>"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <body>
 <body>
@@ -39,7 +37,7 @@
 					<a href="portal/pagina/jsp/enviarEmail.jsp" class="pure-menu-link">Enviar email</a>
 					</li>
 					<li class="pure-menu-item">
-					<a href="portal/pagina/jsp/listaMailEnviadas.jsp" class="pure-menu-link">Ver lista email</a>
+					<a href="portal/pagina/jsp/listaEmailEnviadas.jsp" class="pure-menu-link">Ver lista email</a>
 					</li>
 				</ul>
 			</div>
@@ -51,12 +49,15 @@
 	<div class="container-contenido">
 	
 	 <!-- *************contenedor mensaje error codigo ************ -->
-	 <div id="pop-up-mensaje">
-		 
-    </div>
-    <!-- *************contenedor mensaje error Fin codigo ************ -->
+		<div id="pop-up-mensaje">
+			<div class="container-error-pop">
+				<img alt="ICON NOT FOUND" src="<c:url value="/static/resources/inmagenes/png/free-icon/Error-Icono.png"/>" />
+				<p>[CODIGO ERROR] 1606</p>
+				<p>INTERNAL SERVER ERROR</p>
+			</div>
+		</div>
+		<!-- *************contenedor mensaje error Fin codigo ************ -->
    
-	
 	<div class="form-login-marco">
 	
 		<div class="form-login">
@@ -78,8 +79,8 @@
 	
 				<fieldset>
 					<div>
-						<button type="submit" onclick="validarDatosFormulario()" class="pure-button pure-button-primary">Login</button>
-						<button type="reset" onclick="redireccionarPagina('portal/contenido/registrarUsuario.html')" class="pure-button pure-button-primary">Registrate ahora</button>
+						<input type="submit" class="pure-button pure-button-primary" value="Login" />
+						<button type="reset" class="pure-button pure-button-primary">Registrate ahora</button>
 					</div>
 				</fieldset>
 			</form>

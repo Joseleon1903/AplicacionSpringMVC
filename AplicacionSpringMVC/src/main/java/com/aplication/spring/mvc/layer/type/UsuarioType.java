@@ -57,12 +57,12 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 		this.contacto = contacto;
 	}
 
-	public String getNombre() {
+	public String getCodigoUsuario() {
 		return codigoUsuario;
 	}
 
-	public void setNombre(String nombre) {
-		this.codigoUsuario = nombre;
+	public void setCodigoUsuario(String codigoUsuario) {
+		this.codigoUsuario = codigoUsuario;
 	}
 
 	public String getPassword() {
@@ -113,7 +113,7 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 		Usuario entity = new Usuario();
 		entity.setUsuarioId(type.getUsuarioId());
 		entity.setContacto_id(new ContactoType().toEntity(type.getContacto()));
-		entity.setCodigoUsuario(type.getNombre());
+		entity.setCodigoUsuario(type.getCodigoUsuario());
 		entity.setPassword(type.getPassword());
 		entity.setFechaCreacion(type.getFechaCreacion());
 		entity.setFechaUltimoAcceso(type.getFechaUltimoAcceso());

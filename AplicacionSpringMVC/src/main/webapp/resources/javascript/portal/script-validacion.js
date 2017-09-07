@@ -1,7 +1,7 @@
 /**
  * variable globales
  */
-var erroPagina =  false;
+var erroPagina =  true;
 var menuAdicional= true;
 
 /** ----------------------------------------------*/ 
@@ -13,11 +13,6 @@ alert('inicio');
 window.onload = function() {
 	alert('Al cargar la pagina');
 	entering('entrando en el metodo para inicialisacion al carcar la pagina..');
-	validarSessionUsuario();
-	buscarMotivoEstadoSistema();
-	//motivosSistema.unshift(new MotivoEstadoSistema(404, mensajeCampoRequerido));
-	//alert('motivoId: '+buscarMotivoPorId(404).motivoId+ 'descripcion: '+buscarMotivoPorId(404).descripcion);
-	
 	exiting('saliendo en el metodo inicialisacion al carcar la pagina..');
 }
 
@@ -33,7 +28,7 @@ function validarNotNull(inputId){
 	parametro('contenido text', elemento.value);
 	if (elemento.value =='' || elemento == undefined || elemento.value == null) {
 		erroPagina = true;
-		showMensajeError(buscarMotivoPorId(DatoRequeridoNoProporcionado).motivoId, buscarMotivoPorId(DatoRequeridoNoProporcionado).descripcion);
+		showMensajeError(1603, 'INTERNAL SERVER ERROR');
 		elemento.style.border = 'solid';
 		elemento.style.borderColor= 'red';
 		exiting("validarNotNull");
@@ -46,13 +41,6 @@ function validarNotNull(inputId){
 		exiting("validarNotNull");
 		return false;
 	}
-}
-
-function redireccionarPagina(url){
-	entering("redireccionarPagina");
-	parametro('password', url);
-	window.location.replace(url);
-	exiting("redireccionarPagina");
 }
 
 function optenerValorCampo(idCampo){
@@ -77,7 +65,7 @@ function validarDatosFormulario(){
 	//validacion usuario sistema inicio final
 	erroPagina =  true;
 	info('El usuario es invalido');
-	showMensajeError(buscarMotivoPorId(InvalidUserException).motivoId, buscarMotivoPorId(InvalidUserException).descripcion);
+	showMensajeError(1603, 'INTERNAL SERVER ERROR');
 	}
 }
 
@@ -88,7 +76,7 @@ function showMensajeError(codigo, mensajeError ){
 	var elementoError = document.getElementById("pop-up-mensaje");
 	parametro('style', elementoError.style.display);
 	elementoError.style.display = 'inline';
-	var inmageError = '<img alt="ICON NOT FOUND" src="inmagenes/png/free-icon/Error-Icono.png" />';
+	var inmageError = '<img alt="ICON NOT FOUND" src="<c:url value="/static/resources/inmagenes/png/free-icon/Error-Icono.png"/>" />';
 	var parrafoCodigo = '<p> [CODIGO ERROR] '+codigo+'</p>';
 	var parrafoMensaje= '<p>'+mensajeError+'</p>'; 
 	elementoError.innerHTML='<div class="container-error-pop">'+inmageError+parrafoCodigo+parrafoMensaje+'</div>';
@@ -115,16 +103,4 @@ function showFormularioDatosAdicionales(idcampos){
 		menuAdicional = true;
 	}
 	exiting('showFormularioDatosAdicionales');
-}
-
-/**
- * Funcion  para validar si el usuario no esta ya loguedo o se ha loguedo corectamente..
- * @returns
- */
-function validarSessionUsuario(){
-	entering("validarSessionUsuario");
-	
-	
-	exiting('validarSessionUsuario');
-
 }
