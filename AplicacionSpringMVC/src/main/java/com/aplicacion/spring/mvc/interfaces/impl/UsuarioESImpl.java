@@ -17,7 +17,7 @@ public class UsuarioESImpl extends AbstractJpaDao<Integer, Usuario> implements I
 	public UsuarioType buscarUsuarioPorCodigo(String nombre) {
 		ParameterExpression parametros = new ParameterExpression();
 		parametros.addParam("codigoUsuario", nombre);
-		Usuario user = buscarEntityPorNameQueryConRetorno(Usuario.Query.BUSCAR_POR_CODIGO_USUARIO,parametros);
+		Usuario user = buscarEntityPorNameQueryConRetorno(Usuario.NameQuery.BUSCAR_POR_CODIGO_USUARIO,parametros);
 		return new UsuarioType().toType(user);
 	}
 

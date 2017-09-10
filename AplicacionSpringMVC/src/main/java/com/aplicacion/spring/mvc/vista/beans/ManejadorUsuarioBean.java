@@ -2,7 +2,7 @@ package com.aplicacion.spring.mvc.vista.beans;
 
 import org.springframework.stereotype.Service;
 
-import com.aplicacion.rest.html.ejb.impl.UsuarioEjbImpl;
+import com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl;
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
 import com.aplication.spring.mvc.util.ValidationUtil;

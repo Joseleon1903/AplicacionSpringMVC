@@ -1,6 +1,6 @@
 package com.aplication.spring.mvc.dao.test;
 
-import com.aplicacion.rest.html.ejb.impl.UsuarioEjbImpl;
+import com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
 
 public class MemberDaoTest {

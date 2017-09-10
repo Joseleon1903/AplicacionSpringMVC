@@ -126,7 +126,7 @@ public class Usuario {
 	 * @author Jose Eduardo
 	 *
 	 */
-	public static interface Query{
+	public static interface NameQuery{
 		String BUSCA_POR_ID = "Usuario.BuscarPorId";
 		String BUSCAR_TODOS = "Usuario.BuscarTodos";
 		String BUSCAR_POR_CODIGO_USUARIO = "Usuario.BuscarPorCodigoUsuario";

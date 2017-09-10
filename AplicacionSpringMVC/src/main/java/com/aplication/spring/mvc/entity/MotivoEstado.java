@@ -78,7 +78,7 @@ public class MotivoEstado {
 		String ESTADO        = "ESTADO";
 	}
 	
-	public static interface Query{
+	public static interface NameQuery{
 		
 		String BUSCAR_MOTIVO_POR_ID     = "MotivoEstado.BuscarPorId";
 		String BUSCAR_TODOS_LOS_MOTIVOS = "MotivoEstado.BuscarTodos";

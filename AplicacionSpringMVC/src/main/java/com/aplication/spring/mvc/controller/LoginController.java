@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -44,9 +43,8 @@ public class LoginController {
     }
     
     @RequestMapping(method=RequestMethod.POST)
-    public String procesaForm(@ModelAttribute("LoginBean") LoginBean loginBeanOutput, HttpServletRequest request,  Model model) {
+    public String procesaForm(HttpServletRequest request,  Model model) {
     	String pagina = "portal/pagina/jsp/Home";
-    	pagina = manejadorUsuario.loginUsuario(loginBeanOutput.getCodigoUsuario(), loginBeanOutput.getPassword(), sessionUsuario);
     	return pagina;
     }
     

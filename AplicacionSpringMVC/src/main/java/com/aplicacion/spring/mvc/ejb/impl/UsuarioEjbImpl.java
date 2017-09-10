@@ -1,4 +1,4 @@
-package com.aplicacion.rest.html.ejb.impl;
+package com.aplicacion.spring.mvc.ejb.impl;
 
 import javax.ejb.Stateful;
 
@@ -28,7 +28,6 @@ public class UsuarioEjbImpl {
 		return user;
 	}
 
-//	@Override
 //	public Integer registrarNuevoUsuarioSistema(UsuarioType usuario) throws InternalServiceException {
 //		UsuarioDao dao = new UsuarioDaoImpl(persistenceManager);
 //		return dao.registrarUsuario(new UsuarioType().toEntity(usuario));
@@ -36,9 +35,9 @@ public class UsuarioEjbImpl {
 //	
 //	public UsuarioType buscarusuarioPorId(Integer usuarioId)throws InternalServiceException{
 //		UsuarioType userType = new UsuarioType();
-//		UsuarioDao dao = new UsuarioDaoImpl(persistenceManager);
+//		IUsuarioES dao = new UsuarioESImpl(persistenceManager);
 //		Usuario user = null;
-//		user = dao.buscarUsuarioPorId(usuarioId);
+//		user = dao.
 //		userType = new UsuarioType().toType(user);
 //		return userType;
 //	}
