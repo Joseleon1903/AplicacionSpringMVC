@@ -30,9 +30,15 @@
 	<h5>Fecha Creacion: <c:out value="${user.fechaCreacion}"/></h5>
 	<h5>Fecha Creacion: <c:out value="${user.fechaCreacion}"/></h5>
 	
-	<h5>Session Usuario autenticado : <c:out value="${usuarioSession.autenticado}"/></h5>
 	<h5>Session Usuario: <c:out value="${usuarioSession.nombre}"/></h5>
 	<h5>Session Usuario Id: <c:out value="${usuarioSession.usuarioId}"/></h5>
+	
+	<br>
+	
+	<h5>Motivo Estado ID: <c:out value="${motivoEstado.motivoId}"/></h5>
+	<h5>Motivo Estado Descripcion: <c:out value="${motivoEstado.descripcion}"/></h5>
+	<h5>estado: <c:out value="${motivoEstado.estado}"/></h5>
+	
 
   </div>
 
