@@ -1,5 +1,6 @@
 package com.aplicacion.spring.mvc.session.beans;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Scope(value="session")
 public class UsuarioSession {
 	
+	@Value(value= "false")
 	private boolean autenticado;
 	private String nombre;
 	private Integer usuarioId;

@@ -1,5 +1,7 @@
 package com.aplicacion.spring.mvc.vista.beans;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl;
@@ -9,8 +11,9 @@ import com.aplication.spring.mvc.util.ValidationUtil;
 
 @Service
 public class ManejadorUsuarioBean {
-		
-	private UsuarioEjbImpl usuarioES = new UsuarioEjbImpl();
+
+	@Resource(mappedName = "java:global/AplicacionSpringMVC/UsuarioEjbImpl!com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl")
+	private UsuarioEjbImpl usuarioES;
 	
 	public ManejadorUsuarioBean() {
 	}

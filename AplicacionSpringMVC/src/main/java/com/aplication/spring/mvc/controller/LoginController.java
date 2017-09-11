@@ -44,7 +44,9 @@ public class LoginController {
     
     @RequestMapping(method=RequestMethod.POST)
     public String procesaForm(HttpServletRequest request,  Model model) {
-    	String pagina = "portal/pagina/jsp/Home";
+    	logger.info("Longin Bean name: "+ loginBean.getCodigoUsuario());
+    	logger.info("Login Bean pasword: "+ loginBean.getPassword());
+    	String pagina = manejadorUsuario.loginUsuario("ADMIN", "ADMIN124", sessionUsuario);
     	return pagina;
     }
     
