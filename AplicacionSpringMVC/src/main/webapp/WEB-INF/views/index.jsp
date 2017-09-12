@@ -37,18 +37,18 @@
 	
 		<div class="form-login">
 		  <img alt="[NOT FOUND  ERROR] Objeto solicitado no encontrado" src="<c:url value="/static/resources/inmagenes/png/free-icon/login-inmg.png"/>">
-			<form name="login" id="form-1" method="post" class="pure-form pure-form-aligned">
+			<form name="login" action="formularioLogin" id="form-1" method="post" class="pure-form pure-form-aligned">
 				<fieldset>
 					<div class="pure-control-group">
 						<label for="name">Username</label> 
-						<input id="name" type="text" onblur="validarNotNull('name')" placeholder="Username" value="<c:out value="${LoginBean.codigoUsuario}"/>" required/> 
+						<input id="name" name="name" type="text" onblur="validarNotNull('name')" placeholder="Username" value="<c:out value="${LoginBean.codigoUsuario}"/>" required/> 
 					</div>
 				</fieldset>
 	
 				<fieldset>
 					<div class="pure-control-group">
 						<label for="password">Password</label>
-						<input id="password" type="password"  onblur="validarNotNull('password')" placeholder="Password" value="<c:out value="${LoginBean.password}"/>" required/> 
+						<input id="password" name="password" type="password"  onblur="validarNotNull('password')" placeholder="Password" value="<c:out value="${LoginBean.password}"/>" required/> 
 					</div>
 				</fieldset>
 	
