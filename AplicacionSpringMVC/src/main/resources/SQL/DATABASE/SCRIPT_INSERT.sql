@@ -17,8 +17,6 @@ values(501, upper('[Internal Server Error] Permisos de ejecución Incorrectos'),
 insert into motivo_estado(motivo_id , descripcion, estado)
 values(502, upper('[Invalid User Error] Error en el inicio de sesión del servicio de perfil de usuario'), 'AC');
 insert into motivo_estado(motivo_id , descripcion, estado)
-values(502, upper('[Invalid User Error] Error en el inicio de sesión del servicio de perfil de usuario'), 'AC');
-insert into motivo_estado(motivo_id , descripcion, estado)
 values(503, upper('[NOT FOUND  OBJECT] Existen datos requeridos no porporcionados'), 'AC');
 insert into motivo_estado(motivo_id , descripcion, estado)
 values(504, upper('[Invalid OBJECT ERROR] Atención Las passwords deben de coincidir'), 'AC');
@@ -26,6 +24,8 @@ insert into motivo_estado(motivo_id , descripcion, estado)
 values(801, upper('[DUPLICATE OBJECT ERROR] el objeto se encuentra duplicado'), 'AC');
 insert into motivo_estado(motivo_id , descripcion, estado)
 values(1909, upper('[CREATE OBJECT ERROR] existen datos Requerido no proporcionados'), 'AC');
+insert into motivo_estado(motivo_id , descripcion, estado)
+values(1919, upper('[Invalid OBJECT ERROR] el campo se encuentra fuera del rango permitido'), 'AC');
 
 /* ------------------CONTACTO INSERT ---------*/
 INSERT INTO CONTACTO (CONTACTO_ID,NOMBRE,APELLIDO,SEXO, FECHA_NACIMIENTO,EMAIL, DETALLE_CONTACTO_ID,ESTADO)

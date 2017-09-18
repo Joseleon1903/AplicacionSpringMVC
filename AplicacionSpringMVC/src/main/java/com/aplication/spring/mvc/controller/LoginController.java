@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.aplicacion.spring.mvc.constante.ParametrosErrorConstante;
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
 import com.aplicacion.spring.mvc.vista.beans.LoginBean;
+import com.aplicacion.spring.mvc.vista.beans.ManejadorSistemaUtil;
 import com.aplicacion.spring.mvc.vista.beans.ManejadorUsuarioBean;
 
 @Controller
@@ -32,6 +34,10 @@ public class LoginController {
 	@Autowired
 	@Qualifier("usuarioSession")
 	private UsuarioSession sessionUsuario;
+	
+	@Autowired
+	@Qualifier("manejadorSistemaUtil")
+	private ManejadorSistemaUtil manejadorSistemaUtil;
   
     @RequestMapping(method = RequestMethod.GET)
     public String displayLogin(HttpServletRequest request,  Model model) {
@@ -43,14 +49,15 @@ public class LoginController {
         return pagina;
     }
     
+
     @RequestMapping(value = "formularioLogin", method=RequestMethod.POST)
     public String procesaForm(@RequestParam("name") String codigoUsuario, @RequestParam("password") String password,  Model model) {
     	logger.info("Longin Bean name: "+ codigoUsuario);
     	logger.info("Login Bean pasword: "+ password);
     	loginBean.setCodigoUsuario(codigoUsuario);
+    	loginBean.setPassword(password);
+    	String pagina = manejadorUsuario.loginUsuario(loginBean, sessionUsuario);
     	model.addAttribute("LoginBean",loginBean);
-    	String pagina = manejadorUsuario.loginUsuario(codigoUsuario, password, sessionUsuario);
     	return pagina;
     }
-    
 }

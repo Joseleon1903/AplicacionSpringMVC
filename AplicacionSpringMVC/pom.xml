@@ -157,11 +157,16 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
-		<!-- dependencia para resolver erros de classNotFaounb en run time -->
+			<!-- dependencia para resolver erros de classNotFound en runtime y manejo objetos json -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
 			<version>2.5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.2.3</version>
 		</dependency>
 		<!-- dependencia para los logger -->
 		<dependency>
@@ -191,8 +196,18 @@
 			<scope>provided</scope>
 		</dependency>
 
-
-
+		<!-- agregando dependencia para validacion spring -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		<!-- Hibernate Validator -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.1.2.Final</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -1,15 +1,24 @@
 package com.aplicacion.spring.mvc.vista.beans;
 
-import org.springframework.context.annotation.Scope;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
+import com.aplicacion.spring.mvc.constante.ParametrosErrorConstante;
+
 @Component
-@Scope(value="prototype")
 public class LoginBean {
 	
+	@NotBlank(message=ParametrosErrorConstante.PARAMETRO_REQUERIDO)
+	@Size(min = 3, max = 20, message=ParametrosErrorConstante.PARAMETRO_FUERA_DE_RANGO)
 	private String codigoUsuario;
+	@NotBlank(message=ParametrosErrorConstante.PARAMETRO_REQUERIDO)
+	@Size(min = 3, max = 10, message=ParametrosErrorConstante.PARAMETRO_FUERA_DE_RANGO)
 	private String password;
-	private String MensajeVista;
+	
+	private String mensajeError;
+	private Integer codigoError;
 
 	public LoginBean() {
 		// TODO Auto-generated constructor stub
@@ -31,12 +40,20 @@ public class LoginBean {
 		this.password = password;
 	}
 
-	public String getMensajeVista() {
-		return MensajeVista;
+	public String getMensajeError() {
+		return mensajeError;
 	}
 
-	public void setMensajeVista(String mensajeVista) {
-		MensajeVista = mensajeVista;
+	public void setMensajeError(String mensajeError) {
+		this.mensajeError = mensajeError;
 	}
+
+	public Integer getCodigoError() {
+		return codigoError;
+	}
+
+	public void setCodigoError(Integer codigoError) {
+		this.codigoError = codigoError;
+	}	
 
 }

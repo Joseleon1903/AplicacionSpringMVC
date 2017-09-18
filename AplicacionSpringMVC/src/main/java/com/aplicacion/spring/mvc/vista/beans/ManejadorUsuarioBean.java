@@ -2,33 +2,57 @@ package com.aplicacion.spring.mvc.vista.beans;
 
 import javax.annotation.Resource;
 
+import org.jboss.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.aplicacion.spring.mvc.constante.ParametrosErrorConstante;
 import com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl;
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
+import com.aplication.spring.mvc.exception.InternalServiceException;
+import com.aplication.spring.mvc.layer.type.MotivoEstadoType;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
 import com.aplication.spring.mvc.util.ValidationUtil;
 
 @Service
 public class ManejadorUsuarioBean {
+	
+	private static final Logger logger = Logger.getLogger(ManejadorUsuarioBean.class);
 
 	@Resource(mappedName = "java:global/AplicacionSpringMVC/UsuarioEjbImpl!com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl")
 	private UsuarioEjbImpl usuarioES;
 	
+	@Autowired
+	@Qualifier("manejadorSistemaUtil")
+	private ManejadorSistemaUtil manejadorSistemaUtil;
+	
 	public ManejadorUsuarioBean() {
 	}
 	
-	public String loginUsuario(String nombre, String password, UsuarioSession sessionUsuario){
+	public String loginUsuario(LoginBean loginBean, UsuarioSession sessionUsuario){
 		UsuarioType user = null;
-		if (!ValidationUtil.isStringNotNullOrEmpty(nombre)) {
-			user = usuarioES.buscarUsuarioPorCodigo(nombre);
+		//validadno si exixte el nombre de ususario proporcionado.
+		if (!ValidationUtil.isStringNotNullOrEmpty(loginBean.getCodigoUsuario())) {
+			try{
+			user = usuarioES.buscarUsuarioPorCodigo(loginBean.getCodigoUsuario());
+			}catch (InternalServiceException e) {
+				logger.info("Error buscando el codigo Usuario");
+				logger.debug("ERROR: "+e.getMessage());
+			}
 		}
-		if (!ValidationUtil.isStringNotNullOrEmpty(password) && user.getPassword().equals(password)) {
-			sessionUsuario.setNombre(nombre);
+		//validadno si la password proporciondao corresponde con la del usuario.
+		logger.info("Iniciando a validar la Password..");
+		if (!ValidationUtil.isStringNotNullOrEmpty(loginBean.getPassword()) && user.getPassword().equals(loginBean.getPassword())) {
+			logger.info("Password validada con exito..");
+			sessionUsuario.setNombre(loginBean.getCodigoUsuario());
 			sessionUsuario.setAutenticado(true);
-			sessionUsuario.setUsuarioId(user.getUsuarioId());
 			return "portal/pagina/jsp/Home";
 		}
+		//buscando mensaje error usuario invalido
+		MotivoEstadoType motivo =manejadorSistemaUtil.buscarMotivoPorId(ParametrosErrorConstante.USUARIO_INVALIDO_COD);
+		loginBean.setCodigoError(motivo.getMotivoId());
+		loginBean.setMensajeError(motivo.getDescripcion());
 		return "index";
 	}
 	

@@ -1,7 +1,11 @@
 package com.aplicacion.spring.mvc.interfaces.impl;
 
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
+
 import com.aplicacion.spring.mvc.interfaces.IUsuarioES;
 import com.aplication.spring.mvc.entity.Usuario;
+import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.jpa.util.AbstractJpaDao;
 import com.aplication.spring.mvc.jpa.util.ParameterExpression;
 import com.aplication.spring.mvc.jpa.util.PersistenceManager;
@@ -14,10 +18,15 @@ public class UsuarioESImpl extends AbstractJpaDao<Integer, Usuario> implements I
 	}
 
 	@Override
-	public UsuarioType buscarUsuarioPorCodigo(String nombre) {
+	public UsuarioType buscarUsuarioPorCodigo(String nombre) throws InternalServiceException {
 		ParameterExpression parametros = new ParameterExpression();
 		parametros.addParam("codigoUsuario", nombre);
-		Usuario user = buscarEntityPorNameQueryConRetorno(Usuario.NameQuery.BUSCAR_POR_CODIGO_USUARIO,parametros);
+		Usuario user = null;
+		try {
+			user = buscarEntityPorNameQueryConRetorno(Usuario.NameQuery.BUSCAR_POR_CODIGO_USUARIO, parametros);
+		} catch (NoResultException | NonUniqueResultException e) {
+			throw new InternalServiceException();
+		}
 		return new UsuarioType().toType(user);
 	}
 

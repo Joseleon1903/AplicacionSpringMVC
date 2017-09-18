@@ -3,6 +3,7 @@ package com.aplication.spring.mvc.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ import com.aplication.spring.mvc.layer.type.MotivoEstadoType;
 @Controller
 @RequestMapping(value = "/views/portal/pagina/Home")
 public class HomePageController {
+	
+	private static final Logger logger = Logger.getLogger(HomePageController.class);
 
 	@Resource(mappedName = "java:global/AplicacionSpringMVC/MotivoEstadoEjbImpl!com.aplicacion.spring.mvc.ejb.impl.MotivoEstadoEjbImpl")
 	private MotivoEstadoEjbImpl motivoEstadoEJB;

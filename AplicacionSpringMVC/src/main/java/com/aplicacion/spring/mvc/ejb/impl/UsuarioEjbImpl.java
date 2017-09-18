@@ -6,6 +6,7 @@ import org.jboss.logging.Logger;
 
 import com.aplicacion.spring.mvc.interfaces.IUsuarioES;
 import com.aplicacion.spring.mvc.interfaces.impl.UsuarioESImpl;
+import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.jpa.util.PersistenceManager;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
 
@@ -19,27 +20,20 @@ public class UsuarioEjbImpl {
 	public UsuarioEjbImpl() {
 	}
 
-	public UsuarioType buscarUsuarioPorCodigo(String codigoUsuario){
+	public UsuarioType buscarUsuarioPorCodigo(String codigoUsuario) throws InternalServiceException{
 		logger.info("Entrando en la capacidad buscarUsuarioPorCodigo");
 		IUsuarioES dao = new UsuarioESImpl(persistenceManager);
-		UsuarioType user = dao.buscarUsuarioPorCodigo(codigoUsuario);
+		UsuarioType user = null;
+		try {
+			user = dao.buscarUsuarioPorCodigo(codigoUsuario);
+		} catch (InternalServiceException e) {
+			logger.info("ERROR realizando la consulta..");
+			logger.info(e.getMessage());
+			throw new InternalServiceException();
+		}
 		logger.info("Saliendo del metodo buscarUsuarioPorCodigo");
 		logger.info("Returning: "+user );
 		return user;
 	}
-
-//	public Integer registrarNuevoUsuarioSistema(UsuarioType usuario) throws InternalServiceException {
-//		UsuarioDao dao = new UsuarioDaoImpl(persistenceManager);
-//		return dao.registrarUsuario(new UsuarioType().toEntity(usuario));
-//	}
-//	
-//	public UsuarioType buscarusuarioPorId(Integer usuarioId)throws InternalServiceException{
-//		UsuarioType userType = new UsuarioType();
-//		IUsuarioES dao = new UsuarioESImpl(persistenceManager);
-//		Usuario user = null;
-//		user = dao.
-//		userType = new UsuarioType().toType(user);
-//		return userType;
-//	}
 
 }

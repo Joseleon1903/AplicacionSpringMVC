@@ -12,7 +12,9 @@ public class UsuarioSession {
 	@Value(value= "false")
 	private boolean autenticado;
 	private String nombre;
-	private Integer usuarioId;
+	@Value(value= "false")
+	private boolean error;
+	private String mensajeError;
 	
 	public UsuarioSession() {
 		// TODO Auto-generated constructor stub
@@ -34,18 +36,26 @@ public class UsuarioSession {
 		this.nombre = nombre;
 	}
 	
-
-	public Integer getUsuarioId() {
-		return usuarioId;
+	public boolean isError() {
+		return error;
 	}
 
-	public void setUsuarioId(Integer usuarioId) {
-		this.usuarioId = usuarioId;
+	public void setError(boolean error) {
+		this.error = error;
+	}
+
+	public String getMensajeError() {
+		return mensajeError;
+	}
+
+	public void setMensajeError(String mensajeError) {
+		this.mensajeError = mensajeError;
 	}
 
 	@Override
 	public String toString() {
-		return "UsuarioSession [autenticado=" + autenticado + ", nombre=" + nombre + ", usuarioId=" + usuarioId + "]";
-	}
+		return "UsuarioSession [autenticado=" + autenticado + ", nombre=" + nombre + ", error=" + error
+				+ ", mensajeError=" + mensajeError + "]";
+	}	
 
 }

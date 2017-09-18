@@ -26,7 +26,7 @@ function validarNotNull(inputId){
 	parametro('contenido text', elemento.value);
 	if (elemento.value =='' || elemento == undefined || elemento.value == null) {
 		erroPagina = true;
-		showMensajeError(1603, 'INTERNAL SERVER ERROR');
+		showMensajeError(DatoRequeridoNoProporcionadoCod, DatoRequeridoNoProporcionadoDesc);
 		elemento.style.border = 'solid';
 		elemento.style.borderColor= 'red';
 		exiting("validarNotNull");
@@ -52,33 +52,17 @@ function optenerValorCampo(idCampo){
 	exiting("optenerValorCampo");
 }
 
-function validarDatosFormulario(){
-	entering("validarDatosFormulario");
-	nombre = optenerValorCampo("name");
-	password = optenerValorCampo("password");
-	var usuarioValido = validarUsuarioSistema(nombre,password);
-	if (usuarioValido) {
-		erroPagina= false;
-	}else{
-	//validacion usuario sistema inicio final
-	erroPagina =  true;
-	info('El usuario es invalido');
-	showMensajeError(1603, 'INTERNAL SERVER ERROR');
-	}
-}
-
-function showMensajeError(codigo, mensajeError ){
+function showMensajeError(codigo, mensajeError) {
 	entering("showMensajeError");
 	parametro("mensajeError", mensajeError);
 	if (erroPagina) {
-	var elementoError = document.getElementById("pop-up-mensaje");
-	parametro('style', elementoError.style.display);
-	elementoError.style.display = 'inline';
-	var inmageError = '<img alt="ICON NOT FOUND" src="<c:url value="/static/resources/inmagenes/png/free-icon/Error-Icono.png"/>" />';
-	var parrafoCodigo = '<p> [CODIGO ERROR] '+codigo+'</p>';
-	var parrafoMensaje= '<p>'+mensajeError+'</p>'; 
-	elementoError.innerHTML='<div class="container-error-pop">'+inmageError+parrafoCodigo+parrafoMensaje+'</div>';
-	exiting("showMensajeError");
+		var elementoError = document.getElementById("pop-up-mensaje");
+		elementoError.style.display = 'inline';
+		var parrafoCodigoError = document.getElementById("codigoError");
+		var parrafoDescripcionError = document.getElementById("descripcion");
+		parrafoCodigoError.innerHTML = codigo;
+		parrafoDescripcionError.innerHTML = mensajeError;
+		exiting("showMensajeError");
 	}
 }
 

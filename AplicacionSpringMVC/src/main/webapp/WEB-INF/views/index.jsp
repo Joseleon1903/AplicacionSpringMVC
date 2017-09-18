@@ -22,21 +22,30 @@
   
     <!-- ********* inicio DIV contenido principal ***********-->
 	<div class="container-contenido">
-	
+
 	 <!-- *************contenedor mensaje error codigo ************ -->
+
 		<div id="pop-up-mensaje">
 			<div class="container-error-pop">
 				<img alt="ICON NOT FOUND" src="<c:url value="/static/resources/inmagenes/png/free-icon/Error-Icono.png"/>" />
-				<p>[CODIGO ERROR] 1606</p>
-				<p>INTERNAL SERVER ERROR</p>
+				<p id="codigoError">[CODIGO ERROR] <c:out value="${LoginBean.codigoError}"/></p>
+				<p id="descripcion"><c:out value="${LoginBean.mensajeError}"/></p>
 			</div>
 		</div>
-		<!-- *************contenedor mensaje error Fin codigo ************ -->
-   
+		
+	   <script type="text/javascript">
+			var codigoError = <c:out value="${LoginBean.codigoError}"/>;
+			var descripcionError = "<c:out value="${LoginBean.mensajeError}"/>";
+			if (codigoError != undefined || codigoError != "") {
+				erroPagina = true;
+				showMensajeError(codigoError, descripcionError);
+			}
+		</script>
+     <!-- *************contenedor mensaje error Fin codigo ************ -->
+
 	<div class="form-login-marco">
-	
 		<div class="form-login">
-		  <img alt="[NOT FOUND  ERROR] Objeto solicitado no encontrado" src="<c:url value="/static/resources/inmagenes/png/free-icon/login-inmg.png"/>">
+		   <img alt="[NOT FOUND  ERROR] Objeto solicitado no encontrado" src="<c:url value="/static/resources/inmagenes/png/free-icon/login-inmg.png"/>">
 			<form name="login" action="formularioLogin" id="form-1" method="post" class="pure-form pure-form-aligned">
 				<fieldset>
 					<div class="pure-control-group">
@@ -55,7 +64,7 @@
 				<fieldset>
 					<div>
 						<input type="submit" class="pure-button pure-button-primary" value="Login" />
-						<button type="reset" class="pure-button pure-button-primary">Registrate ahora</button>
+						<button type="reset" onclick="redirigirLink(PaginaRegistrarUsuario)" class="pure-button pure-button-primary">Registrate ahora</button>
 					</div>
 				</fieldset>
 			</form>
@@ -64,7 +73,6 @@
 		</div>
 	</div>
     <!-- ********* Final DIV contenido principal *********** -->
-    
     
    <%@ include file="portal/pagina/html/footer.html" %>
 	
