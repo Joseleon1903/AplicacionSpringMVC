@@ -24,16 +24,26 @@
 
     <!-- ********* inicio DIV contenido principal ***********-->
 	<div class="container-contenido">
+		<div id="cuadro-menu">
+			<div class="box-selector-1">
+				<h1>Enviar nueva email</h1>
+				<img alt="Imposible cargar inmagen." src="<c:url value="/static/resources/inmagenes/png/free-icon/Email-send-icon.png"/>" >
+				<button type="button" id="search" onclick="redirigirLink(PaginaEnviarEmail)" class="button-large pure-button">Enviar</button>
+			</div>
 
-	<h1>Pagina de home jsp</h1>
-	
-	<h5>Session Usuario: <c:out value="${usuarioSession.nombre}"/></h5>
-	
-	<br>
-	
-	<h5>Motivo Estado ID: <c:out value="${motivoEstado.motivoId}"/></h5>
-	<h5>Motivo Estado Descripcion: <c:out value="${motivoEstado.descripcion}"/></h5>
-	<h5>estado: <c:out value="${motivoEstado.estado}"/></h5>
+			<div class="box-selector-2">
+				<h1>Ver lista email</h1>
+				<img alt="Imposible cargar inmagen." src="<c:url value="/static/resources/inmagenes/png/free-icon/list-icon.png"/>" >
+				<button type="button" id="search" onclick="redirigirLink(PaginaListaEmailEnviadas)" class="button-large pure-button">Visualizar</button>
+			</div>
+
+			<div class="box-selector-3">
+				<h1>Gestion usuario</h1>
+				<img alt="Imposible cargar inmagen." src="<c:url value="/static/resources/inmagenes/png/free-icon/update-edit-icon.png"/>" >
+				<button type="button" id="search" onclick="redirigirLink(PaginaActualizarContacto)" class="button-large pure-button">Gestionar</button>
+			</div>
+
+		</div>
 	
   </div>
 
