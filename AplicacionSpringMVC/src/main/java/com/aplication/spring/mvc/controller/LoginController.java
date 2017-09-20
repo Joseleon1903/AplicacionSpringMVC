@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.aplicacion.spring.mvc.constante.ParametrosErrorConstante;
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
 import com.aplicacion.spring.mvc.vista.beans.LoginBean;
 import com.aplicacion.spring.mvc.vista.beans.ManejadorSistemaUtil;

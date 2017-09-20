@@ -47,7 +47,7 @@ public class ManejadorUsuarioBean {
 			logger.info("Password validada con exito..");
 			sessionUsuario.setNombre(loginBean.getCodigoUsuario());
 			sessionUsuario.setAutenticado(true);
-			return "portal/pagina/jsp/Home";
+			return "redirect:/views/portal/pagina/Home";
 		}
 		//buscando mensaje error usuario invalido
 		MotivoEstadoType motivo =manejadorSistemaUtil.buscarMotivoPorId(ParametrosErrorConstante.USUARIO_INVALIDO_COD);
@@ -58,7 +58,7 @@ public class ManejadorUsuarioBean {
 	
 	public String validandoSession(UsuarioSession session){
 		if (session.isAutenticado()) {
-			return "portal/pagina/jsp/Home";
+			return "redirect:/views/portal/pagina/Home";
 		}
 		return "index";		
 	}

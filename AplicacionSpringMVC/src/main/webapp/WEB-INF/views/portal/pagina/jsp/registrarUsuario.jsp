@@ -35,30 +35,30 @@
 
 		<div class="form-registrar-usuario">
 		        <h1>Formulario de registro</h1>
-				<form name="registrarUsuario" id="form-2" method="post"  onsubmit="event.preventDefault()" class="pure-form pure-form-aligned">
+				<form:form modelAttribute="UsuarioBean" name="registrarUsuario" id="form-2" method="post" class="pure-form pure-form-aligned">
 					
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="nombre">Nombre</label> 
-							<input id="nombre" onblur="validarNotNull('nombre')" type="text" placeholder="Nombre Usuario" required/> 
+							<form:input path="nombre" onblur="validarNotNull('nombre')" type="text" placeholder="Nombre Usuario" /> 
 						</div>
 					</fieldset>
 					
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="apellido">Apellido</label> 
-							<input id="apellido" onblur="validarNotNull('apellido')" type="text" placeholder="Apellido Usuario" required/> 
+							<form:input path="apellido" onblur="validarNotNull('apellido')" type="text" placeholder="Apellido Usuario" /> 
 						</div>
 					</fieldset>
-		
+
 					<fieldset>
-						 <div class="pure-control-group">				
-						<label for="sexo" class="pure-radio">Sexo </label>
-						<input id="sexo" type="radio" name="sexo" value="F" checked> female
-						<input id="sexo" type="radio" name="sexo" value="M"> male
+						<div class="pure-control-group">
+							<label for="sexo" class="pure-radio">Sexo </label>
+							<form:radiobutton path="sexo" name="sexo" value="F" />Female
+							<form:radiobutton path="sexo" name="sexo" value="M" />Male
 						</div>
 					</fieldset>
-					
+
 					<fieldset>
 						<div class="pure-control-group">
 						<label for="fechaNacimiento" class="pure-radio">Fecha nacimiento</label>
@@ -69,28 +69,28 @@
 					<fieldset>
 					<div class="pure-control-group">
 					<label for="email">Email usuario</label>
-					<input id="email" onblur="validarNotNull('email')" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" type="email" placeholder="Email" required/>
+					<form:input path="email" onblur="validarNotNull('email')" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" type="email" placeholder="Email" />
 					</div>
 					</fieldset>
 		
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="codigoUsuario">Username</label>
-							 <input id="codigoUsuario" onblur="validarNotNull('codigoUsuario')" type="text" placeholder="Username" required/> 
+							<form:input path="username" onblur="validarNotNull('codigoUsuario')" type="text" placeholder="Username" /> 
 						</div>
 					</fieldset>
 		
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="password">Password</label>
-							<input id="password" onblur="validarNotNull('password')" type="password" placeholder="Password" required/> 
+							<form:input path="password" onblur="validarNotNull('password')" type="password" placeholder="Password" /> 
 						</div>
 					</fieldset>
 					
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="password-2">Confirmar Password</label>
-							<input id="password-2" type="password" placeholder="Password" required/> 
+							<form:input path="confirmarPassword" type="password" placeholder="Password" /> 
 						</div>
 					</fieldset>
 					
@@ -103,37 +103,37 @@
 				    <fieldset class="detalle-contacto-field">
 						<div class="pure-control-group">
 							<label for="emailAlternativa">Email alternativa</label>
-							<input id="emailAlternativa" type="email" placeholder="Email Alternativa" /> 
+							<form:input path="emailAlternativa" type="email" placeholder="Email Alternativa" /> 
 						</div>
 					</fieldset>
 					
 					 <fieldset class="detalle-contacto-field">
 						<div class="pure-control-group">
 							<label for="direccion">Direccion Usuario</label>
-							<input id="direccion" type="text" placeholder="Dirección" required/> 
+							<form:input path="direccion" type="text" placeholder="Dirección" /> 
 						</div>
 					</fieldset>
 					
 					 <fieldset class="detalle-contacto-field">
 						<div class="pure-control-group">
 							<label for="telefono">Telefono</label>
-							<input id="telefono" type="text" placeholder="Telefono" required/> 
+							<form:input path="telefono" type="text" placeholder="Telefono" /> 
 						</div>
 					</fieldset>
 					
 					 <fieldset class="detalle-contacto-field">
 						<div class="pure-control-group">
 							<label for="celular">Celular</label>
-							<input id="celular" type="text" placeholder="Celular" required/> 
+							<form:input path="celular" type="text" placeholder="Celular" /> 
 						</div>
 					</fieldset>
 				    
 					<fieldset>
 						<div>
-							<button type="submit" onclick="optenerValoresFormularioRegistrar()" class="pure-button pure-button-primary"  >Registrate ahora</button>
+							<input type="submit" value="Registrate ahora" class="pure-button pure-button-primary" />
 						</div>
 					</fieldset>
-				</form>
+				</form:form>
 			</div>
 			
 		</div>

@@ -13,6 +13,8 @@ public class InvalidDataException extends ServiceFault {
 	private String descripcion;
 	private Integer codigoError;
 	
+	public InvalidDataException(){}
+	
 	public InvalidDataException(Integer codigo, String descripcion, String descripcion2, Integer codigoError) {
 		super(codigo, descripcion);
 		descripcion = descripcion2;

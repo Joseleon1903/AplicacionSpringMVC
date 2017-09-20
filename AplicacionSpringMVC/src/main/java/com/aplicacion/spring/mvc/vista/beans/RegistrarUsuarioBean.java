@@ -16,7 +16,7 @@ public class RegistrarUsuarioBean {
 	private String email;
 	private String username;
 	private String password;
-	private String ConfirmarPassword;
+	private String confirmarPassword;
 	private String emailAlternativa;
 	private String direccion;
 	private String telefono;
@@ -81,11 +81,11 @@ public class RegistrarUsuarioBean {
 	}
 
 	public String getConfirmarPassword() {
-		return ConfirmarPassword;
+		return confirmarPassword;
 	}
 
 	public void setConfirmarPassword(String confirmarPassword) {
-		ConfirmarPassword = confirmarPassword;
+		this.confirmarPassword = confirmarPassword;
 	}
 
 	public String getEmailAlternativa() {
@@ -124,7 +124,7 @@ public class RegistrarUsuarioBean {
 	public String toString() {
 		return "RegistrarUsuarioBean [nombre=" + nombre + ", apellido=" + apellido + ", sexo=" + sexo
 				+ ", fechaNacimineto=" + fechaNacimineto + ", email=" + email + ", username=" + username + ", password="
-				+ password + ", ConfirmarPassword=" + ConfirmarPassword + ", emailAlternativa=" + emailAlternativa
+				+ password + ", ConfirmarPassword=" + confirmarPassword + ", emailAlternativa=" + emailAlternativa
 				+ ", direccion=" + direccion + ", telefono=" + telefono + ", celular=" + celular + "]";
 	}
 

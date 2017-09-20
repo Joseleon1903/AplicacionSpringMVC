@@ -6,10 +6,10 @@
 <head>
     <title>SpringMVC Application</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/static/resources/css/estilo.css"/>"/>
 <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
 	integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/resources/css/estilo.css"/>"/>
 </head>
 <script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/logger-script.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/resources/javascript/portal/script-servicios-contantes.js"/>"></script>
