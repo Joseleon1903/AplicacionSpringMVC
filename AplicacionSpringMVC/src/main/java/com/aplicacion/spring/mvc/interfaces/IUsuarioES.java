@@ -10,6 +10,6 @@ public interface IUsuarioES {
 
 	public boolean ActualizarAccesoUsuario(Usuario usuario);
 
-	public boolean registrarUsuario(Usuario usuario);
+	public boolean registrarUsuario(Usuario usuario) throws InternalServiceException;
 
 }

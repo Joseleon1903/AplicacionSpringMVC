@@ -35,5 +35,21 @@ public class UsuarioEjbImpl {
 		logger.info("Returning: "+user );
 		return user;
 	}
+	
+	public boolean registrarNuevoUsuarioSistema(UsuarioType user) throws InternalServiceException{
+		logger.info("Entrando en la capacidad registrarNuevoUsuarioSistema");
+		IUsuarioES dao = new UsuarioESImpl(persistenceManager);
+		Boolean registrado = false;
+		try {
+			registrado = dao.registrarUsuario(new UsuarioType().toEntity(user));
+		} catch (InternalServiceException e) {
+			logger.info("ERROR realizando la consulta..");
+			logger.info(e.getMessage());
+			throw new InternalServiceException();
+		}
+		logger.info("Saliendo del metodo buscarUsuarioPorCodigo");
+		logger.info("Returning: "+user );
+		return registrado;
+	}
 
 }

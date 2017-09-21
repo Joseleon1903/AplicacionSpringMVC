@@ -16,6 +16,10 @@
 	
 	<context:component-scan base-package="com.aplicacion.spring.mvc.ejb.impl"/>
 	
+	<!-- 	bean necesario para el utilizo de anotaciones  PostConstruct y PreDestroy -->
+	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"> </bean>
+	
+	
 	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
 		<property name="scopes">
 			<map>

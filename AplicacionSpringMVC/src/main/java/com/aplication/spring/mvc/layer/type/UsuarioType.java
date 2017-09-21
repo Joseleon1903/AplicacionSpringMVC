@@ -93,7 +93,7 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 
 	@Override
 	public String toString() {
-		return "UsuarioType [usuario_id=" + usuarioId + ", contacto=" + contacto.getContactoId() + ", nombre=" + codigoUsuario + ", password="
+		return "UsuarioType [usuario_id=" + usuarioId + ", contacto=" + contacto.getContactoId() + ", codigoUsuario=" + codigoUsuario + ", password="
 				+ password + ", fechaCreacion=" + fechaCreacion + ", fechaUltimoAcceso=" + fechaUltimoAcceso+"]";
 	}
 

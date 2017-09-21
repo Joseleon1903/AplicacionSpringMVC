@@ -26,9 +26,13 @@
 	<div class="container-contenido">
 	
 	 <!-- *************contenedor mensaje error codigo ************ -->
-	 <div id="pop-up-mensaje">
-		 
-    </div>
+		<div id="pop-up-mensaje">
+			<div class="container-error-pop">
+				<img alt="ICON NOT FOUND" src="<c:url value="/static/resources/inmagenes/png/free-icon/Error-Icono.png"/>" />
+<%-- 				<p id="codigoError">[CODIGO ERROR] <c:out value="${LoginBean.codigoError}"/></p> --%>
+				<p id="descripcion"><c:out value="${SessionUsuario.mensajeError}"/></p>
+			</div>
+		</div>
     <!-- *************contenedor mensaje error Fin codigo ************ -->
 	
 		<div class="form-registrar-usuario-marco">
@@ -62,7 +66,7 @@
 					<fieldset>
 						<div class="pure-control-group">
 						<label for="fechaNacimiento" class="pure-radio">Fecha nacimiento</label>
-						<input id="fechaNacimiento" type="date" name="fecha">
+						<form:input path="fechaNacimineto" id="fechaNacimiento" type="date" name="fecha" />
 						</div>
 					</fieldset>
 		

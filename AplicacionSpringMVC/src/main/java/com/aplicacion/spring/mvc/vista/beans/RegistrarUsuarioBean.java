@@ -2,7 +2,12 @@ package com.aplicacion.spring.mvc.vista.beans;
 
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import org.springframework.context.annotation.Scope;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,6 +17,8 @@ public class RegistrarUsuarioBean {
 	private String nombre;
 	private String apellido;
 	private String sexo;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	private Date fechaNacimineto;
 	private String email;
 	private String username;

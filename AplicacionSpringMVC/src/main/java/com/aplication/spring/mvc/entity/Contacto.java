@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -54,6 +56,7 @@ public class Contacto {
 	}
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="CONTACTO_ID", nullable= false)
 	public Integer getContactoId() {
 		return contactoId;

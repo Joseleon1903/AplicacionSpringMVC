@@ -1,7 +1,9 @@
 package com.aplicacion.spring.mvc.interfaces.impl;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
+import javax.persistence.PersistenceException;
 
 import com.aplicacion.spring.mvc.interfaces.IUsuarioES;
 import com.aplication.spring.mvc.entity.Usuario;
@@ -37,8 +39,12 @@ public class UsuarioESImpl extends AbstractJpaDao<Integer, Usuario> implements I
 	}
 
 	@Override
-	public boolean registrarUsuario(Usuario usuario) {
-		registrarEntity(usuario);
+	public boolean registrarUsuario(Usuario usuario) throws InternalServiceException {
+		try {
+			registrarEntity(usuario);
+		} catch (PersistenceException e) {
+			throw new InternalServiceException();
+		}
 		return true;
 	}
 

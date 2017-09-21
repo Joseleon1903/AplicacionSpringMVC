@@ -1,6 +1,9 @@
 package com.aplicacion.spring.mvc.session.beans;
 
-import org.springframework.beans.factory.annotation.Value;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -9,10 +12,8 @@ import org.springframework.stereotype.Component;
 @Scope(value="session")
 public class UsuarioSession {
 	
-	@Value(value= "false")
 	private boolean autenticado;
 	private String nombre;
-	@Value(value= "false")
 	private boolean error;
 	private String mensajeError;
 	
@@ -56,6 +57,21 @@ public class UsuarioSession {
 	public String toString() {
 		return "UsuarioSession [autenticado=" + autenticado + ", nombre=" + nombre + ", error=" + error
 				+ ", mensajeError=" + mensajeError + "]";
-	}	
+	}
+
+	@PostConstruct
+	private void init(){
+		this.autenticado = false;
+		this.error = false;
+		this.nombre= "NONE";
+		this.mensajeError= "NONE";
+		
+	}
+	
+	@PreDestroy
+	public void destroy() throws Exception {
+	  System.out.println("Spring Container is destroy! Customer clean up");
+	}
+
 
 }
