@@ -2,15 +2,16 @@ package com.aplication.spring.mvc.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +30,7 @@ public class Contacto {
 	private String nombre;
 	private String apellido;
 	private String sexo;
-	private Date fechaNacimineto;
+	private Date fechaNacimiento;
 	private String email;
 	private DetalleContacto detalleContactoId;
 	private String estado;
@@ -42,21 +43,21 @@ public class Contacto {
 		this.contactoId =contactoId;
 	}
 	
-	public Contacto(Integer contactoId, String nombre, String apellido, String sexo, Date fechaNacimineto, String email,
+	public Contacto(Integer contactoId, String nombre, String apellido, String sexo, Date fechaNacimiento, String email,
 			DetalleContacto detalleContacto, String estado) {
 		super();
 		this.contactoId = contactoId;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.sexo = sexo;
-		this.fechaNacimineto = fechaNacimineto;
+		this.fechaNacimiento = fechaNacimiento;
 		this.email = email;
 		this.detalleContactoId = detalleContacto;
 		this.estado = estado;
 	}
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@SequenceGenerator(name="Contacto_Gen", sequenceName="Contacto_Seq")
+	@Id @GeneratedValue(generator="Contacto_Gen")
     @Column(name="CONTACTO_ID", nullable= false)
 	public Integer getContactoId() {
 		return contactoId;
@@ -95,12 +96,12 @@ public class Contacto {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="FECHA_NACIMIENTO", nullable= false)
-	public Date getFechaNacimineto() {
-		return fechaNacimineto;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFechaNacimineto(Date fechaNacimineto) {
-		this.fechaNacimineto = fechaNacimineto;
+	public void setFechaNacimiento(Date fechaNacimineto) {
+		this.fechaNacimiento = fechaNacimineto;
 	}
 
     @Column(name="EMAIL", nullable= false)
@@ -112,7 +113,7 @@ public class Contacto {
 		this.email = email;
 	}
 
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.PERSIST)
 	@JoinColumn(name="DETALLE_CONTACTO_ID")
 	public DetalleContacto getDetalleContacto() {
 		return detalleContactoId;

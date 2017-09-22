@@ -2,18 +2,14 @@ package com.aplication.spring.mvc.spring;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.aplication.spring.mvc.beans.AppConfig;
-import com.aplication.spring.mvc.beans.AppConfig2;
 import com.aplication.spring.mvc.beans.Celular;
 import com.aplication.spring.mvc.beans.Ciudad;
 import com.aplication.spring.mvc.beans.Ciudadano;
 import com.aplication.spring.mvc.beans.Jugador;
 import com.aplication.spring.mvc.beans.Manzana;
 import com.aplication.spring.mvc.beans.Movil;
-import com.aplication.spring.mvc.beans.Mundo;
 import com.aplication.spring.mvc.beans.Pasajero;
 import com.aplication.spring.mvc.beans.Persona;
 import com.aplication.spring.mvc.beans.Player;
@@ -26,38 +22,40 @@ public class App {
 	public static void main(String[] args) {
 		//accediendo desde archivo xml al bean 
 //		ApplicationContext appContext = new ClassPathXmlApplicationContext("XML/beans.xml");
-		ApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class, AppConfig2.class);
-		//
-		Mundo m = (Mundo) appContext.getBean("mundo");
-		Mundo m2 = (Mundo) appContext.getBean("mundo2");
-
-		System.out.println("llamando saludar"+ m.getSaludo());
-		System.out.println("llamando saludar"+ m2.getSaludo());
+//		ApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class, AppConfig2.class);
+//		//
+//		Mundo m = (Mundo) appContext.getBean("mundo");
+//		Mundo m2 = (Mundo) appContext.getBean("mundo2");
+//
+//		System.out.println("llamando saludar"+ m.getSaludo());
+//		System.out.println("llamando saludar"+ m2.getSaludo());
+//		
+//		((ConfigurableApplicationContext)appContext).close();
+//		System.out.println("-----------Fin Introduccion Mundo------");
+//		
+//		InyeccionConstructorBeans();
+//		
+//		InyeccionDeObjeto();
+//				
+//		inicializarColeccionListaBeans();
+//		
+//		provandoPropriedadAutowire();
+//		
+//		provandoPropriedadLazy();
+//		
+//		provandoCicloDeVidaBeans();
+//		
+//		provandoAnotacionesCicloDeVidaBeans();
+//		
+//		provandoAnotacionesCicloDeVidaBeansConInterfaces();
+//		
+//		provandoUsoDeInterfaces();
+//		
+//		provandoUsoDeTagAutowire();
+//		
+//		provandoUsoDeStereotypes();
 		
-		((ConfigurableApplicationContext)appContext).close();
-		System.out.println("-----------Fin Introduccion Mundo------");
-		
-		InyeccionConstructorBeans();
-		
-		InyeccionDeObjeto();
-				
-		inicializarColeccionListaBeans();
-		
-		provandoPropriedadAutowire();
-		
-		provandoPropriedadLazy();
-		
-		provandoCicloDeVidaBeans();
-		
-		provandoAnotacionesCicloDeVidaBeans();
-		
-		provandoAnotacionesCicloDeVidaBeansConInterfaces();
-		
-		provandoUsoDeInterfaces();
-		
-		provandoUsoDeTagAutowire();
-		
-		provandoUsoDeStereotypes();
+		System.out.println("---------com.aplication.spring.mvc.spring-------------");
 
 	}
 	

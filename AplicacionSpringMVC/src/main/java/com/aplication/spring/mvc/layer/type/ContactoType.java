@@ -2,6 +2,7 @@ package com.aplication.spring.mvc.layer.type;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -22,22 +23,23 @@ public class ContactoType implements BuscableType<ContactoType, Contacto>, Seria
 	private String nombre;
 	private String apellido;
 	private String sexo;
-	private Integer edad;
+	private Date fechaNacimineto;
 	private String email;
+	private String estado;
 
 	public ContactoType() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public ContactoType(Integer contactoId, DetalleContactoType detalleContactoId, String nombre, String apellido,
-			String sexo, Integer edad, String email) {
+			String sexo, Date fechaNacimineto, String email) {
 		super();
 		this.contactoId = contactoId;
 		this.detalleContactoId = detalleContactoId;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.sexo = sexo;
-		this.edad = edad;
+		this.fechaNacimineto = fechaNacimineto;
 		this.email = email;
 	}
 
@@ -82,12 +84,12 @@ public class ContactoType implements BuscableType<ContactoType, Contacto>, Seria
 		this.sexo = sexo;
 	}
 
-	public Integer getEdad() {
-		return edad;
+	public Date getFechaNacimineto() {
+		return fechaNacimineto;
 	}
 
-	public void setEdad(Integer edad) {
-		this.edad = edad;
+	public void setFechaNacimineto(Date fechaNacimineto) {
+		this.fechaNacimineto = fechaNacimineto;
 	}
 
 	public String getEmail() {
@@ -97,12 +99,19 @@ public class ContactoType implements BuscableType<ContactoType, Contacto>, Seria
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	@Override
 	public String toString() {
 		return "ContactoType [contactoId=" + contactoId + ", detalleContactoId=" + detalleContactoId + ", nombre="
-				+ nombre + ", apellido=" + apellido + ", sexo=" + sexo + ", edad=" + edad + ", email=" + email + "]";
+				+ nombre + ", apellido=" + apellido + ", sexo=" + sexo + ", fechaNacimineto=" + fechaNacimineto + ", email=" + email + "]";
 	}
 
 	@Override
@@ -111,18 +120,28 @@ public class ContactoType implements BuscableType<ContactoType, Contacto>, Seria
 		this.nombre =entity.getNombre();
 		this.apellido = entity.getApellido();
 		this.sexo = entity.getSexo();
+		this.fechaNacimineto = entity.getFechaNacimiento();
 		this.email= entity.getEmail();
+		this.detalleContactoId= new DetalleContactoType().toType(entity.getDetalleContacto());
+		this.estado = entity.getEstado();
 		return this;
 	}
 
 	@Override
 	public Contacto toEntity(ContactoType type) {
 		Contacto entity = new Contacto();
-		entity.setContactoId(type.getContactoId());
+		if (type.getContactoId() != null) {
+			entity.setContactoId(type.getContactoId());
+		}
 		entity.setNombre(type.getNombre());
 		entity.setApellido(type.getApellido());
 		entity.setSexo(type.getSexo());
+		entity.setFechaNacimiento(type.getFechaNacimineto());
 		entity.setEmail(type.getEmail());
+		if (type.getDetalleContactoId() != null) {
+			entity.setDetalleContacto(new DetalleContactoType().toEntity(type.getDetalleContactoId()));
+		}
+		entity.setEstado(type.getEstado());
 		return entity;
 	}
 

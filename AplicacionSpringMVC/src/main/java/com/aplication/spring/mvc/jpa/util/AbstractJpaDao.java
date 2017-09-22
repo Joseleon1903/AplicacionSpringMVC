@@ -10,12 +10,17 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
+import org.jboss.logging.Logger;
+
 public abstract class AbstractJpaDao<ID, E> {
 	
 	private EntityManager entityManager;
 	private PersistenceManager persistenceManager;
 	protected Class<E> entityClass;
 	protected E entity;
+	
+	private static final Logger logger = Logger.getLogger(AbstractJpaDao.class.getName());
+
 
 	public AbstractJpaDao(PersistenceManager persistenceManager) {
 		persistenceManager = new PersistenceManager();
@@ -132,12 +137,13 @@ public abstract class AbstractJpaDao<ID, E> {
 		try {
 			entityManager.getTransaction().begin();
 			entityManager.persist(entity);
+			entityManager.flush();
 			entityManager.getTransaction().commit();
 		} catch (EntityExistsException e) {
-			System.out.println("Error ex: "+e.getMessage());
+			logger.info(e.getMessage());
 			throw new EntityExistsException(e);
 		}catch (PersistenceException e) {
-			System.out.println("Error ex: "+e.getMessage());
+			logger.info(e.getMessage());
 			throw new PersistenceException(e);
 		}
 		finally {

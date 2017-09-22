@@ -86,7 +86,6 @@ public class ManejadorRegistrarUsuarioBean {
 		logger.info("Finalizando validacion nombre usuario EXITOSA..");
 		logger.info("Finalizando validacion nuevo usuario EXITOSA..");
 		return true;
-		//return "rediret:/views/portal/pagina/RegistrarUsuario";
 	}
 	
 	public String registrarNuevoUsuario(RegistrarUsuarioBean nuevoUsuario,UsuarioSession sessionUsuario){
@@ -101,17 +100,27 @@ public class ManejadorRegistrarUsuarioBean {
 		ContactoType contactoType=  new ContactoType();
 		contactoType.setNombre(nuevoUsuario.getNombre());
 		contactoType.setApellido(nuevoUsuario.getApellido());
-		contactoType.setEdad(100);
+		contactoType.setFechaNacimineto(nuevoUsuario.getFechaNacimineto());
 		contactoType.setEmail(nuevoUsuario.getEmail());
+		contactoType.setSexo(nuevoUsuario.getSexo());
+		contactoType.setEstado("AC");
 		//seteando datos detalle contacto
-		DetalleContactoType detalleType = new DetalleContactoType();
-		detalleType.setCorreoAlterno(nuevoUsuario.getEmailAlternativa());
-		detalleType.setTelefono(nuevoUsuario.getTelefono());
-		detalleType.setCelular(nuevoUsuario.getCelular());
+		if (!ValidationUtil.isStringNotNullOrEmpty(nuevoUsuario.getEmailAlternativa()) ||
+				!ValidationUtil.isStringNotNullOrEmpty(nuevoUsuario.getCelular())  ||
+				!ValidationUtil.isStringNotNullOrEmpty(nuevoUsuario.getTelefono()) ||
+				!ValidationUtil.isStringNotNullOrEmpty(nuevoUsuario.getDireccion())) {
+			DetalleContactoType detalleType = new DetalleContactoType();
+			detalleType.setCorreoAlterno(nuevoUsuario.getEmailAlternativa());
+			detalleType.setTelefono(nuevoUsuario.getTelefono());
+			detalleType.setCelular(nuevoUsuario.getCelular());
+			detalleType.setDireccion(nuevoUsuario.getDireccion());
+			contactoType.setDetalleContactoId(detalleType);
+		}
 		//completando datos usuario
-		contactoType.setDetalleContactoId(detalleType);
 		userType.setContacto(contactoType);
 		logger.info("Usuario a registrar "+ userType);
+		logger.info("Contacto a registrar "+ userType.getContacto());
+		logger.info("Detalle Contacto a registrar: "+ userType.getContacto().getDetalleContactoId());
 		logger.info("Iniciando registracion usuario");
 		boolean registrado = false;
 		try {

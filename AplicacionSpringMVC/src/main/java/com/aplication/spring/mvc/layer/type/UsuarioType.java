@@ -93,7 +93,7 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 
 	@Override
 	public String toString() {
-		return "UsuarioType [usuario_id=" + usuarioId + ", contacto=" + contacto.getContactoId() + ", codigoUsuario=" + codigoUsuario + ", password="
+		return "UsuarioType [usuario_id=" + usuarioId + ", contacto=" + contacto + ", codigoUsuario=" + codigoUsuario + ", password="
 				+ password + ", fechaCreacion=" + fechaCreacion + ", fechaUltimoAcceso=" + fechaUltimoAcceso+"]";
 	}
 
@@ -111,7 +111,9 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 	@Override
 	public Usuario toEntity(UsuarioType type) {
 		Usuario entity = new Usuario();
-		entity.setUsuarioId(type.getUsuarioId());
+		if (type.getUsuarioId() != null) {
+			entity.setUsuarioId(type.getUsuarioId());
+		}
 		entity.setContacto_id(new ContactoType().toEntity(type.getContacto()));
 		entity.setCodigoUsuario(type.getCodigoUsuario());
 		entity.setPassword(type.getPassword());

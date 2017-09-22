@@ -1,9 +1,10 @@
 package com.aplicacion.spring.mvc.interfaces.impl;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceException;
+
+import org.jboss.logging.Logger;
 
 import com.aplicacion.spring.mvc.interfaces.IUsuarioES;
 import com.aplication.spring.mvc.entity.Usuario;
@@ -14,6 +15,9 @@ import com.aplication.spring.mvc.jpa.util.PersistenceManager;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
 
 public class UsuarioESImpl extends AbstractJpaDao<Integer, Usuario> implements IUsuarioES{
+	
+	private static final Logger logger = Logger.getLogger(UsuarioESImpl.class.getName());
+
 
 	public UsuarioESImpl(PersistenceManager persistenceManager) {
 		super(persistenceManager);
@@ -43,6 +47,7 @@ public class UsuarioESImpl extends AbstractJpaDao<Integer, Usuario> implements I
 		try {
 			registrarEntity(usuario);
 		} catch (PersistenceException e) {
+			logger.info("ERROR: "+e.getMessage());
 			throw new InternalServiceException();
 		}
 		return true;

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -27,8 +28,8 @@ public class DetalleContacto {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@SequenceGenerator(name="DetalleContacto_Gen", sequenceName="DetalleContacto_Seq")
+	@Id @GeneratedValue(generator="DetalleContacto_Gen")
     @Column(name="DETALLE_CONTACTO_ID", nullable= false)
 	public Integer getDetalleContactoId() {
 		return detalleContactoId;

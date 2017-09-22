@@ -21,17 +21,20 @@ public class DetalleContactoType implements BuscableType<DetalleContactoType, De
 	private String celular;
 	private String telefono;
 	private String correoAlterno;
+	private String direccion;
 
 	public DetalleContactoType() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public DetalleContactoType(Integer detalleContactoId, String celular, String telefono, String correoAlterno) {
+	public DetalleContactoType(Integer detalleContactoId, String celular, String telefono, String correoAlterno,
+			String direccion) {
 		super();
 		this.detalleContactoId = detalleContactoId;
 		this.celular = celular;
 		this.telefono = telefono;
 		this.correoAlterno = correoAlterno;
+		this.direccion = direccion;
 	}
 
 	public Integer getDetalleContactoId() {
@@ -65,11 +68,20 @@ public class DetalleContactoType implements BuscableType<DetalleContactoType, De
 	public void setCorreoAlterno(String correoAlterno) {
 		this.correoAlterno = correoAlterno;
 	}
+	
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
 
 	@Override
 	public String toString() {
 		return "DetalleContactoType [detalleContactoId=" + detalleContactoId + ", celular=" + celular + ", telefono="
-				+ telefono + ", correoAlterno=" + correoAlterno + "]";
+				+ telefono + ", correoAlterno=" + correoAlterno + ", direccion=" + direccion + "]";
 	}
 
 	@Override
@@ -78,6 +90,7 @@ public class DetalleContactoType implements BuscableType<DetalleContactoType, De
 		this.celular = entity.getCelular();
 		this.telefono = entity.getTelefono();
 		this.correoAlterno = entity.getEmailAlternativa();
+		this.direccion = entity.getDireccion();
 		return this;
 	}
 
@@ -87,6 +100,8 @@ public class DetalleContactoType implements BuscableType<DetalleContactoType, De
 		entity.setDetalleContactoId(type.getDetalleContactoId());
 		entity.setCelular(type.getCelular());
 		entity.setTelefono(type.getTelefono());
+		entity.setEmailAlternativa(type.getCorreoAlterno());
+		entity.setDireccion(type.getDireccion());
 		return entity;
 	}
 
