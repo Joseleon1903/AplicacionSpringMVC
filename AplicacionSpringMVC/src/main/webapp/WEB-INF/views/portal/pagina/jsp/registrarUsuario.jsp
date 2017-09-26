@@ -29,7 +29,7 @@
 		<div id="pop-up-mensaje">
 	   <script type="text/javascript">
 			var descripcionError = "<c:out value="${SessionUsuario.mensajeError}"/>";
-			if (descripcionError != "NONE" && descripcionError != "" || ) {
+			if (descripcionError != "NONE" && descripcionError != "") {
 				erroPagina = true;
 				showMensajeError(InvalidUserException, descripcionError);
 			}else{
