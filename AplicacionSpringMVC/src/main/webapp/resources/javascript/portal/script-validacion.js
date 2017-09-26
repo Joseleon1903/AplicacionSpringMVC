@@ -11,6 +11,8 @@ var menuAdicional= true;
  */
 window.onload = function() {
 	entering('entrando en el metodo para inicialisacion al carcar la pagina..');
+	parametro("ErrorPagina: ", erroPagina);
+	parametro("menuAdicional: "+ menuAdicional);
 	exiting('saliendo en el metodo inicialisacion al carcar la pagina..');
 }
 

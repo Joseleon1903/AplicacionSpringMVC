@@ -138,7 +138,7 @@ public abstract class AbstractJpaDao<ID, E> {
 			entityManager.getTransaction().begin();
 			entityManager.persist(entity);
 			entityManager.flush();
-			entityManager.getTransaction().commit();
+//			entityManager.getTransaction().commit();
 		} catch (EntityExistsException e) {
 			logger.info(e.getMessage());
 			throw new EntityExistsException(e);

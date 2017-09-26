@@ -18,7 +18,6 @@ public class UsuarioESImpl extends AbstractJpaDao<Integer, Usuario> implements I
 	
 	private static final Logger logger = Logger.getLogger(UsuarioESImpl.class.getName());
 
-
 	public UsuarioESImpl(PersistenceManager persistenceManager) {
 		super(persistenceManager);
 	}

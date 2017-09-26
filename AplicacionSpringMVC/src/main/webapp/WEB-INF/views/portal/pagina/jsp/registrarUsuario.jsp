@@ -27,9 +27,19 @@
 	
 	 <!-- *************contenedor mensaje error codigo ************ -->
 		<div id="pop-up-mensaje">
+	   <script type="text/javascript">
+			var descripcionError = "<c:out value="${SessionUsuario.mensajeError}"/>";
+			if (descripcionError != "NONE" && descripcionError != "" || ) {
+				erroPagina = true;
+				showMensajeError(InvalidUserException, descripcionError);
+			}else{
+				erroPagina = false;
+			}
+		</script>
+ 
 			<div class="container-error-pop">
 				<img alt="ICON NOT FOUND" src="<c:url value="/static/resources/inmagenes/png/free-icon/Error-Icono.png"/>" />
-<%-- 				<p id="codigoError">[CODIGO ERROR] <c:out value="${LoginBean.codigoError}"/></p> --%>
+				<p id="codigoError">[CODIGO ERROR] </p>
 				<p id="descripcion"><c:out value="${SessionUsuario.mensajeError}"/></p>
 			</div>
 		</div>
@@ -44,14 +54,14 @@
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="nombre">Nombre</label> 
-							<form:input path="nombre" onblur="validarNotNull('nombre')" type="text" placeholder="Nombre Usuario" /> 
+							<form:input path="nombre" type="text" placeholder="Nombre Usuario" /> 
 						</div>
 					</fieldset>
 					
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="apellido">Apellido</label> 
-							<form:input path="apellido" onblur="validarNotNull('apellido')" type="text" placeholder="Apellido Usuario" /> 
+							<form:input path="apellido" type="text" placeholder="Apellido Usuario" /> 
 						</div>
 					</fieldset>
 
@@ -73,21 +83,21 @@
 					<fieldset>
 					<div class="pure-control-group">
 					<label for="email">Email usuario</label>
-					<form:input path="email" onblur="validarNotNull('email')" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" type="email" placeholder="Email" />
+					<form:input path="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" type="email" placeholder="Email" />
 					</div>
 					</fieldset>
 		
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="codigoUsuario">Username</label>
-							<form:input path="username" onblur="validarNotNull('codigoUsuario')" type="text" placeholder="Username" /> 
+							<form:input path="username" type="text" placeholder="Username" /> 
 						</div>
 					</fieldset>
 		
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="password">Password</label>
-							<form:input path="password" onblur="validarNotNull('password')" type="password" placeholder="Password" /> 
+							<form:input path="password" type="password" placeholder="Password" /> 
 						</div>
 					</fieldset>
 					

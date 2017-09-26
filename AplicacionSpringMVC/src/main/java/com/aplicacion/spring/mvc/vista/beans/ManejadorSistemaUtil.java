@@ -1,6 +1,6 @@
 package com.aplicacion.spring.mvc.vista.beans;
 
-import javax.annotation.Resource;
+import javax.ejb.EJB;
 
 import org.jboss.logging.Logger;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ public class ManejadorSistemaUtil {
 	
 	private static final Logger logger = Logger.getLogger(ManejadorSistemaUtil.class);
 		
-	@Resource(mappedName = "java:global/AplicacionSpringMVC/MotivoEstadoEjbImpl!com.aplicacion.spring.mvc.ejb.impl.MotivoEstadoEjbImpl")
+	@EJB(mappedName = "java:global/AplicacionSpringMVC/MotivoEstadoEjbImpl!com.aplicacion.spring.mvc.ejb.impl.MotivoEstadoEjbImpl")
 	private MotivoEstadoEjbImpl motivoEstadoEJB;
 
 	public ManejadorSistemaUtil() {
