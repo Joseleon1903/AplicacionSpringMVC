@@ -122,7 +122,9 @@ public class ContactoType implements BuscableType<ContactoType, Contacto>, Seria
 		this.sexo = entity.getSexo();
 		this.fechaNacimineto = entity.getFechaNacimiento();
 		this.email= entity.getEmail();
-		this.detalleContactoId= new DetalleContactoType().toType(entity.getDetalleContacto());
+		if (this.detalleContactoId != null) {
+			this.detalleContactoId= new DetalleContactoType().toType(entity.getDetalleContacto());
+		}
 		this.estado = entity.getEstado();
 		return this;
 	}

@@ -208,6 +208,15 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.1.2.Final</version>
 		</dependency>
+     <!-- dependnecias ejb injection -->
+		    <dependency>
+            <groupId>javax.ejb</groupId>
+            <artifactId>javax.ejb-api</artifactId>
+            <version>3.2</version>
+            <scope>provided</scope>
+        </dependency>
+		
+		
 	</dependencies>
 
 	<build>

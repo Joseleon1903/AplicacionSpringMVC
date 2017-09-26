@@ -1,6 +1,6 @@
 package com.aplicacion.spring.mvc.vista.beans;
 
-import javax.annotation.Resource;
+import javax.ejb.EJB;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class ManejadorUsuarioBean {
 	
 	private static final Logger logger = Logger.getLogger(ManejadorUsuarioBean.class);
 
-	@Resource(mappedName = "java:global/AplicacionSpringMVC/UsuarioEjbImpl!com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl")
+	@EJB(mappedName = "java:global/AplicacionSpringMVC/UsuarioEjbImpl!com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl")
 	private UsuarioEjbImpl usuarioES;
 	
 	@Autowired

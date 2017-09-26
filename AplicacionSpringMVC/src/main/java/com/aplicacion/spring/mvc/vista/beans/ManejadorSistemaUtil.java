@@ -6,17 +6,13 @@ import org.jboss.logging.Logger;
 import org.springframework.stereotype.Component;
 
 import com.aplicacion.spring.mvc.ejb.impl.MotivoEstadoEjbImpl;
-import com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl;
 import com.aplication.spring.mvc.layer.type.MotivoEstadoType;
 
 @Component
 public class ManejadorSistemaUtil {
 	
 	private static final Logger logger = Logger.getLogger(ManejadorSistemaUtil.class);
-	
-	@Resource(mappedName = "java:global/AplicacionSpringMVC/UsuarioEjbImpl!com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl")
-	private UsuarioEjbImpl usuarioES;
-	
+		
 	@Resource(mappedName = "java:global/AplicacionSpringMVC/MotivoEstadoEjbImpl!com.aplicacion.spring.mvc.ejb.impl.MotivoEstadoEjbImpl")
 	private MotivoEstadoEjbImpl motivoEstadoEJB;
 
