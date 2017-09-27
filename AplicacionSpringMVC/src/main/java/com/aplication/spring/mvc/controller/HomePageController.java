@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
+import com.aplicacion.spring.mvc.vista.beans.ManejadorSistemaUtil;
 
 @Controller
 @RequestMapping(value = "/views/portal/pagina/Home")
@@ -21,11 +22,17 @@ public class HomePageController {
 	@Autowired
 	@Qualifier("usuarioSession")
 	private UsuarioSession sessionUsuario;
+	
+	@Autowired
+	@Qualifier("manejadorSistemaUtil")
+	private ManejadorSistemaUtil manejadorSistemaUtil;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String displayHomePage(HttpServletRequest request,  Model model) {
+		String pagina = manejadorSistemaUtil.validandoSession(sessionUsuario, "/portal/pagina/jsp/Home");
 		model.addAttribute("usuarioSession", sessionUsuario);
-		return "/portal/pagina/jsp/Home";
+		logger.info("cargando pagina: "+ pagina);
+		return pagina;
 	}
 
 }

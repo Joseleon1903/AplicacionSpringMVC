@@ -5,7 +5,9 @@ import javax.ejb.EJB;
 import org.jboss.logging.Logger;
 import org.springframework.stereotype.Component;
 
+import com.aplicacion.spring.mvc.constante.ParametrosSistemaConstantes;
 import com.aplicacion.spring.mvc.ejb.impl.MotivoEstadoEjbImpl;
+import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
 import com.aplication.spring.mvc.layer.type.MotivoEstadoType;
 
 @Component
@@ -28,6 +30,14 @@ public class ManejadorSistemaUtil {
 		logger.info("motivoType : "+type);
 		logger.info("Saliendo ManejadorSistemaUtil");
 		return type;
-	} 
+	}
+	
+	public String validandoSession(UsuarioSession session, String page){
+		if (session.isAutenticado()) {
+			return page;
+		}
+		return ParametrosSistemaConstantes.REDIRECT_STR + "/";		
+	}
+
 
 }

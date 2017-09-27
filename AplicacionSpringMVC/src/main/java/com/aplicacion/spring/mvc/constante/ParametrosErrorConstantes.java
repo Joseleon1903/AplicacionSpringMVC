@@ -1,6 +1,6 @@
 package com.aplicacion.spring.mvc.constante;
 
-public class ParametrosErrorConstante {
+public class ParametrosErrorConstantes {
 
 	/**
 	 * CODIGO: 1909

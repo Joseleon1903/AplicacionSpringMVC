@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.aplicacion.spring.mvc.constante.ParametrosErrorConstante;
+import com.aplicacion.spring.mvc.constante.ParametrosErrorConstantes;
 import com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl;
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
 import com.aplication.spring.mvc.exception.InternalServiceException;
@@ -50,7 +50,7 @@ public class ManejadorUsuarioBean {
 			return "redirect:/views/portal/pagina/Home";
 		}
 		//buscando mensaje error usuario invalido
-		MotivoEstadoType motivo =manejadorSistemaUtil.buscarMotivoPorId(ParametrosErrorConstante.USUARIO_INVALIDO_COD);
+		MotivoEstadoType motivo =manejadorSistemaUtil.buscarMotivoPorId(ParametrosErrorConstantes.USUARIO_INVALIDO_COD);
 		loginBean.setCodigoError(motivo.getMotivoId());
 		loginBean.setMensajeError(motivo.getDescripcion());
 		return "index";

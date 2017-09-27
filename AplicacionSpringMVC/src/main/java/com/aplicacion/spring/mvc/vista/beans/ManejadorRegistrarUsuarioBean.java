@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.aplicacion.spring.mvc.constante.ParametrosErrorConstante;
+import com.aplicacion.spring.mvc.constante.ParametrosErrorConstantes;
 import com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl;
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
 import com.aplication.spring.mvc.exception.DatoRequeridoNoProporcionadoException;
@@ -59,7 +59,7 @@ public class ManejadorRegistrarUsuarioBean {
 			validarDatosRequeridos(nuevoUsuario);
 		} catch (DatoRequeridoNoProporcionadoException e) {
 			sessionUsuario.setError(true);
-			MotivoEstadoType motivo = manejadorUtil.buscarMotivoPorId(ParametrosErrorConstante.DATOS_REQUERIDO_ERROR_COD);
+			MotivoEstadoType motivo = manejadorUtil.buscarMotivoPorId(ParametrosErrorConstantes.DATOS_REQUERIDO_ERROR_COD);
 			sessionUsuario.setMensajeError(motivo.getDescripcion());
 			return false;
 		}
@@ -69,7 +69,7 @@ public class ManejadorRegistrarUsuarioBean {
 			validarIncidenciaPassword(nuevoUsuario.getPassword(), nuevoUsuario.getConfirmarPassword());
 		} catch (InvalidDataException e) {
 			sessionUsuario.setError(true);
-			MotivoEstadoType motivo = manejadorUtil.buscarMotivoPorId(ParametrosErrorConstante.INCIDENCIA_PASSWORD_ERROR_COD);
+			MotivoEstadoType motivo = manejadorUtil.buscarMotivoPorId(ParametrosErrorConstantes.INCIDENCIA_PASSWORD_ERROR_COD);
 			sessionUsuario.setMensajeError(motivo.getDescripcion());
 			return false;
 		}
@@ -79,7 +79,7 @@ public class ManejadorRegistrarUsuarioBean {
 			validarUsernameDuplicado(nuevoUsuario.getUsername());
 		} catch (DuplicateObjectException e) {
 			sessionUsuario.setError(true);
-			MotivoEstadoType motivo = manejadorUtil.buscarMotivoPorId(ParametrosErrorConstante.USERNAME_DUPLICADO_ERROR_COD);
+			MotivoEstadoType motivo = manejadorUtil.buscarMotivoPorId(ParametrosErrorConstantes.USERNAME_DUPLICADO_ERROR_COD);
 			sessionUsuario.setMensajeError(motivo.getDescripcion());
 			return false;
 		}
@@ -128,7 +128,7 @@ public class ManejadorRegistrarUsuarioBean {
 			registrado = true;
 		} catch (InternalServiceException e) {
 			sessionUsuario.setError(registrado);
-			MotivoEstadoType motivo = manejadorUtil.buscarMotivoPorId(ParametrosErrorConstante.INTERNAL_SERVER_ERROR_COD);
+			MotivoEstadoType motivo = manejadorUtil.buscarMotivoPorId(ParametrosErrorConstantes.INTERNAL_SERVER_ERROR_COD);
 			sessionUsuario.setMensajeError(motivo.getDescripcion());
 		}
 		if (registrado) {
