@@ -27,72 +27,73 @@
 	
 		<div class="form-actualizar-usuario">
 		<h1>Actualizar informacion usuario sistema</h1>
-		    <form name="actualizarUsuario" id="form-3" method="post" class="pure-form pure-form-aligned">
+		    <form:form modelAttribute="ActualizarUsuarioBean" name="actualizarUsuario" id="form-3" method="post" class="pure-form pure-form-aligned">
+		    
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="nombre">Nombre</label> 
-							<input id="nombre" type="text" placeholder="Nombre Usuario"> 
+							<form:input path="nombre" id="nombre" type="text" placeholder="Nombre Usuario" /> 
 						</div>
 					</fieldset>
 					
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="apellido">Apellido</label> 
-							<input id="apellido" type="text" placeholder="Apellido Usuario"> 
+							<form:input path="apellido"  id="apellido" type="text" placeholder="Apellido Usuario" /> 
 						</div>
 					</fieldset>
 		
 					<fieldset>
-						 <div class="pure-control-group">				
-						<label for="sexo" class="pure-radio">Sexo</label>
-						<input id="sexo" type="radio" name="sexo" value="F" checked> female
-						<input id="sexo" type="radio" name="sexo" value="M"> male
+						<div class="pure-control-group">
+							<label for="sexo" class="pure-radio">Sexo </label>
+							<form:radiobutton path="sexo" name="sexo" value="F" />Female
+							<form:radiobutton path="sexo" name="sexo" value="M" />Male
 						</div>
 					</fieldset>
 					
 					<fieldset>
 						<div class="pure-control-group">
 						<label for="fechaNacimiento" class="pure-radio">Fecha nacimiento</label>
-						<input id="fechaNacimiento" type="date" name="fecha">
+						<form:input path="fechaNacimiento" id="fechaNacimiento" type="date" name="fecha" />
 						</div>
 					</fieldset>
 		
 					<fieldset>
 					<div class="pure-control-group">
 					<label for="email">Email usuario</label>
-					<input id="email" type="email" placeholder="Email">
+					<form:input path="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" id="email" type="email" placeholder="Email" />
 					</div>
 					</fieldset>
 		
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="name">Username</label>
-							 <input id="name" type="text" placeholder="Username"> 
+							<form:input path="username" id="username" type="text" placeholder="Username" /> 
 						</div>
 					</fieldset>
 				
 		            <fieldset>
 						<div class="pure-control-group">
 							<label for="emailAlternatriva">Email alternatriva</label>
-							 <input id="emailAlternatriva" type="text" placeholder="Email alternatriva"> 
+							<form:input path="emailAlternativa" id="emailAlternatriva" type="text" placeholder="Email alternatriva" /> 
 						</div>
 					</fieldset>
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="Direccion">Direccion</label>
-							 <input id="Direccion" type="text" placeholder="Direccion"> 
+							<form:input path="direccion" id="Direccion" type="text" placeholder="Direccion" /> 
 						</div>
 					</fieldset>
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="Telefono">Telefono</label>
-							 <input id="Telefono" type="text" placeholder="Telefono"> 
+							<form:input path="telefono" id="Telefono" type="text" placeholder="Telefono" /> 
 						</div>
 					</fieldset>
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="Celular">Celular</label>
-							 <input id="Celular" type="text" placeholder="Celular"> 
+							<form:input path="celular" id="Celular" type="text" placeholder="Celular" /> 
 						</div>
 					</fieldset>
 					
@@ -102,7 +103,7 @@
 							<button type="submit" class="pure-button pure-button-primary">Salir</button>
 						</div>
 					</fieldset>
-				</form>
+				</form:form>
 			</div>
 		</div>
 		<!-- ********* Final DIV principal *********** -->

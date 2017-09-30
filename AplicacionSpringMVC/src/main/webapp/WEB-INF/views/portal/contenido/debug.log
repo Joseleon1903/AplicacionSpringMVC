@@ -2,3 +2,4 @@
 [0928/202829.549:ERROR:main_dll_loader_win.cc(136)] Failed to load Chrome DLL from C:\Program Files\Jamper\Application\58.0.3029.81\chrome.dll: The specified module could not be found. (0x7E)
 [0928/202839.534:ERROR:main_dll_loader_win.cc(136)] Failed to load Chrome DLL from C:\Program Files\Jamper\Application\58.0.3029.81\chrome.dll: The specified module could not be found. (0x7E)
 [0928/203058.847:ERROR:main_dll_loader_win.cc(136)] Failed to load Chrome DLL from C:\Program Files\Jamper\Application\58.0.3029.81\chrome.dll: The specified module could not be found. (0x7E)
+[0930/174353.775:ERROR:persistent_memory_allocator.cc(777)] Corruption detected in shared-memory segment.

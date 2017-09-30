@@ -66,5 +66,28 @@ public class UsuarioEjbImpl {
 		logger.info("Returning: "+user );
 		return registrado;
 	}
+	
+	public UsuarioType buscarUsuarioPorUsuarioId(Integer usuarioId) throws InternalServiceException{
+		logger.info("Entrando en la capacidad buscarUsuarioPorUsuarioId");
+		IUsuarioES dao = new UsuarioESImpl(persistenceManager);
+		UsuarioType user = null;
+		try {
+			user = dao.buscarUsuarioPorId(usuarioId);
+		} catch (InternalServiceException e) {
+			logger.info("ERROR realizando la consulta..");
+			logger.info(e.getMessage());
+			throw new InternalServiceException();
+		}
+		logger.info("Saliendo del metodo buscarUsuarioPorUsuarioId");
+		logger.info("Returning: "+user );
+		return user;
+
+		
+		
+		
+		
+		
+	}
+
 
 }

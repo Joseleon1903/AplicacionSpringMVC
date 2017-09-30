@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Scope(value="session")
 public class UsuarioSession {
 	
+	private Integer usuarioId;
 	private boolean autenticado;
 	private String nombre;
 	private boolean error;
@@ -52,6 +53,14 @@ public class UsuarioSession {
 	public void setMensajeError(String mensajeError) {
 		this.mensajeError = mensajeError;
 	}
+	
+	public Integer getUsuarioId() {
+		return usuarioId;
+	}
+
+	public void setUsuarioId(Integer usuarioId) {
+		this.usuarioId = usuarioId;
+	}
 
 	@Override
 	public String toString() {
@@ -61,6 +70,7 @@ public class UsuarioSession {
 
 	@PostConstruct
 	private void init(){
+		this.usuarioId = 0;
 		this.autenticado = false;
 		this.error = false;
 		this.nombre= "NONE";

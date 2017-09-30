@@ -52,4 +52,16 @@ public class UsuarioESImpl extends AbstractJpaDao<Integer, Usuario> implements I
 		return true;
 	}
 
+	@Override
+	public UsuarioType buscarUsuarioPorId(Integer usuarioId) throws InternalServiceException {
+
+		Usuario user = null;
+		try {
+			user = buscarEntityPorId(Usuario.class, usuarioId);
+		} catch (PersistenceException e) {
+			throw new InternalServiceException();
+		}
+		return new UsuarioType().toType(user);
+	}
+
 }

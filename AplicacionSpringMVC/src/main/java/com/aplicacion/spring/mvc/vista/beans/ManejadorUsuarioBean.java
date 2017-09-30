@@ -47,6 +47,7 @@ public class ManejadorUsuarioBean {
 			logger.info("Password validada con exito..");
 			sessionUsuario.setNombre(loginBean.getCodigoUsuario());
 			sessionUsuario.setAutenticado(true);
+			sessionUsuario.setUsuarioId(user.getUsuarioId());
 			return "redirect:/views/portal/pagina/Home";
 		}
 		//buscando mensaje error usuario invalido

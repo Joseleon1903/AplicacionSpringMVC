@@ -2,7 +2,12 @@ package com.aplicacion.spring.mvc.vista.beans;
 
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import org.springframework.context.annotation.Scope;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,9 +17,12 @@ public class ActualizarUsuarioBean {
 	private String nombre;
 	private String apellido;
 	private String sexo;
-	private Date fechaNacimineto;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
+	private Date fechaNacimiento;
 	private String email;
 	private String emailAlternativa;
+	private String username;
 	private String direccion;
 	private String telefono;
 	private String celular;
@@ -47,12 +55,12 @@ public class ActualizarUsuarioBean {
 		this.sexo = sexo;
 	}
 
-	public Date getFechaNacimineto() {
-		return fechaNacimineto;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFechaNacimineto(Date fechaNacimineto) {
-		this.fechaNacimineto = fechaNacimineto;
+	public void setFechaNacimiento(Date fechaNacimineto) {
+		this.fechaNacimiento = fechaNacimineto;
 	}
 
 	public String getEmail() {
@@ -95,11 +103,19 @@ public class ActualizarUsuarioBean {
 		this.celular = celular;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	@Override
 	public String toString() {
 		return "ActualizarUsuarioBean [nombre=" + nombre + ", apellido=" + apellido + ", sexo=" + sexo
-				+ ", fechaNacimineto=" + fechaNacimineto + ", email=" + email + ", emailAlternativa=" + emailAlternativa
-				+ ", direccion=" + direccion + ", telefono=" + telefono + ", celular=" + celular + "]";
+				+ ", fechaNacimiento=" + fechaNacimiento + ", email=" + email + ", emailAlternativa=" + emailAlternativa
+				+ ", username=" + username + ", direccion=" + direccion + ", telefono=" + telefono + ", celular="
+				+ celular + "]";
 	}
-	
 }

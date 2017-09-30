@@ -7,6 +7,8 @@ import com.aplication.spring.mvc.layer.type.UsuarioType;
 public interface IUsuarioES {
 
 	public UsuarioType buscarUsuarioPorCodigo(String nombre) throws InternalServiceException;
+	
+	public UsuarioType buscarUsuarioPorId(Integer usuarioId) throws InternalServiceException;
 
 	public boolean ActualizarAccesoUsuario(Usuario usuario);
 
