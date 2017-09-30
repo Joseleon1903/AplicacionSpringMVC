@@ -21,6 +21,12 @@ public class MotivoEstadoEjbImpl{
 	public MotivoEstadoEjbImpl() {
 	}
 
+	/**
+	 * Descripcion: Capacidad que permite buscar un motivo en el repositorio de MOTIVO_ESTADO por el id del motivo.
+	 * 
+	 * @param Integer: id
+	 * @return MotivoEstadoType
+	 */
 	public MotivoEstadoType buscarMotivoPorId(Integer id) {
 		logger.info("Entrondo en capacidad buscarMotivoPorId..");
 		logger.info("Parametro ID : "+ id);

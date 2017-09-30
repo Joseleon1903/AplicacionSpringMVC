@@ -1,4 +1,4 @@
-package com.aplication.spring.mvc.spring;
+package com.aplication.spring.mvc.dao.testSuit;
 
 import java.util.Date;
 

@@ -20,6 +20,13 @@ public class UsuarioEjbImpl {
 	public UsuarioEjbImpl() {
 	}
 
+	/**
+	 * Descripcion: Capacidad que permite buscar un usuario por el codigo de usuario.
+	 * 
+	 * @param String: codigoUsuario
+	 * @return UsuarioType
+	 * @throws InternalServiceException
+	 */
 	public UsuarioType buscarUsuarioPorCodigo(String codigoUsuario) throws InternalServiceException{
 		logger.info("Entrando en la capacidad buscarUsuarioPorCodigo");
 		IUsuarioES dao = new UsuarioESImpl(persistenceManager);
@@ -36,6 +43,14 @@ public class UsuarioEjbImpl {
 		return user;
 	}
 	
+	/**
+	 * Descripcion: Capacidad que permite registar un nuevo usuario en el repositorio de USUARIO y CONTACTO del sistema.
+	 *              Devuelve TRUE si el usuario fue registrado exitosamente, FALSE de lo contrario.
+	 * 
+	 * @param UsuarioType
+	 * @return boolean
+	 * @throws InternalServiceException
+	 */
 	public boolean registrarNuevoUsuarioSistema(UsuarioType user) throws InternalServiceException{
 		logger.info("Entrando en la capacidad registrarNuevoUsuarioSistema");
 		IUsuarioES dao = new UsuarioESImpl(persistenceManager);

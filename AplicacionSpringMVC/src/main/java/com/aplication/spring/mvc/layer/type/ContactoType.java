@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.aplication.interfaces.comunes.BuscableType;
+import com.aplicacion.spring.mvc.interfaces.comunes.BuscableType;
 import com.aplication.spring.mvc.entity.Contacto;
 
 @XmlRootElement(name="ContactoType")

@@ -1,4 +1,4 @@
-package com.aplication.interfaces.comunes;
+package com.aplicacion.spring.mvc.interfaces.comunes;
 
 import java.util.List;
 

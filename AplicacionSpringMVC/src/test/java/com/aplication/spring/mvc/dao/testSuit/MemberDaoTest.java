@@ -30,7 +30,7 @@ public class MemberDaoTest {
 		ContactoType contactoType=  new ContactoType();
 		contactoType.setNombre("Prueba Usuario");
 		contactoType.setApellido("Test");
-		contactoType.setEdad(100);
+		contactoType.setFechaNacimineto(new Date());
 		contactoType.setEmail("prueba@gmail.com");
 		//seteando datos detalle contacto
 		DetalleContactoType detalleType = new DetalleContactoType();
