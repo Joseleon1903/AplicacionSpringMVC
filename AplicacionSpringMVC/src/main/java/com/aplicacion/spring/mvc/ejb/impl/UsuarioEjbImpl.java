@@ -81,13 +81,24 @@ public class UsuarioEjbImpl {
 		logger.info("Saliendo del metodo buscarUsuarioPorUsuarioId");
 		logger.info("Returning: "+user );
 		return user;
-
-		
-		
-		
-		
-		
 	}
+	
+	public boolean actualizarUsuarioSistema(UsuarioType user) throws InternalServiceException{
+		logger.info("Entrando en la capacidad actualizarUsuarioSistema");
+		IUsuarioES dao = new UsuarioESImpl(persistenceManager);
+		Boolean registrado = false;
+		try {
+			registrado = dao.ActualizarUsuarioSistema(new UsuarioType().toEntity(user));
+		} catch (InternalServiceException e) {
+			logger.info("ERROR realizando la actualizacion..");
+			logger.info(e.getMessage());
+			throw new InternalServiceException();
+		}
+		logger.info("Saliendo del metodo actualizarUsuarioSistema");
+		logger.info("Returning: "+user );
+		return registrado;
+	}
+
 
 
 }

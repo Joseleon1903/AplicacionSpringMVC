@@ -93,5 +93,9 @@ public class EventoSistema {
 		String FECHA_EVENTO = "FECHA_EVENTO";
 		String ENVIO_ID = "ENVIO_ID";
 	}
+	
+	public static interface NamedQuery{
+		String BUSCAR_EMAIL_SISTEMA = "EventoSistema.BuscarTodos";		
+	}
 
 }

@@ -10,7 +10,7 @@ public interface IUsuarioES {
 	
 	public UsuarioType buscarUsuarioPorId(Integer usuarioId) throws InternalServiceException;
 
-	public boolean ActualizarAccesoUsuario(Usuario usuario);
+	public boolean ActualizarUsuarioSistema(Usuario usuario) throws InternalServiceException;
 
 	public boolean registrarUsuario(Usuario usuario) throws InternalServiceException;
 

@@ -25,6 +25,25 @@
    <!-- ********* inicio DIV contenido principal ***********-->
 	<div class="container-contenido">
 	
+	 <!-- *************contenedor mensaje error codigo ************ -->
+		<div id="pop-up-mensaje">
+	   <script type="text/javascript">
+			var descripcionError = "<c:out value="${SessionUsuario.mensajeError}"/>";
+			if (descripcionError != "NONE" && descripcionError != "") {
+				erroPagina = true;
+				showMensajeError(InternalServerError, descripcionError);
+			}else{
+				erroPagina = false;
+			}
+		</script>
+			<div class="container-error-pop">
+				<img alt="ICON NOT FOUND" src="<c:url value="/static/resources/inmagenes/png/free-icon/Error-Icono.png"/>" />
+				<p id="codigoError">[CODIGO ERROR] </p>
+				<p id="descripcion"><c:out value="${SessionUsuario.mensajeError}"/></p>
+			</div>
+		</div>
+    <!-- *************contenedor mensaje error Fin codigo ************ -->
+	
 		<div class="form-actualizar-usuario">
 		<h1>Actualizar informacion usuario sistema</h1>
 		    <form:form modelAttribute="ActualizarUsuarioBean" name="actualizarUsuario" id="form-3" method="post" class="pure-form pure-form-aligned">

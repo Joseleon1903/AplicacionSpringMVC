@@ -55,17 +55,19 @@ public abstract class AbstractJpaDao<ID, E> {
 	 * @param entity
 	 * @return boolean
 	 */
-    public boolean actualizarEntity(E entity) throws PersistenceException {
+    public boolean actualizarEntity(Class<E> clazz, ID id , E entity) throws PersistenceException {
     		
 		try {
 			entityManager.getTransaction().begin();
-			entityManager.merge(entity);
+			entityManager.find(clazz, id);
 			entityManager.flush();
-			entityManager.getTransaction().commit();
+//			entityManager.merge(entity);
+			entityManager.refresh(entity);
+//			entityManager.getTransaction().commit();
 			return true;
 		} catch (Exception e) {
 			throw new PersistenceException(e);
-		} finally {
+		}finally {
 			closeConnection();
 		}
     }
@@ -163,7 +165,6 @@ public abstract class AbstractJpaDao<ID, E> {
 	 * 
 	 */
 	public void closeConnection(){
-		persistenceManager.getPersistenceManager().close();
 		entityManager.close();
 	}
 

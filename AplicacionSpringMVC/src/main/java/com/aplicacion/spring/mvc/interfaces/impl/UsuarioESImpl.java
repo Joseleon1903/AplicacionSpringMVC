@@ -36,8 +36,8 @@ public class UsuarioESImpl extends AbstractJpaDao<Integer, Usuario> implements I
 	}
 
 	@Override
-	public boolean ActualizarAccesoUsuario(Usuario usuario) {
-		boolean exitoso = actualizarEntity(usuario);
+	public boolean ActualizarUsuarioSistema(Usuario usuario) throws InternalServiceException{
+		boolean exitoso = actualizarEntity(Usuario.class, usuario.getUsuarioId(), usuario);
 		return exitoso;
 	}
 
