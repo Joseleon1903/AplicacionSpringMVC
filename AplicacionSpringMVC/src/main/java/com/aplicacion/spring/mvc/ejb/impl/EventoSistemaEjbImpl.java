@@ -67,5 +67,22 @@ public class EventoSistemaEjbImpl {
 		logger.info("returnning: "+lista);
 		return lista;
 	}
+	
+	public List<EventoSistemaType> buscarListaEmailPorDatosGenerales(String nombreUsuario, String asunto, String destinatario,
+			String estado) {
+		logger.info("Entrando en la capacidad : buscarListaEmailPorDatosGenerales");
+		logger.info("Iniciando busqueda email registrada en el sistema");
+		List<EventoSistemaType> lista = new ArrayList<>();
+//		IEventoSistemaES dao = new EventoSistemaESImpl(persistenceManager);
+//		try {
+//			lista = dao.buscarElencoEmailSistema();
+//		} catch (InternalServiceException e) {
+//			logger.info("ocurrio un error registrando EnvioEmail");
+//			logger.info("ERROR " + e.getMessage());
+//		}
+//		logger.info("Terminando busqueda email sistema");
+//		logger.info("returnning: "+lista);
+		return lista;
+	}
 
 }

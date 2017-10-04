@@ -24,16 +24,17 @@
 
     <!-- *************contenedor menu fildtros de busqueda codigo ************ -->
 	<div class="form-filtro-mail">
-		<form class="pure-form" action="">
+		<form name="BuscarListaEmail" class="pure-form" action="ListaEmailEnviadas/BuscarListaEmail" method="post" >
 		<label>Filtrar email por: </label>
-			<input class="pure-input-1-4" type="text" placeholder="Usuario envio">
-			<input class="pure-input-1-4" type="text" placeholder="Asunto">
-			<input class="pure-input-1-4" type="text" placeholder="Destinatario">
+			<input id="UsuarioEnvio" name="UsuarioEnvio" class="pure-input-1-6" type="text" placeholder="Nombre usuario">
+			<input id="Asunto" name="Asunto" class="pure-input-1-6" type="text" placeholder="Asunto">
+			<input id="Destinatario" name="Destinatario" class="pure-input-1-6" type="text" placeholder="Destinatario">
 			<label for="state">Estado</label>
-	        <select id="state">
+	        <select id="state" name="Estado">
 	            <option>OK</option>
 	            <option>RE</option>
 	        </select>
+	        <input type="submit" value="Buscar" class="pure-button pure-button-primary" />
 		</form>
 	</div>
 
@@ -67,7 +68,7 @@
 					<tr>
 						<th>ENVIO ID</th>
 						<th>FECHA ENVIO EMAIL</th>
-						<th>USUARIO ENVIO</th>
+						<th>NOMBRE USUARIO</th>
 						<th>ASUNTO</th>
 						<th>DESTINATARIO</th>
 						<th>ESTADO</th>

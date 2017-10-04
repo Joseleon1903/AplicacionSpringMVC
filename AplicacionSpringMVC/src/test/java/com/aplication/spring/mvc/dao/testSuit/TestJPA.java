@@ -2,8 +2,6 @@ package com.aplication.spring.mvc.dao.testSuit;
 
 import java.util.Date;
 
-import com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl;
-import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.layer.type.ContactoType;
 import com.aplication.spring.mvc.layer.type.DetalleContactoType;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
@@ -16,38 +14,30 @@ public class TestJPA {
 
 	public static void main(String[] args) {
 		System.out.println("---------com.aplication.spring.mvc.spring-------------");
+		System.out.println("--------------**************----------------------");
 		UsuarioType userType = new UsuarioType();
-		userType.setCodigoUsuario("prueba");
-		userType.setPassword("prueba1");
+		userType.setCodigoUsuario("Prueba");
+		userType.setPassword("Prueba1");
 		userType.setFechaCreacion(new Date());
 		userType.setFechaUltimoAcceso(new Date());
 		//seteando datos contacto
 		ContactoType contactoType=  new ContactoType();
-		contactoType.setNombre("prueba");
-		contactoType.setApellido("prueba test");
-		contactoType.setSexo("M");
+		contactoType.setNombre("Prueba Usuario");
+		contactoType.setApellido("Test");
 		contactoType.setFechaNacimineto(new Date());
 		contactoType.setEmail("prueba@gmail.com");
-		contactoType.setEstado("AC");
 		//seteando datos detalle contacto
 		DetalleContactoType detalleType = new DetalleContactoType();
-		detalleType.setCorreoAlterno("prueba2@outlook.com");
-		detalleType.setTelefono("8096249897");
-		detalleType.setCelular("8096249777");
+		detalleType.setCorreoAlterno("prueba2@gmail.com");
+		detalleType.setTelefono("809-524-6321");
+		detalleType.setCelular("896-321-5544");
 		//completando datos usuario
 		contactoType.setDetalleContactoId(detalleType);
 		userType.setContacto(contactoType);
-		System.out.println("Usuario a registrar "+ userType);
-		System.out.println("Iniciando registracion usuario");
-		boolean registrado = false;
-		UsuarioEjbImpl usuarioES = new UsuarioEjbImpl();
-		try {
-			registrado = usuarioES.registrarNuevoUsuarioSistema(userType);
-		} catch (InternalServiceException e) {
-			e.printStackTrace();
-		}
 		System.out.println("Usuario: "+ userType);
-		System.out.println("Registrado: "+ registrado);
+		System.out.println("Contacto: "+ userType.getContacto());
+		System.out.println("Detalles contacto: "+ userType.getContacto().getDetalleContactoId());
+
 	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
 import com.aplicacion.spring.mvc.vista.beans.ListaEmailEnviadasBean;
@@ -50,5 +51,18 @@ public class ListaEmailEnviadasPageController {
 		logger.info("cargando pagina: "+ pagina);
 		return pagina;
 	}
+	
+	@RequestMapping(value="/BuscarListaEmail", method = RequestMethod.POST)
+	public String filtrarListaEmailEnviadasLista(@RequestParam("UsuarioEnvio") String usuarioEnvio,
+			@RequestParam("Asunto") String asunto, @RequestParam("Destinatario") String destinatario,
+			@RequestParam("Estado") String estado, Model model) {
+		logger.info("Entrando en el formulario filtrarListaEmailEnviadasLista");
+		logger.info("UsuarioEnvio: "+usuarioEnvio);
+		logger.info("Asunto: "+asunto);
+		logger.info("Destinatario: "+destinatario);
+		logger.info("Estado: "+estado);
+		return "portal/pagina/jsp/listaEmailEnviadas";
+	}
+
 
 }

@@ -20,7 +20,8 @@ import javax.persistence.TemporalType;
 @Table(name="evento_sistema")
 @NamedQueries({
 		 @NamedQuery(name="EventoSistema.BuscarTodos", query="SELECT e FROM EventoSistema e") ,
-		 @NamedQuery(name="EventoSistema.BuscarPorId", query="SELECT e FROM EventoSistema e where e.eventoSistemaId = :eventoSistemaId")
+		 @NamedQuery(name="EventoSistema.BuscarPorId", query="SELECT e FROM EventoSistema e where e.eventoSistemaId = :eventoSistemaId"),
+		 @NamedQuery(name="EventoSistema.BuscarPorDatosGenerales", query="SELECT e FROM EventoSistema e ")
 })
 public class EventoSistema {
 
@@ -95,7 +96,8 @@ public class EventoSistema {
 	}
 	
 	public static interface NamedQuery{
-		String BUSCAR_EMAIL_SISTEMA = "EventoSistema.BuscarTodos";		
+		String BUSCAR_EMAIL_SISTEMA = "EventoSistema.BuscarTodos";
+		String BUSCAR_EMAIL_DATOS_GENERALES = "EventoSistema.BuscarPorDatosGenerales";
 	}
 
 }

@@ -11,5 +11,8 @@ public interface IEventoSistemaES {
 	public boolean registrarNuevoEvento(EventoSistema evento);
 	
 	public List<EventoSistemaType> buscarElencoEmailSistema() throws InternalServiceException;
+	
+	public List<EventoSistemaType> buscarEmailPorDatosGenerales(String nombreUsuario, String asunto, String destinatario,
+			String estado) throws InternalServiceException;
 
 }

@@ -65,7 +65,7 @@ public class ManejadorListaEmailSistemaBean {
 			bean.setDestinatario(eventoType.getEnvioId().getDestinatario());
 			bean.setFechaEnvio(eventoType.getEnvioId().getFechaEnvio());
 			bean.setEstado(eventoType.getEnvioId().getEstado());
-			bean.setUsuarioEnvio(user.getCodigoUsuario());
+			bean.setUsuarioEnvio(eventoType.getContactoId().getNombre());
 			lista.add(bean);
 		}
 		logger.info("Terminando de setear valores lista..");
