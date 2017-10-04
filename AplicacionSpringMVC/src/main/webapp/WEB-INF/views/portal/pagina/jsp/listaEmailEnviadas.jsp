@@ -41,6 +41,26 @@
 
     <!-- ********* inicio DIV contenido principal ***********-->
 	<div class="container-contenido">
+		 <!-- *************contenedor mensaje error codigo ************ -->
+		<div id="pop-up-mensaje">
+	   <script type="text/javascript">
+			var descripcionError = "<c:out value="${SessionUsuario.mensajeError}"/>";
+			if (descripcionError != "NONE" && descripcionError != "") {
+				erroPagina = true;
+				showMensajeError(InvalidUserException, descripcionError);
+			}else{
+				erroPagina = false;
+			}
+		</script>
+ 
+			<div class="container-error-pop">
+				<img alt="ICON NOT FOUND" src="<c:url value="/static/resources/inmagenes/png/free-icon/Error-Icono.png"/>" />
+				<p id="codigoError">[CODIGO ERROR] </p>
+				<p id="descripcion"><c:out value="${SessionUsuario.mensajeError}"/></p>
+			</div>
+		</div>
+    <!-- *************contenedor mensaje error Fin codigo ************ -->
+	
 		<div class="table-main-enviadas">
 			<table class="pure-table pure-table-bordered">
 				<thead>
@@ -54,33 +74,22 @@
 						<th>OPCIONES</th>
 					</tr>
 				</thead>
-	
+
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>2017-06-16T00:00:00</td>
-						<td>ADMIN1</td>
-						<td>Personal 1</td>
-					    <td>numero1@gmail.com</td>
-						<td>OK</td>
-						<td>
-						<img alt="[NOT FOUND  ERROR] Objeto solicitado no encontrado" id="inmagen-detalle" src="../../inmagenes/png/free-icon/options-icon.png">
+		  			<c:forEach var="envio" items="${ListaEmailEnviadasBean}">
+		  			<tr>
+		  			<th><c:out value="${envio.envioId}" /></th>
+		  			<th><c:out value="${envio.fechaEnvio}" /></th>
+		  			<th><c:out value="${envio.usuarioEnvio}" /></th>
+		  			<th><c:out value="${envio.asunto}" /></th>
+		  			<th><c:out value="${envio.destinatario}" /></th>
+		  			<th><c:out value="${envio.estado}" /></th>
+		  			<td>
+						<img alt="[NOT FOUND  ERROR] Objeto solicitado no encontrado" id="inmagen-detalle" src="<c:url value="/static/resources/inmagenes/png/free-icon/options-icon.png"/>">
 						<button class="pure-button" onclick="llamandoRest()" ><i class="fa fa-cog"></i>Detalles</button>
-						</td>
-					</tr>
-	
-					<tr>
-						<td>2</td>
-						<td>2017-06-16T00:00:00</td>
-						<td>ADMIN1</td>
-						<td>Personal 2</td>
-					    <td>numero2@gmail.com</td>
-						<td>RE</td>
-						<td>
-						<img alt="[NOT FOUND  ERROR] Objeto solicitado no encontrado" id="inmagen-detalle" src="../../inmagenes/png/free-icon/options-icon.png">
-						<button class="pure-button"><i class="fa fa-cog"></i>Detalles</button>
-						</td>
-					</tr>
+					</td>
+                    </tr> 
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

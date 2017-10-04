@@ -113,7 +113,9 @@ public class EnvioSistemaType implements BuscableType<EnvioSistemaType, EnvioSis
 		this.setDestinatario(entity.getDestinatario());
 		this.setContenido(entity.getContenido());
 		this.setEstado(entity.getEstado());
-		this.setMotivoId(new MotivoEstadoType().toType(entity.getMotivoId()));
+		if (entity.getMotivoId() != null) {
+			this.setMotivoId(new MotivoEstadoType().toType(entity.getMotivoId()));
+		}
 	    return this;
 	}
 
