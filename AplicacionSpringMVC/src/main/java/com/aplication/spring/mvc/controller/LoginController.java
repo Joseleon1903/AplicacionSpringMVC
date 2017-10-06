@@ -59,4 +59,25 @@ public class LoginController {
     	model.addAttribute("LoginBean",loginBean);
     	return pagina;
     }
+    
+    @RequestMapping(value = "/logout", method=RequestMethod.GET)
+    public String logoutUsuario(HttpServletRequest request, Model model) {
+    	logger.info("entrando en el metodo logoutUsuario");
+    	logger.info("Longin Bean name: "+sessionUsuario );
+    	try {
+			sessionUsuario.destroy();
+			loginBean.setCodigoUsuario("");
+			loginBean.setCodigoError(null);
+			loginBean.setMensajeError("NONE");
+			loginBean.setPassword("");
+		} catch (Exception e) {
+			logger.info("Error eliminando la session de usuario");
+			logger.info("ERROR: "+ e.getMessage());
+		}
+    	logger.info("session de usuario eliminado con exito");
+
+    	String pagina = manejadorSistemaUtil.validandoSession(sessionUsuario, "/");
+    	return pagina;
+    }
+
 }

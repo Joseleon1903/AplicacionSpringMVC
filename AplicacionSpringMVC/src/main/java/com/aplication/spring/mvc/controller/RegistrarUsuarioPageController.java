@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
 import com.aplicacion.spring.mvc.vista.beans.ManejadorRegistrarUsuarioBean;
+import com.aplicacion.spring.mvc.vista.beans.ManejadorSistemaUtil;
 import com.aplicacion.spring.mvc.vista.beans.RegistrarUsuarioBean;
 
 @Controller
