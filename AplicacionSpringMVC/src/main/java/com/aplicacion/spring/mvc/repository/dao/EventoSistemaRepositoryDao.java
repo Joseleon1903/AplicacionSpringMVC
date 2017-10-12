@@ -1,27 +1,30 @@
-package com.aplicacion.spring.mvc.ejb.impl;
+package com.aplicacion.spring.mvc.repository.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
 import org.jboss.logging.Logger;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.aplicacion.spring.mvc.interfaces.IEventoSistemaES;
 import com.aplicacion.spring.mvc.interfaces.impl.EventoSistemaESImpl;
 import com.aplication.spring.mvc.exception.InternalServiceException;
-import com.aplication.spring.mvc.jpa.util.PersistenceManager;
 import com.aplication.spring.mvc.layer.type.EventoSistemaType;
 
-@Stateful
-public class EventoSistemaEjbImpl {
-	
-	private static final Logger logger = Logger.getLogger(EventoSistemaEjbImpl.class.getName());
-	
-	private PersistenceManager persistenceManager;
+@Repository("EventoSistemaDao")
+@Transactional
+public class EventoSistemaRepositoryDao {
 
-	public EventoSistemaEjbImpl() {
+	private static final Logger logger = Logger.getLogger(EventoSistemaRepositoryDao.class.getName());
+	
+	@PersistenContext
+	private EntityManager entityManager;
+
+	public EventoSistemaRepositoryDao() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -37,7 +40,7 @@ public class EventoSistemaEjbImpl {
 		boolean exito = false;
 		logger.info("Entrando en la capacidad : registrarEnvioEmail");
 		logger.info("EventoSistemaType: " + evento);
-		IEventoSistemaES dao = new EventoSistemaESImpl(persistenceManager);
+		IEventoSistemaES dao = new EventoSistemaESImpl(entityManager);
 		try {
 			exito = dao.registrarNuevoEvento(new EventoSistemaType().toEntity(evento));
 		} catch (PersistenceException e) {
@@ -56,7 +59,7 @@ public class EventoSistemaEjbImpl {
 		logger.info("Entrando en la capacidad : buscarListaEmailSistema");
 		logger.info("Iniciando busqueda email registrada en el sistema");
 		List<EventoSistemaType> lista = new ArrayList<>();
-		IEventoSistemaES dao = new EventoSistemaESImpl(persistenceManager);
+		IEventoSistemaES dao = new EventoSistemaESImpl(entityManager);
 		try {
 			lista = dao.buscarElencoEmailSistema();
 		} catch (InternalServiceException e) {
@@ -73,16 +76,17 @@ public class EventoSistemaEjbImpl {
 		logger.info("Entrando en la capacidad : buscarListaEmailPorDatosGenerales");
 		logger.info("Iniciando busqueda email registrada en el sistema");
 		List<EventoSistemaType> lista = new ArrayList<>();
-//		IEventoSistemaES dao = new EventoSistemaESImpl(persistenceManager);
-//		try {
-//			lista = dao.buscarElencoEmailSistema();
-//		} catch (InternalServiceException e) {
-//			logger.info("ocurrio un error registrando EnvioEmail");
-//			logger.info("ERROR " + e.getMessage());
-//		}
-//		logger.info("Terminando busqueda email sistema");
-//		logger.info("returnning: "+lista);
+		IEventoSistemaES dao = new EventoSistemaESImpl(entityManager);
+		try {
+			lista = dao.buscarEmailPorDatosGenerales(nombreUsuario, asunto, destinatario, estado);
+		} catch (InternalServiceException e) {
+			logger.info("ocurrio un error buscando lista Email enviadas");
+			logger.info("ERROR " + e.getMessage());
+		}
+		logger.info("Terminando busqueda email sistema");
+		logger.info("returnning: "+lista);
 		return lista;
 	}
+
 
 }

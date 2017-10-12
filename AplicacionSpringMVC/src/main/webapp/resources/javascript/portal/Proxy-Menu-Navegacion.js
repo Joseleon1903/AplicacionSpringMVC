@@ -6,7 +6,6 @@ const PaginaActualizarContacto = "/views/portal/pagina/ActualizarContacto";
 const PaginaEnviarEmail = "/views/portal/pagina/EnviarEmail";
 const PaginaListaEmailEnviadas = "/views/portal/pagina/ListaEmailEnviadas";
 const PaginaRegistrarUsuario = "/views/portal/pagina/RegistrarUsuario";
-const PaginaLogoutUsuario = "/logout";
 
 function redirigirLink(Urlpagina){
 	entering('entrando en el metodo redirigirLink para cargar la pagina..');

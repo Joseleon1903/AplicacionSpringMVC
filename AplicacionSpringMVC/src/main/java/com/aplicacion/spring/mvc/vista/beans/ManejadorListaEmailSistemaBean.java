@@ -34,7 +34,11 @@ public class ManejadorListaEmailSistemaBean {
 	@Qualifier("manejadorSistemaUtil")
 	private ManejadorSistemaUtil manejadorUtil;
 
-	public ManejadorListaEmailSistemaBean() {}
+
+	public ManejadorListaEmailSistemaBean() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	public List<ListaEmailEnviadasBean> buscarListaEmailDefault(UsuarioSession session){
 		logger.info("Entrando en el metodo buscarListaEmailDefault..");
@@ -52,29 +56,6 @@ public class ManejadorListaEmailSistemaBean {
 		logger.info("Finalizando busqueda usuario ");
 		logger.info("Iniciando busqueda...");
 		List<EventoSistemaType> listaType = EventoSistemaES.buscarListaEmailSistema();
-		logger.info("Iniciando casteo a lista de salida..");
-		ListaEmailEnviadasBean bean = null;
-		for (EventoSistemaType eventoType : listaType) {
-			bean = new ListaEmailEnviadasBean();
-			bean.setEnvioId(eventoType.getEnvioId().getEnvioId());
-			bean.setAsunto(eventoType.getEnvioId().getAsunto());
-			bean.setDestinatario(eventoType.getEnvioId().getDestinatario());
-			bean.setFechaEnvio(eventoType.getEnvioId().getFechaEnvio());
-			bean.setEstado(eventoType.getEnvioId().getEstado());
-			bean.setUsuarioEnvio(eventoType.getContactoId().getNombre());
-			lista.add(bean);
-		}
-		logger.info("Terminando de setear valores lista..");
-		logger.info("Lista de salida: "+ lista);
-		return lista;
-	}
-	
-	public List<ListaEmailEnviadasBean> buscarListaEmailPorDatosGenerales(String usuarioEnvio, String asunto,String destinatario,String estado, UsuarioSession session){
-		logger.info("Entrando en el metodo buscarListaEmailPorDatosGenerales..");
-		List<ListaEmailEnviadasBean> lista = new ArrayList<>();
-		logger.info("Iniciando busqueda...");
-		List<EventoSistemaType> listaType = EventoSistemaES.buscarListaEmailPorDatosGenerales(usuarioEnvio, asunto, destinatario, estado);
-		logger.info("Lista de salida: "+listaType);
 		logger.info("Iniciando casteo a lista de salida..");
 		ListaEmailEnviadasBean bean = null;
 		for (EventoSistemaType eventoType : listaType) {

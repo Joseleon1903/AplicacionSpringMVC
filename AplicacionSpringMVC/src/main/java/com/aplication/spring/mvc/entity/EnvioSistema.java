@@ -109,7 +109,7 @@ public class EnvioSistema {
 		this.estado = estado;
 	}
 
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
 	@JoinColumn(name="MOTIVO_ID", nullable= true)
 	public MotivoEstado getMotivoId() {
 		return motivoId;

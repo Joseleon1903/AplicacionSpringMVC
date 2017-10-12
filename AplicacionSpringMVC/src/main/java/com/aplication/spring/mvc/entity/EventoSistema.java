@@ -20,12 +20,13 @@ import javax.persistence.TemporalType;
 @Table(name="evento_sistema")
 @NamedQueries({
 		 @NamedQuery(name="EventoSistema.BuscarTodos", query="SELECT e FROM EventoSistema e") ,
-		 @NamedQuery(name="EventoSistema.BuscarPorId", query="SELECT e FROM EventoSistema e where e.eventoSistemaId = :eventoSistemaId")
+		 @NamedQuery(name="EventoSistema.BuscarPorId", query="SELECT e FROM EventoSistema e where e.eventoSistemaId = :eventoSistemaId"),
+		 @NamedQuery(name="EventoSistema.BuscarPorDatosGenerales", query="SELECT e FROM EventoSistema e ")
 })
 public class EventoSistema {
 
 	  private Integer eventoSistemaId;
-	  private Contacto contactoId;
+	  private Contacto ContactoId;
 	  private Date fechaEvento;
 	  private EnvioSistema envioId;
 	  
@@ -35,7 +36,7 @@ public class EventoSistema {
 	public EventoSistema(Integer eventoSistemaId, Contacto contactoId, Date fechaEvento, EnvioSistema envioId) {
 		super();
 		this.eventoSistemaId = eventoSistemaId;
-		this.contactoId = contactoId;
+		ContactoId = contactoId;
 		this.fechaEvento = fechaEvento;
 		this.envioId = envioId;
 	}
@@ -54,11 +55,11 @@ public class EventoSistema {
 	@ManyToOne
 	@JoinColumn(name="CONTACTO_ID")
 	public Contacto getContactoId() {
-		return contactoId;
+		return ContactoId;
 	}
 
 	public void setContactoId(Contacto contactoId) {
-		this.contactoId = contactoId;
+		ContactoId = contactoId;
 	}
 	
     @Temporal(TemporalType.TIMESTAMP)
@@ -83,7 +84,7 @@ public class EventoSistema {
 
 	@Override
 	public String toString() {
-		return "EventoSistema [eventoSistemaId=" + eventoSistemaId + ", contactoId=" + contactoId + ", envioId="
+		return "EventoSistema [eventoSistemaId=" + eventoSistemaId + ", ContactoId=" + ContactoId + ", envioId="
 				+ envioId + "]";
 	}
 
@@ -96,6 +97,7 @@ public class EventoSistema {
 	
 	public static interface NamedQuery{
 		String BUSCAR_EMAIL_SISTEMA = "EventoSistema.BuscarTodos";
+		String BUSCAR_EMAIL_DATOS_GENERALES = "EventoSistema.BuscarPorDatosGenerales";
 	}
 
 }

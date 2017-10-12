@@ -79,11 +79,8 @@ public class UsuarioSession {
 	
 	@PreDestroy
 	public void destroy() throws Exception {
-		this.usuarioId = 0;
-		this.autenticado = false;
-		this.error = false;
-		this.nombre = "NONE";
-		this.mensajeError = "NONE";
+	  System.out.println("Spring Container is destroy! Customer clean up");
 	}
+
 
 }

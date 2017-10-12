@@ -26,9 +26,9 @@
 	<div class="form-filtro-mail">
 		<form name="BuscarListaEmail" class="pure-form" action="ListaEmailEnviadas/BuscarListaEmail" method="post" >
 		<label>Filtrar email por: </label>
-			<input id="UsuarioEnvio" name="UsuarioEnvio" class="pure-input-1-6" type="text"  value="<c:out value="${FiltroListaEmailBean.usuarioEnvio}"/>" placeholder="Nombre usuario">
-			<input id="Asunto" name="Asunto" class="pure-input-1-6" type="text" value="<c:out value="${FiltroListaEmailBean.asunto}"/>" placeholder="Asunto">
-			<input id="Destinatario" name="Destinatario" class="pure-input-1-6" value="<c:out value="${FiltroListaEmailBean.destinatario}"/>" type="text" placeholder="Destinatario">
+			<input id="UsuarioEnvio" name="UsuarioEnvio" class="pure-input-1-6" type="text" placeholder="Nombre usuario">
+			<input id="Asunto" name="Asunto" class="pure-input-1-6" type="text" placeholder="Asunto">
+			<input id="Destinatario" name="Destinatario" class="pure-input-1-6" type="text" placeholder="Destinatario">
 			<label for="state">Estado</label>
 	        <select id="state" name="Estado">
 	            <option>OK</option>
