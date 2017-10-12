@@ -1,13 +1,13 @@
 package com.aplicacion.spring.mvc.ejb.impl;
 
 import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 
 import com.aplicacion.spring.mvc.interfaces.IUsuarioES;
 import com.aplicacion.spring.mvc.interfaces.impl.UsuarioESImpl;
 import com.aplication.spring.mvc.exception.InternalServiceException;
-import com.aplication.spring.mvc.jpa.util.PersistenceManager;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
 
 @Stateful
@@ -15,7 +15,7 @@ public class UsuarioEjbImpl {
 	
 	private static final Logger logger = Logger.getLogger(UsuarioEjbImpl.class.getName());
 	
-	private PersistenceManager persistenceManager;
+	private EntityManager persistenceManager;
 	
 	public UsuarioEjbImpl() {
 	}

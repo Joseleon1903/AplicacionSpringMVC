@@ -35,7 +35,7 @@ public class MotivoEstadoRepositoryDao {
 	public MotivoEstadoType buscarMotivoPorId(Integer id) {
 		logger.info("Entrondo en capacidad buscarMotivoPorId..");
 		logger.info("Parametro ID : "+ id);
-		IMotivoEstadoES dao = new MotivoEstadoESImpl(persistenceManager);
+		IMotivoEstadoES dao = new MotivoEstadoESImpl(entityManager);
 		MotivoEstadoType motivo = dao.buscarMotivoEstadoPorId(id);
 		logger.info("Retornando motivo: "+ motivo);
 		logger.debug("Saliendo capacidad buscarMotivoPorId");
@@ -45,7 +45,7 @@ public class MotivoEstadoRepositoryDao {
 	public List<MotivoEstadoType> buscarTodosLosMotivos() {
 		logger.info("Entrondo en capacidad buscarTodosLosMotivos..");
 		List<MotivoEstadoType> listaMotivos = null;
-		IMotivoEstadoES dao = new MotivoEstadoESImpl(persistenceManager);		
+		IMotivoEstadoES dao = new MotivoEstadoESImpl(entityManager);		
 	    listaMotivos = dao.buscarMotivoEstadoSistema();
 		logger.info("Retornando motivos: "+ listaMotivos);
 		logger.debug("Saliendo capacidad buscarTodosLosMotivos");

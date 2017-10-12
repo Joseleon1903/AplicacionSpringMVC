@@ -21,6 +21,9 @@ public abstract class AbstractJpaDao<ID, E> {
 	
 	private static final Logger logger = Logger.getLogger(AbstractJpaDao.class.getName());
 
+	public AbstractJpaDao(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 
 	public AbstractJpaDao(PersistenceManager persistenceManager) {
 		persistenceManager = new PersistenceManager();
@@ -82,7 +85,6 @@ public abstract class AbstractJpaDao<ID, E> {
 	public E buscarEntityPorId(Class<E> clazz, ID id) throws PersistenceException {
 		try {
 			E entity =  null;
-			entityManager.getTransaction().begin();
 			entity = (E) entityManager.find(clazz, id);
 			return entity;
 		} catch (Exception e) {
@@ -137,7 +139,6 @@ public abstract class AbstractJpaDao<ID, E> {
      */
 	public void registrarEntity(E entity) throws PersistenceException, EntityExistsException {
 		try {
-			entityManager.getTransaction().begin();
 			entityManager.persist(entity);
 			entityManager.flush();
 //			entityManager.getTransaction().commit();

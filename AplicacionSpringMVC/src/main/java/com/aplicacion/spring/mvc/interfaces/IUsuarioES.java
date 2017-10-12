@@ -13,5 +13,7 @@ public interface IUsuarioES {
 	public boolean ActualizarUsuarioSistema(Usuario usuario) throws InternalServiceException;
 
 	public boolean registrarUsuario(Usuario usuario) throws InternalServiceException;
+	
+	public UsuarioType buscarUsuarioNombre(String nombre) throws InternalServiceException;
 
 }

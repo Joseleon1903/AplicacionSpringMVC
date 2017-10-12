@@ -1,14 +1,12 @@
 package com.aplicacion.spring.mvc.vista.beans;
 
-import javax.ejb.EJB;
-
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.aplicacion.spring.mvc.constante.ParametrosErrorConstantes;
-import com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl;
+import com.aplicacion.spring.mvc.repository.dao.UsuarioRepositoryDao;
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
 import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.layer.type.MotivoEstadoType;
@@ -20,8 +18,9 @@ public class ManejadorUsuarioBean {
 	
 	private static final Logger logger = Logger.getLogger(ManejadorUsuarioBean.class);
 
-	@EJB(mappedName = "java:global/AplicacionSpringMVC/UsuarioEjbImpl!com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl")
-	private UsuarioEjbImpl usuarioES;
+	@Autowired
+	@Qualifier("UsuarioDao")
+	private UsuarioRepositoryDao usuarioES;
 	
 	@Autowired
 	@Qualifier("manejadorSistemaUtil")

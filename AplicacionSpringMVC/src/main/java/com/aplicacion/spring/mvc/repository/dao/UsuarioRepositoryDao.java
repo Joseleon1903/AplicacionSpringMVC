@@ -13,7 +13,7 @@ import com.aplicacion.spring.mvc.interfaces.impl.UsuarioESImpl;
 import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
 
-@Repository
+@Repository("UsuarioDao")
 @Transactional
 public class UsuarioRepositoryDao {
 

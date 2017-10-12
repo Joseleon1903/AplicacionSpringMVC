@@ -95,6 +95,11 @@
 			<version>4.3.9.RELEASE</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
@@ -157,7 +162,8 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
-			<!-- dependencia para resolver erros de classNotFound en runtime y manejo objetos json -->
+		<!-- dependencia para resolver erros de classNotFound en runtime y manejo 
+			objetos json -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
@@ -208,15 +214,15 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.1.2.Final</version>
 		</dependency>
-     <!-- dependnecias ejb injection -->
-		    <dependency>
-            <groupId>javax.ejb</groupId>
-            <artifactId>javax.ejb-api</artifactId>
-            <version>3.2</version>
-            <scope>provided</scope>
-        </dependency>
-		
-		
+		<!-- dependnecias ejb injection -->
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>javax.ejb-api</artifactId>
+			<version>3.2</version>
+			<scope>provided</scope>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

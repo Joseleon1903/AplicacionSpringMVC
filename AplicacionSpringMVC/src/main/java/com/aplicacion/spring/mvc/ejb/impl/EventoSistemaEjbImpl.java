@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
 import org.jboss.logging.Logger;
@@ -11,7 +12,6 @@ import org.jboss.logging.Logger;
 import com.aplicacion.spring.mvc.interfaces.IEventoSistemaES;
 import com.aplicacion.spring.mvc.interfaces.impl.EventoSistemaESImpl;
 import com.aplication.spring.mvc.exception.InternalServiceException;
-import com.aplication.spring.mvc.jpa.util.PersistenceManager;
 import com.aplication.spring.mvc.layer.type.EventoSistemaType;
 
 @Stateful
@@ -19,7 +19,7 @@ public class EventoSistemaEjbImpl {
 	
 	private static final Logger logger = Logger.getLogger(EventoSistemaEjbImpl.class.getName());
 	
-	private PersistenceManager persistenceManager;
+	private EntityManager persistenceManager;
 
 	public EventoSistemaEjbImpl() {
 		// TODO Auto-generated constructor stub

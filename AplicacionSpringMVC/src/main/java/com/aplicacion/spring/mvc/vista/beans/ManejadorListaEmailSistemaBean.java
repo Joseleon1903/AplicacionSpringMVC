@@ -3,16 +3,14 @@ package com.aplicacion.spring.mvc.vista.beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.EJB;
-
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.aplicacion.spring.mvc.constante.ParametrosErrorConstantes;
-import com.aplicacion.spring.mvc.ejb.impl.EventoSistemaEjbImpl;
-import com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl;
+import com.aplicacion.spring.mvc.repository.dao.EventoSistemaRepositoryDao;
+import com.aplicacion.spring.mvc.repository.dao.UsuarioRepositoryDao;
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
 import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.layer.type.EventoSistemaType;
@@ -24,11 +22,14 @@ public class ManejadorListaEmailSistemaBean {
 	
 	private static final Logger logger = Logger.getLogger(ManejadorListaEmailSistemaBean.class);
 	
-	@EJB(mappedName = "java:global/AplicacionSpringMVC/EventoSistemaEjbImpl!com.aplicacion.spring.mvc.ejb.impl.EventoSistemaEjbImpl")
-	private EventoSistemaEjbImpl EventoSistemaES;
+
+	@Autowired
+	@Qualifier("EventoSistemaDao")
+	private EventoSistemaRepositoryDao EventoSistemaES;
 	
-	@EJB(mappedName = "java:global/AplicacionSpringMVC/UsuarioEjbImpl!com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl")
-	private UsuarioEjbImpl usuarioES;
+	@Autowired
+	@Qualifier("UsuarioDao")
+	private UsuarioRepositoryDao usuarioES;
 
 	@Autowired
 	@Qualifier("manejadorSistemaUtil")

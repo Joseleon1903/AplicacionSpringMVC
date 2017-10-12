@@ -3,19 +3,20 @@ package com.aplicacion.spring.mvc.interfaces.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import com.aplicacion.spring.mvc.interfaces.IEventoSistemaES;
 import com.aplication.spring.mvc.entity.EventoSistema;
 import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.jpa.util.AbstractJpaDao;
 import com.aplication.spring.mvc.jpa.util.ParameterExpression;
-import com.aplication.spring.mvc.jpa.util.PersistenceManager;
 import com.aplication.spring.mvc.layer.type.EventoSistemaType;
 
 public class EventoSistemaESImpl extends AbstractJpaDao<Integer, EventoSistema> implements IEventoSistemaES {
 
 
-	public EventoSistemaESImpl(PersistenceManager persistenceManager) {
-		super(persistenceManager);
+	public EventoSistemaESImpl(EntityManager entityManager) {
+		super(entityManager);
 	}
 
 	@Override

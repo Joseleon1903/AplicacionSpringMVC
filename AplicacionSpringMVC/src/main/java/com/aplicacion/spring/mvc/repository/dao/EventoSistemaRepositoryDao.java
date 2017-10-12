@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import org.jboss.logging.Logger;
@@ -21,7 +22,7 @@ public class EventoSistemaRepositoryDao {
 
 	private static final Logger logger = Logger.getLogger(EventoSistemaRepositoryDao.class.getName());
 	
-	@PersistenContext
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	public EventoSistemaRepositoryDao() {

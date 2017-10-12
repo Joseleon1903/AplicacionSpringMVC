@@ -27,6 +27,7 @@ public class ManejadorRegistrarUsuarioBean {
 	
 //	@EJB(mappedName = "java:global/AplicacionSpringMVC/UsuarioEjbImpl!com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl")
 //	private UsuarioEjbImpl usuarioES;
+	
 	@Autowired
 	@Qualifier("UsuarioDao")
 	private UsuarioRepositoryDao usuarioES;

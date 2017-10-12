@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class ErrorPageBean {
 	
 	private Integer codigo;
-	private Integer mensajeError;
+	private String mensajeError;
 
 	public ErrorPageBean() {
 		// TODO Auto-generated constructor stub
@@ -22,11 +22,11 @@ public class ErrorPageBean {
 		this.codigo = codigo;
 	}
 
-	public Integer getMensajeError() {
+	public String getMensajeError() {
 		return mensajeError;
 	}
 
-	public void setMensajeError(Integer mensajeError) {
+	public void setMensajeError(String mensajeError) {
 		this.mensajeError = mensajeError;
 	}
 

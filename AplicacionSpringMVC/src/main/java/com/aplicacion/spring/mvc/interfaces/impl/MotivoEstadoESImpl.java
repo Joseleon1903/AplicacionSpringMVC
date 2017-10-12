@@ -3,16 +3,17 @@ package com.aplicacion.spring.mvc.interfaces.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import com.aplicacion.spring.mvc.interfaces.IMotivoEstadoES;
 import com.aplication.spring.mvc.entity.MotivoEstado;
 import com.aplication.spring.mvc.jpa.util.AbstractJpaDao;
-import com.aplication.spring.mvc.jpa.util.PersistenceManager;
 import com.aplication.spring.mvc.layer.type.MotivoEstadoType;
 
 public class MotivoEstadoESImpl extends AbstractJpaDao<Integer, MotivoEstado> implements IMotivoEstadoES{
 	
-	public MotivoEstadoESImpl(PersistenceManager persistenceManager) {
-		super(persistenceManager);
+	public MotivoEstadoESImpl(EntityManager entityManager) {
+		super(entityManager);
 	}
 
 	@Override

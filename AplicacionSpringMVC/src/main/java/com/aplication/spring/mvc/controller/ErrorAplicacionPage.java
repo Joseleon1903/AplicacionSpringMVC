@@ -48,7 +48,7 @@ public class ErrorAplicacionPage {
 		MotivoEstado motivo = entityManager.find(MotivoEstado.class, ParametrosErrorConstantes.INTERNAL_SERVER_ERROR_COD);
 		errorPageBean.setCodigo(motivo.getMotivoId());
 		errorPageBean.setMensajeError(motivo.getDescripcion());
-		model.addAllAttributes("ErrorPageBean", errorPageBean);
+		model.addAttribute("ErrorPageBean", errorPageBean);
 		return "/portal/pagina/jsp/Error";
 	}
 
