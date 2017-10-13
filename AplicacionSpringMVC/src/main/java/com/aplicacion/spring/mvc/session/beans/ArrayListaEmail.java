@@ -1,12 +1,15 @@
-package com.aplicacion.spring.mvc.vista.beans;
+package com.aplicacion.spring.mvc.session.beans;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.aplicacion.spring.mvc.vista.beans.ListaEmailEnviadasBean;
 
 @Component
 @Scope(value = "session")
@@ -29,6 +32,16 @@ public class ArrayListaEmail {
 	@Override
 	public String toString() {
 		return "ArrayListaEmail [listaBean=" + listaBean + "]";
+	}
+	
+	@PostConstruct
+	private void init(){
+		listaBean = new ArrayList<>();
+	}
+	
+	@PreDestroy
+	public void destroy() throws Exception {
+	  listaBean.clear();
 	}
 
 }

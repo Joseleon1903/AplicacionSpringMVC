@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.aplicacion.spring.mvc.interfaces.comunes.BuscableType;
 import com.aplication.spring.mvc.entity.Usuario;
+import com.aplication.spring.mvc.util.ValidationUtil;
 
 @XmlRootElement(name="UsuarioType")
 public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializable {
@@ -99,13 +100,17 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 
 	@Override
 	public UsuarioType toType(Usuario entity) {
-		  this.usuarioId = entity.getUsuarioId();
-		  this.contacto = new ContactoType().toType(entity.getContacto_id());
-		  this.codigoUsuario = entity.getCodigoUsuario();
-		  this.password = entity.getPassword();
-		  this.fechaCreacion = entity.getFechaCreacion();
-		  this.fechaUltimoAcceso = entity.getFechaUltimoAcceso();
-		  return this;
+		this.usuarioId = entity.getUsuarioId();
+		this.contacto = new ContactoType().toType(entity.getContactoId());
+		this.codigoUsuario = entity.getCodigoUsuario();
+		this.password = entity.getPassword();
+		this.fechaCreacion = entity.getFechaCreacion();
+		this.fechaUltimoAcceso = entity.getFechaUltimoAcceso();
+		if (ValidationUtil.isObjectNotNull(this.getContacto().getDetalleContactoId())) {
+			this.getContacto().setDetalleContactoId(
+					new DetalleContactoType().toType(entity.getContactoId().getDetalleContacto()));
+		}
+		return this;
 	}
 
 	@Override
@@ -114,11 +119,14 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 		if (type.getUsuarioId() != null) {
 			entity.setUsuarioId(type.getUsuarioId());
 		}
-		entity.setContacto_id(new ContactoType().toEntity(type.getContacto()));
+		entity.setContactoId(new ContactoType().toEntity(type.getContacto()));
 		entity.setCodigoUsuario(type.getCodigoUsuario());
 		entity.setPassword(type.getPassword());
 		entity.setFechaCreacion(type.getFechaCreacion());
 		entity.setFechaUltimoAcceso(type.getFechaUltimoAcceso());
+		if (ValidationUtil.isObjectNotNull(type.getContacto().getDetalleContactoId())) {
+			entity.getContactoId().setDetalleContacto(new DetalleContactoType().toEntity(type.getContacto().getDetalleContactoId()));
+		}
 		return entity;
 	}
 

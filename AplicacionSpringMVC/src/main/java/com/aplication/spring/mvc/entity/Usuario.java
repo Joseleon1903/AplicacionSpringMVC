@@ -31,19 +31,19 @@ public class Usuario {
 	private String password;
 	private Date fechaCreacion;
 	private Date fechaUltimoAcceso;
-	private Contacto contacto_id;;
+	private Contacto contactoId;
 	
 	public Usuario() {}
 		
 	public Usuario(Integer usuarioId, String codigoUsuario, String password, Date fechaCreacion, Date fechaUltimoAcceso,
-			Contacto contacto_id) {
+			Contacto contactoId) {
 		super();
 		this.usuarioId = usuarioId;
 		this.codigoUsuario = codigoUsuario;
 		this.password = password;
 		this.fechaCreacion = fechaCreacion;
 		this.fechaUltimoAcceso = fechaUltimoAcceso;
-		this.contacto_id = contacto_id;
+		this.contactoId = contactoId;
 	}
 
 	@SequenceGenerator(name="Usuario_Gen", sequenceName="Usuario_Seq")
@@ -59,14 +59,14 @@ public class Usuario {
 
 	@ManyToOne(cascade= CascadeType.PERSIST)
 	@JoinColumn(name="CONTACTO_ID")
-	public Contacto getContacto_id() {
-		return contacto_id;
+	public Contacto getContactoId() {
+		return contactoId;
 	}
 
 
 
-	public void setContacto_id(Contacto contacto_id) {
-		this.contacto_id = contacto_id;
+	public void setContactoId(Contacto contactoId) {
+		this.contactoId = contactoId;
 	}
 
 
@@ -119,7 +119,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "IUsuario [usuario_id=" + usuarioId + ", contacto_id=" + contacto_id + ", codigoUsuario=" + codigoUsuario
+		return "IUsuario [usuario_id=" + usuarioId + ", contacto_id=" + contactoId + ", codigoUsuario=" + codigoUsuario
 				+ ", password=" + password + ", fechaCreacion=" + fechaCreacion + ", fechaUltimoAcceso="
 				+ fechaUltimoAcceso + "]";
 	}

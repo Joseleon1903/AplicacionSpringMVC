@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.aplicacion.spring.mvc.constante.ParametrosSistemaConstantes;
+import com.aplicacion.spring.mvc.session.beans.ArrayListaEmail;
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
 import com.aplicacion.spring.mvc.vista.beans.ListaEmailEnviadasBean;
 import com.aplicacion.spring.mvc.vista.beans.ManejadorListaEmailSistemaBean;
@@ -37,16 +39,21 @@ public class ListaEmailEnviadasPageController {
 	private ManejadorListaEmailSistemaBean manejadorListaEmailBean;
 	
 	@Autowired
+	@Qualifier("arrayListaEmail")
+	private ArrayListaEmail listaEmailSistema;
+	
+	@Autowired
 	@Qualifier("listaEmailEnviadasBean")
 	private ListaEmailEnviadasBean listaEmailBean;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String displayListaEmailEnviadasPage(HttpServletRequest request,  Model model) {
 		String pagina = manejadorSistemaUtil.validandoSession(sessionUsuario, "portal/pagina/jsp/listaEmailEnviadas");
-		if (sessionUsuario.isAutenticado()) {
+		if (sessionUsuario.isAutenticado() && listaEmailSistema.getListaBean().isEmpty()) {
 			List<ListaEmailEnviadasBean> listOutput = manejadorListaEmailBean.buscarListaEmailDefault(sessionUsuario);
-			model.addAttribute("ListaEmailEnviadasBean", listOutput);
+			listaEmailSistema.setListaBean(listOutput);
 		}
+		model.addAttribute("ListaEmailEnviadasBean", listaEmailSistema.getListaBean());
 		model.addAttribute("UsuarioSession", sessionUsuario);
 		logger.info("cargando pagina: "+ pagina);
 		return pagina;
@@ -61,8 +68,8 @@ public class ListaEmailEnviadasPageController {
 		logger.info("Asunto: "+asunto);
 		logger.info("Destinatario: "+destinatario);
 		logger.info("Estado: "+estado);
-		return "portal/pagina/jsp/listaEmailEnviadas";
+		List<ListaEmailEnviadasBean> listOutput = manejadorListaEmailBean.filtrarEmailPorDatosGenerales(usuarioEnvio, asunto, destinatario, estado);
+		listaEmailSistema.setListaBean(listOutput);
+		return ParametrosSistemaConstantes.REDIRECT_STR+"/views/portal/pagina/ListaEmailEnviadas";
 	}
-
-
 }
