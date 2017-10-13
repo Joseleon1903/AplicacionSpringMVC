@@ -42,6 +42,11 @@ public class MotivoEstadoRepositoryDao {
 	   return motivo;
 	}
 
+	/**
+	 * Descripcion: Capacidad que permite buscar todos los registros guardados en el repositorio de MOTIVO_ESTADO.
+	 * 
+	 * @return List<MotivoEstadoType>
+	 */
 	public List<MotivoEstadoType> buscarTodosLosMotivos() {
 		logger.info("Entrondo en capacidad buscarTodosLosMotivos..");
 		List<MotivoEstadoType> listaMotivos = null;

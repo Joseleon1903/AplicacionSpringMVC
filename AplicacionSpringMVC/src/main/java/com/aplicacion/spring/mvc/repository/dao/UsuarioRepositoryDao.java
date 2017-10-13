@@ -73,6 +73,14 @@ public class UsuarioRepositoryDao {
 		return registrado;
 	}
 	
+	/**
+	 * Descripcion: Capacidad que permite buscar un Usuario en el repositorio de USUARIO 
+	 *              con el id usuario proporcionado por parametro.
+	 * 
+	 * @param usuarioId
+	 * @return UsuarioType
+	 * @throws InternalServiceException
+	 */
 	public UsuarioType buscarUsuarioPorUsuarioId(Integer usuarioId) throws InternalServiceException{
 		logger.info("Entrando en la capacidad buscarUsuarioPorUsuarioId");
 		IUsuarioES dao = new UsuarioESImpl(entityManager);
@@ -89,6 +97,15 @@ public class UsuarioRepositoryDao {
 		return user;
 	}
 	
+	/**
+	 * Descripcion: Capacidad que permite actualizar el registro de usuario 
+	 *              proporcionado por parametro en el repositorio de USUARIO, CONTACTO y DETALLE_CONTACTO.
+	 *              Retorna {TRUE} si el registro se actualizo con exito {FALSE} de lo contrario.
+	 * 
+	 * @param user
+	 * @return boolean
+	 * @throws InternalServiceException
+	 */
 	public boolean actualizarUsuarioSistema(UsuarioType user) throws InternalServiceException{
 		logger.info("Entrando en la capacidad actualizarUsuarioSistema");
 		IUsuarioES dao = new UsuarioESImpl(entityManager);
@@ -105,6 +122,13 @@ public class UsuarioRepositoryDao {
 		return registrado;
 	}
 	
+	/**
+	 * Descripcion: capacidad que permite buscar un usuario en el repositorio de USUARIO por el nombre proporcionado por parametro.
+	 * 
+	 * @param codigoUsuario
+	 * @return UsuarioType
+	 * @throws InternalServiceException
+	 */
 	public UsuarioType buscarUsuarioPorNombre(String codigoUsuario) throws InternalServiceException{
 		logger.info("Entrando en la capacidad buscarUsuarioPorCodigo");
 		IUsuarioES dao = new UsuarioESImpl(entityManager);

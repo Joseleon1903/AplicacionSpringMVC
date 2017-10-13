@@ -72,6 +72,16 @@ public class EventoSistemaRepositoryDao {
 		return lista;
 	}
 	
+	/**
+	 * Descripcion: Capacidad que permite buscar el el repositorio de EVENTO_SISTEMA y ENVIO_SISTEMA 
+	 *              filtrando los resultados por los parametrso proporcionados.
+	 * 
+	 * @param nombreUsuario
+	 * @param asunto
+	 * @param destinatario
+	 * @param estado
+	 * @return List<EventoSistemaType>
+	 */
 	public List<EventoSistemaType> buscarListaEmailPorDatosGenerales(String nombreUsuario, String asunto, String destinatario,
 			String estado) {
 		logger.info("Entrando en la capacidad : buscarListaEmailPorDatosGenerales");

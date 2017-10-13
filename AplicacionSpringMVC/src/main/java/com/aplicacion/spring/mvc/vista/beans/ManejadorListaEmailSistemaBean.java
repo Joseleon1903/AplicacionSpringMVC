@@ -42,18 +42,7 @@ public class ManejadorListaEmailSistemaBean {
 	
 	public List<ListaEmailEnviadasBean> buscarListaEmailDefault(UsuarioSession session){
 		logger.info("Entrando en el metodo buscarListaEmailDefault..");
-		List<ListaEmailEnviadasBean> lista = new ArrayList<>();
-		UsuarioType user = null;
-		logger.info("Incinado busqueda usuario ");
-		try {
-			user = usuarioES.buscarUsuarioPorUsuarioId(session.getUsuarioId());
-		} catch (InternalServiceException e) {
-			MotivoEstadoType motivo = null;
-			motivo = manejadorUtil.buscarMotivoPorId(ParametrosErrorConstantes.INTERNAL_SERVER_ERROR_COD);
-			session.setError(true);
-			session.setMensajeError(motivo.getDescripcion());
-		}
-		logger.info("Finalizando busqueda usuario ");
+		List<ListaEmailEnviadasBean> lista = new ArrayList<>();	
 		logger.info("Iniciando busqueda...");
 		List<EventoSistemaType> listaType = EventoSistemaES.buscarListaEmailSistema();
 		logger.info("Iniciando casteo a lista de salida..");

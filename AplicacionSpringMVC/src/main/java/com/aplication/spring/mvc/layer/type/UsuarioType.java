@@ -29,7 +29,6 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 	public UsuarioType() {
 		// TODO Auto-generated constructor stub
 	}
-	
 
 	public UsuarioType(Integer usuario_id, ContactoType contacto, String nombre, String password, Date fechaCreacion,
 			Date fechaUltimoAcceso) {
@@ -89,8 +88,6 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 	public void setFechaUltimoAcceso(Date fechaUltimoAcceso) {
 		this.fechaUltimoAcceso = fechaUltimoAcceso;
 	}
-
-
 
 	@Override
 	public String toString() {

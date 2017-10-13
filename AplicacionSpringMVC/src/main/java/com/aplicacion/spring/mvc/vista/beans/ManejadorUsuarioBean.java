@@ -44,9 +44,10 @@ public class ManejadorUsuarioBean {
 		logger.info("Iniciando a validar la Password..");
 		if (!ValidationUtil.isStringNotNullOrEmpty(loginBean.getPassword()) && user.getPassword().equals(loginBean.getPassword())) {
 			logger.info("Password validada con exito..");
-			sessionUsuario.setNombre(loginBean.getCodigoUsuario());
+			sessionUsuario.setNombre(user.getContacto().getNombre());
 			sessionUsuario.setAutenticado(true);
 			sessionUsuario.setUsuarioId(user.getUsuarioId());
+			loginBean.setCodigoUsuario("");
 			return "redirect:/views/portal/pagina/Home";
 		}
 		//buscando mensaje error usuario invalido

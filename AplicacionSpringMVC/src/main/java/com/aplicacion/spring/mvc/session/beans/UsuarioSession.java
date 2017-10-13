@@ -6,7 +6,6 @@ import javax.annotation.PreDestroy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-
 @Component
 @Scope(value="session")
 public class UsuarioSession {
@@ -79,8 +78,11 @@ public class UsuarioSession {
 	
 	@PreDestroy
 	public void destroy() throws Exception {
-	  System.out.println("Spring Container is destroy! Customer clean up");
+		this.usuarioId = 0;
+		this.autenticado = false;
+		this.error = false;
+		this.nombre= "NONE";
+		this.mensajeError= "NONE";
 	}
-
 
 }

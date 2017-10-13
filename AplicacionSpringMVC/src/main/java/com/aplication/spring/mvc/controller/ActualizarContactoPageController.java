@@ -44,9 +44,11 @@ public class ActualizarContactoPageController {
 	public String displayActualizarContactoPage(HttpServletRequest request,  Model model) {
 		logger.info("UsuarioSession: " + sessionUsuario);
 		String pagina = manejadorSistemaUtil.validandoSession(sessionUsuario, "portal/pagina/jsp/actualizarContacto");
-		actualizarUsuarioBean = manejadorActualizarUsuario.buscarUsuarioLoginSistema(sessionUsuario.getUsuarioId());
-		model.addAttribute("SessionUsuario", sessionUsuario);
-		model.addAttribute("ActualizarUsuarioBean", actualizarUsuarioBean);
+		if (sessionUsuario.isAutenticado()) {
+			actualizarUsuarioBean = manejadorActualizarUsuario.buscarUsuarioLoginSistema(sessionUsuario.getUsuarioId());
+			model.addAttribute("SessionUsuario", sessionUsuario);
+			model.addAttribute("ActualizarUsuarioBean", actualizarUsuarioBean);
+		}
 		logger.info("cargando pagina: "+ pagina);
 		return pagina;
 	}

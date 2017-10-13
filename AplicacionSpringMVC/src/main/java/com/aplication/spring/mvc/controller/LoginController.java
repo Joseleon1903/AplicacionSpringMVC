@@ -56,6 +56,7 @@ public class LoginController {
     	loginBean.setCodigoUsuario(codigoUsuario);
     	loginBean.setPassword(password);
     	String pagina = manejadorUsuario.loginUsuario(loginBean, sessionUsuario);
+    	loginBean.setPassword("");
     	model.addAttribute("LoginBean",loginBean);
     	return pagina;
     }

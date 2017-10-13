@@ -36,12 +36,12 @@ public class ArrayListaEmail {
 	
 	@PostConstruct
 	private void init(){
-		listaBean = new ArrayList<>();
+		listaBean = null;
 	}
 	
 	@PreDestroy
 	public void destroy() throws Exception {
-	  listaBean.clear();
+		listaBean = null;
 	}
 
 }

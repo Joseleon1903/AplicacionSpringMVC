@@ -78,7 +78,6 @@ public class UsuarioESImpl extends AbstractJpaDao<Integer, Usuario> implements I
 	public UsuarioType buscarUsuarioNombre(String nombre) throws InternalServiceException {
 		Usuario entity = new Usuario();
 		// iniciando creacion de criteria query para la busqueda
-//		getEntityManager().getTransaction().begin();
 		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<Usuario> cq = cb.createQuery(Usuario.class);
 		Root<Usuario> root = cq.from(Usuario.class);
@@ -86,7 +85,7 @@ public class UsuarioESImpl extends AbstractJpaDao<Integer, Usuario> implements I
 		Join<Usuario, Contacto> usuarioContacto = root.join("contactoId");
 		usuarioContacto.join("detalleContactoId");
 		List<Predicate> predicateList = new ArrayList<>();
-		Predicate predicate4 = cb.equal(root.get("codigoUsuario"), nombre);
+		Predicate predicate4 = cb.equal(usuarioContacto.get("nombre"), nombre);
 		predicateList.add(predicate4);
 		Predicate[] pr = new Predicate[predicateList.size()];
 		predicateList.toArray(pr);
