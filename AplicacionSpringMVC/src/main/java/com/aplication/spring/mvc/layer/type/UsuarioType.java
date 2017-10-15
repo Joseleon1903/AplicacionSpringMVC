@@ -103,7 +103,7 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 		this.password = entity.getPassword();
 		this.fechaCreacion = entity.getFechaCreacion();
 		this.fechaUltimoAcceso = entity.getFechaUltimoAcceso();
-		if (ValidationUtil.isObjectNotNull(this.getContacto().getDetalleContactoId())) {
+		if (!ValidationUtil.isObjectNotNull(this.getContacto().getDetalleContactoId())) {
 			this.getContacto().setDetalleContactoId(
 					new DetalleContactoType().toType(entity.getContactoId().getDetalleContacto()));
 		}
@@ -121,7 +121,7 @@ public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializ
 		entity.setPassword(type.getPassword());
 		entity.setFechaCreacion(type.getFechaCreacion());
 		entity.setFechaUltimoAcceso(type.getFechaUltimoAcceso());
-		if (ValidationUtil.isObjectNotNull(type.getContacto().getDetalleContactoId())) {
+		if (!ValidationUtil.isObjectNotNull(type.getContacto().getDetalleContactoId())) {
 			entity.getContactoId().setDetalleContacto(new DetalleContactoType().toEntity(type.getContacto().getDetalleContactoId()));
 		}
 		return entity;

@@ -1,10 +1,18 @@
 package com.aplicacion.spring.mvc.repository.dao;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.sql.DataSource;
 
 import org.jboss.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl;
@@ -13,14 +21,17 @@ import com.aplicacion.spring.mvc.interfaces.impl.UsuarioESImpl;
 import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
 
+@Transactional(propagation= Propagation.REQUIRED)
 @Repository("UsuarioDao")
-@Transactional
 public class UsuarioRepositoryDao {
 
 	private static final Logger logger = Logger.getLogger(UsuarioEjbImpl.class.getName());
 	
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	@Autowired
+	private DataSource dataSource;
 	
 	public UsuarioRepositoryDao() {
 		// TODO Auto-generated constructor stub
@@ -108,18 +119,34 @@ public class UsuarioRepositoryDao {
 	 */
 	public boolean actualizarUsuarioSistema(UsuarioType user) throws InternalServiceException{
 		logger.info("Entrando en la capacidad actualizarUsuarioSistema");
-		IUsuarioES dao = new UsuarioESImpl(entityManager);
-		Boolean registrado = false;
+		String sql = "UPDATE contacto SET NOMBRE = ? , APELLIDO = ? , SEXO = ? ,"
+				+ " FECHA_NACIMIENTO= ?, EMAIL = ? WHERE CONTACTO_ID = ?";
+		logger.info("QUERY: "+ sql);
+		logger.info("Creando conexion desde el datasource.");
+		Connection conn = null;
 		try {
-			registrado = dao.ActualizarUsuarioSistema(new UsuarioType().toEntity(user));
-		} catch (InternalServiceException e) {
-			logger.info("ERROR realizando la actualizacion..");
-			logger.info(e.getMessage());
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getContacto().getNombre());
+			ps.setString(2, user.getContacto().getApellido());
+			ps.setString(3, user.getContacto().getSexo());
+			ps.setDate(4,new java.sql.Date(user.getContacto().getFechaNacimineto().getTime()));
+			ps.setString(5, user.getContacto().getEmail());
+			ps.setInt(6, user.getContacto().getContactoId());
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			logger.info("Error Actualizando Contacto "+e.getMessage());
 			throw new InternalServiceException();
+		}finally{
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
 		}
-		logger.info("Saliendo del metodo actualizarUsuarioSistema");
-		logger.info("Returning: "+user );
-		return registrado;
+		logger.info("Returning: "+true );
+		return true;
 	}
 	
 	/**
@@ -144,7 +171,5 @@ public class UsuarioRepositoryDao {
 		logger.info("Returning: "+user );
 		return user;
 	}
-
-
 
 }

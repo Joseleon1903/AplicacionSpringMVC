@@ -64,8 +64,8 @@ public abstract class AbstractJpaDao<ID, E> {
 			entityManager.getTransaction().begin();
 			entityManager.find(clazz, id);
 			entityManager.flush();
-//			entityManager.merge(entity);
-			entityManager.refresh(entity);
+			entityManager.merge(entity);
+//			entityManager.refresh(entity);
 //			entityManager.getTransaction().commit();
 			return true;
 		} catch (Exception e) {

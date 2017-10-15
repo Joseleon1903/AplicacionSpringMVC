@@ -22,7 +22,8 @@ import javax.persistence.TemporalType;
 		 @NamedQuery(name="Usuario.BuscarTodos", query="SELECT u FROM Usuario u") ,
 		 @NamedQuery(name="Usuario.BuscarPorId", query="SELECT u FROM Usuario u WHERE u.usuarioId = :usuarioId"),
 		 @NamedQuery(name= "Usuario.BuscarPorCodigoUsuario", query= "SELECT u FROM Usuario u WHERE u.codigoUsuario = :codigoUsuario"),
-		 @NamedQuery(name= "Usuario.ActualizarfechaUltimoAcceso", query= "UPDATE Usuario u SET u.fechaUltimoAcceso = u.fechaUltimoAcceso")
+		 @NamedQuery(name= "Usuario.ActualizarfechaUltimoAcceso", query= "UPDATE Usuario u SET u.fechaUltimoAcceso = u.fechaUltimoAcceso"),
+		 @NamedQuery(name= "Usuario.ActualizarContactoUsuario", query= "UPDATE Usuario u SET u.fechaUltimoAcceso = u.fechaUltimoAcceso")
 })
 public class Usuario {
 	
