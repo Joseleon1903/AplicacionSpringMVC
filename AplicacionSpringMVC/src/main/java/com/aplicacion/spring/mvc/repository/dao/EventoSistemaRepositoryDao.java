@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.PersistenceException;
 
 import org.jboss.logging.Logger;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aplicacion.spring.mvc.interfaces.IEventoSistemaES;
@@ -17,12 +19,11 @@ import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.layer.type.EventoSistemaType;
 
 @Repository("EventoSistemaDao")
-@Transactional
 public class EventoSistemaRepositoryDao {
 
 	private static final Logger logger = Logger.getLogger(EventoSistemaRepositoryDao.class.getName());
 	
-	@PersistenceContext
+	@PersistenceContext(type = PersistenceContextType.EXTENDED) 
 	private EntityManager entityManager;
 
 	public EventoSistemaRepositoryDao() {
@@ -37,6 +38,7 @@ public class EventoSistemaRepositoryDao {
 	 * @param EventoSistemaType: evento
 	 * @return boolean
 	 */
+	@Transactional(propagation= Propagation.REQUIRES_NEW)
 	public boolean registrarEnvioEmail(EventoSistemaType evento) {
 		boolean exito = false;
 		logger.info("Entrando en la capacidad : registrarEnvioEmail");
@@ -56,6 +58,7 @@ public class EventoSistemaRepositoryDao {
 	 * 
 	 * @return List<EventoSistemaType>
 	 */
+	@Transactional(propagation= Propagation.REQUIRED)
 	public List<EventoSistemaType> buscarListaEmailSistema() {
 		logger.info("Entrando en la capacidad : buscarListaEmailSistema");
 		logger.info("Iniciando busqueda email registrada en el sistema");
@@ -82,6 +85,7 @@ public class EventoSistemaRepositoryDao {
 	 * @param estado
 	 * @return List<EventoSistemaType>
 	 */
+	@Transactional(propagation= Propagation.REQUIRED)
 	public List<EventoSistemaType> buscarListaEmailPorDatosGenerales(String nombreUsuario, String asunto, String destinatario,
 			String estado) {
 		logger.info("Entrando en la capacidad : buscarListaEmailPorDatosGenerales");

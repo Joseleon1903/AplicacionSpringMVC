@@ -42,7 +42,8 @@ public class ManejadorUsuarioBean {
 		}
 		//validadno si la password proporciondao corresponde con la del usuario.
 		logger.info("Iniciando a validar la Password..");
-		if (!ValidationUtil.isStringNotNullOrEmpty(loginBean.getPassword()) && user.getPassword().equals(loginBean.getPassword())) {
+		if (!ValidationUtil.isObjectNotNull(user) && !ValidationUtil.isStringNotNullOrEmpty(loginBean.getPassword()) && 
+				user.getPassword().equals(loginBean.getPassword())) {
 			logger.info("Password validada con exito..");
 			sessionUsuario.setNombre(user.getContacto().getNombre());
 			sessionUsuario.setAutenticado(true);

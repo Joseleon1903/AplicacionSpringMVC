@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 import org.jboss.logging.Logger;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aplicacion.spring.mvc.interfaces.IMotivoEstadoES;
@@ -19,7 +21,7 @@ public class MotivoEstadoRepositoryDao {
 
 	private static final Logger logger = Logger.getLogger(MotivoEstadoRepositoryDao.class.getName());
 	
-	@PersistenceContext
+	@PersistenceContext(type = PersistenceContextType.EXTENDED) 
 	private EntityManager entityManager;
 	
 	public MotivoEstadoRepositoryDao() {
@@ -32,6 +34,7 @@ public class MotivoEstadoRepositoryDao {
 	 * @param Integer: id
 	 * @return MotivoEstadoType
 	 */
+	@Transactional(propagation= Propagation.REQUIRED)
 	public MotivoEstadoType buscarMotivoPorId(Integer id) {
 		logger.info("Entrondo en capacidad buscarMotivoPorId..");
 		logger.info("Parametro ID : "+ id);
@@ -47,6 +50,7 @@ public class MotivoEstadoRepositoryDao {
 	 * 
 	 * @return List<MotivoEstadoType>
 	 */
+	@Transactional(propagation= Propagation.REQUIRED)
 	public List<MotivoEstadoType> buscarTodosLosMotivos() {
 		logger.info("Entrondo en capacidad buscarTodosLosMotivos..");
 		List<MotivoEstadoType> listaMotivos = null;

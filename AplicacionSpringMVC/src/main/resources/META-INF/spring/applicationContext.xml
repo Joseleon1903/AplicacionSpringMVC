@@ -10,48 +10,47 @@
 	<context:component-scan base-package="com.aplication.spring.mvc.entity" />
 	
 	<context:component-scan base-package="com.aplicacion.spring.mvc.repository.dao" />
-	
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource" />
+		<property name="jtaDataSource" ref="dataSource" />
 		<property name="persistenceUnitName" value="PersistenceManager" />
-		<property name="jpaPropertyMap">
-			<map>
-				<entry key="eclipselink.weaving" value="false" />
-			</map>
-		</property>
+	<property name="jpaPropertyMap">
+		<map>
+			<entry key="eclipselink.weaving" value="false" />
+			<entry key="eclipselink.logging.level" value="INFO" />
+			<entry key="eclipselink.target-database" value="org.eclipse.persistence.platform.database.MySQLPlatform" />
+			<entry key="javax.persistence.nonJtaDataSource" value-ref="dataSource" />
+			<entry key="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup" />
+			<entry key="hibernate.transaction.flush_before_completion" value="true" />
+			<entry key="hibernate.transaction.auto_close_session" value="true" />
+			<entry key="hibernate.current_session_context_class" value="jta" />
+			<entry key="hibernate.connection.release_mode" value="auto" />
+		</map>
+	</property>
 		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+			<bean
+				class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
 				<property name="showSql" value="true" />
 				<property name="generateDdl" value="true" />
 				<property name="databasePlatform" value="org.eclipse.persistence.platform.database.MySQLPlatform" />
 			</bean>
 		</property>
-	</bean>
-
-	<tx:annotation-driven />
+		<property name="jpaDialect">
+				<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
+			</property>
+	  </bean>
 
 	<jee:jndi-lookup jndi-name="java:/DsAplicacionWeb" id="dataSource"
 		expected-type="javax.sql.DataSource" resource-ref="true" />
 
- 	<!-- Initialization for data source -->
-<!-- 	<bean id="dataSourceTx" -->
-<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
-<!-- 		<property name="url" value="jdbc:mysql://localhost:3306/aplicacion_web_rest" /> -->
-<!-- 		<property name="username" value="root" /> -->
-<!-- 		<property name="password" value="root" /> -->
-<!-- 	</bean> -->
 
-<!-- 	<bean id="miTxManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
-<!-- 		<property name="dataSource" ref="entityManagerFactory" /> -->
-<!-- 	</bean> -->
-
-	<bean id="miTxManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 	
 	<!-- Decimos que para este Transaction Manager vamos a usar anotaciones -->
-	<tx:annotation-driven transaction-manager="miTxManager" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
 </beans>

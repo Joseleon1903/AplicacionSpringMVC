@@ -1,12 +1,13 @@
 package com.aplicacion.spring.mvc.repository.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
+import javax.persistence.PersistenceException;
 import javax.sql.DataSource;
 
 import org.jboss.logging.Logger;
@@ -15,20 +16,18 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aplicacion.spring.mvc.ejb.impl.UsuarioEjbImpl;
 import com.aplicacion.spring.mvc.interfaces.IUsuarioES;
 import com.aplicacion.spring.mvc.interfaces.impl.UsuarioESImpl;
 import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
 
-@Transactional(propagation= Propagation.REQUIRED)
 @Repository("UsuarioDao")
 public class UsuarioRepositoryDao {
 
-	private static final Logger logger = Logger.getLogger(UsuarioEjbImpl.class.getName());
+	private static final Logger logger = Logger.getLogger(UsuarioRepositoryDao.class.getName());
 	
-	@PersistenceContext
-	private EntityManager entityManager;
+	@PersistenceContext(type = PersistenceContextType.EXTENDED) 
+	private EntityManager entityManagerF;
 	
 	@Autowired
 	private DataSource dataSource;
@@ -44,9 +43,10 @@ public class UsuarioRepositoryDao {
 	 * @return UsuarioType
 	 * @throws InternalServiceException
 	 */
+	@Transactional(propagation= Propagation.REQUIRED)
 	public UsuarioType buscarUsuarioPorCodigo(String codigoUsuario) throws InternalServiceException{
 		logger.info("Entrando en la capacidad buscarUsuarioPorCodigo");
-		IUsuarioES dao = new UsuarioESImpl(entityManager);
+		IUsuarioES dao = new UsuarioESImpl(entityManagerF);
 		UsuarioType user = null;
 		try {
 			user = dao.buscarUsuarioPorCodigo(codigoUsuario);
@@ -68,18 +68,23 @@ public class UsuarioRepositoryDao {
 	 * @return boolean
 	 * @throws InternalServiceException
 	 */
+	@Transactional(propagation= Propagation.REQUIRES_NEW)
 	public boolean registrarNuevoUsuarioSistema(UsuarioType user) throws InternalServiceException{
 		logger.info("Entrando en la capacidad registrarNuevoUsuarioSistema");
-		IUsuarioES dao = new UsuarioESImpl(entityManager);
+//		IUsuarioES dao = new UsuarioESImpl(entityManagerF);
 		Boolean registrado = false;
 		try {
-			registrado = dao.registrarUsuario(new UsuarioType().toEntity(user));
-		} catch (InternalServiceException e) {
+	
+//			registrado = dao.registrarUsuario(new UsuarioType().toEntity(user));
+			entityManagerF.persist(new UsuarioType().toEntity(user));
+			entityManagerF.flush();
+			registrado =true;
+		} catch (PersistenceException e) {
 			logger.info("ERROR realizando la consulta..");
 			logger.info(e.getMessage());
 			throw new InternalServiceException();
 		}
-		logger.info("Saliendo del metodo buscarUsuarioPorCodigo");
+		logger.info("Saliendo del metodo registrarNuevoUsuarioSistema");
 		logger.info("Returning: "+user );
 		return registrado;
 	}
@@ -92,9 +97,10 @@ public class UsuarioRepositoryDao {
 	 * @return UsuarioType
 	 * @throws InternalServiceException
 	 */
+	@Transactional(propagation= Propagation.REQUIRED)
 	public UsuarioType buscarUsuarioPorUsuarioId(Integer usuarioId) throws InternalServiceException{
 		logger.info("Entrando en la capacidad buscarUsuarioPorUsuarioId");
-		IUsuarioES dao = new UsuarioESImpl(entityManager);
+		IUsuarioES dao = new UsuarioESImpl(entityManagerF);
 		UsuarioType user = null;
 		try {
 			user = dao.buscarUsuarioPorId(usuarioId);
@@ -117,6 +123,7 @@ public class UsuarioRepositoryDao {
 	 * @return boolean
 	 * @throws InternalServiceException
 	 */
+	@Transactional(propagation= Propagation.REQUIRES_NEW)
 	public boolean actualizarUsuarioSistema(UsuarioType user) throws InternalServiceException{
 		logger.info("Entrando en la capacidad actualizarUsuarioSistema");
 		String sql = "UPDATE contacto SET NOMBRE = ? , APELLIDO = ? , SEXO = ? ,"
@@ -156,9 +163,10 @@ public class UsuarioRepositoryDao {
 	 * @return UsuarioType
 	 * @throws InternalServiceException
 	 */
+	@Transactional(propagation= Propagation.REQUIRED)
 	public UsuarioType buscarUsuarioPorNombre(String codigoUsuario) throws InternalServiceException{
 		logger.info("Entrando en la capacidad buscarUsuarioPorCodigo");
-		IUsuarioES dao = new UsuarioESImpl(entityManager);
+		IUsuarioES dao = new UsuarioESImpl(entityManagerF);
 		UsuarioType user = null;
 		try {
 			user = dao.buscarUsuarioNombre(codigoUsuario);

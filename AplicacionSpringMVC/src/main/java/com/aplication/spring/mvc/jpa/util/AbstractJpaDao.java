@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceException;
@@ -23,8 +25,13 @@ public abstract class AbstractJpaDao<ID, E> {
 
 	public AbstractJpaDao(EntityManager entityManager) {
 		this.entityManager = entityManager;
+//		this.entityManager = (EntityManager) entityManager.getTransaction();
 	}
-
+	
+	public AbstractJpaDao(EntityManagerFactory entityManagerFactory) {
+		this.entityManager = entityManagerFactory.createEntityManager();
+	}
+	
 	public AbstractJpaDao(PersistenceManager persistenceManager) {
 		persistenceManager = new PersistenceManager();
 		this.persistenceManager = persistenceManager;
@@ -47,8 +54,6 @@ public abstract class AbstractJpaDao<ID, E> {
 			return delete;
 		} catch (Exception e) {
 			throw new PersistenceException(e);
-		} finally {
-			closeConnection();
 		}
     }
     
@@ -70,8 +75,6 @@ public abstract class AbstractJpaDao<ID, E> {
 			return true;
 		} catch (Exception e) {
 			throw new PersistenceException(e);
-		}finally {
-			closeConnection();
 		}
     }
 
@@ -89,8 +92,6 @@ public abstract class AbstractJpaDao<ID, E> {
 			return entity;
 		} catch (Exception e) {
 			throw new PersistenceException(e);
-		} finally {
-			closeConnection();
 		}
     }
     
@@ -140,7 +141,7 @@ public abstract class AbstractJpaDao<ID, E> {
 	public void registrarEntity(E entity) throws PersistenceException, EntityExistsException {
 		try {
 			entityManager.persist(entity);
-			entityManager.flush();
+//			entityManager.flush();
 //			entityManager.getTransaction().commit();
 		} catch (EntityExistsException e) {
 			logger.info(e.getMessage());
@@ -148,9 +149,6 @@ public abstract class AbstractJpaDao<ID, E> {
 		}catch (PersistenceException e) {
 			logger.info(e.getMessage());
 			throw new PersistenceException(e);
-		}
-		finally {
-			closeConnection();
 		}
 	}
 	
@@ -161,13 +159,5 @@ public abstract class AbstractJpaDao<ID, E> {
 		return entityManager;
 	}
 	
-	/**
-	 * Descripcion: Metodo que permite cerrar la conexion del EntityManger y del PersistenceManager.
-	 * 
-	 */
-	public void closeConnection(){
-		entityManager.close();
-	}
-
 
 }
