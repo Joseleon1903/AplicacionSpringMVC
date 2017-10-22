@@ -4,17 +4,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
-import javax.persistence.PersistenceException;
 import javax.sql.DataSource;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.aplicacion.spring.mvc.interfaces.IUsuarioES;
 import com.aplicacion.spring.mvc.interfaces.impl.UsuarioESImpl;
@@ -26,14 +30,17 @@ public class UsuarioRepositoryDao {
 
 	private static final Logger logger = Logger.getLogger(UsuarioRepositoryDao.class.getName());
 	
-	@PersistenceContext(type = PersistenceContextType.EXTENDED) 
+	@PersistenceContext(unitName="PersistenceManager", type = PersistenceContextType.EXTENDED) 
 	private EntityManager entityManagerF;
 	
 	@Autowired
 	private DataSource dataSource;
 	
+	@Resource
+	private JpaTransactionManager JtaTransaction;
+	
 	public UsuarioRepositoryDao() {
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	/**
@@ -74,12 +81,14 @@ public class UsuarioRepositoryDao {
 //		IUsuarioES dao = new UsuarioESImpl(entityManagerF);
 		Boolean registrado = false;
 		try {
-	
+			entityManagerF.getTransaction().begin();
+		
 //			registrado = dao.registrarUsuario(new UsuarioType().toEntity(user));
 			entityManagerF.persist(new UsuarioType().toEntity(user));
 			entityManagerF.flush();
+			entityManagerF.getTransaction().commit();
 			registrado =true;
-		} catch (PersistenceException e) {
+		} catch (Exception e) {
 			logger.info("ERROR realizando la consulta..");
 			logger.info(e.getMessage());
 			throw new InternalServiceException();
