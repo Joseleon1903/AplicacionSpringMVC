@@ -102,7 +102,7 @@ public class ManejadorRegistrarUsuarioBean {
 		ContactoType contactoType=  new ContactoType();
 		contactoType.setNombre(nuevoUsuario.getNombre());
 		contactoType.setApellido(nuevoUsuario.getApellido());
-		contactoType.setFechaNacimineto(nuevoUsuario.getFechaNacimineto());
+		contactoType.setFechaNacimiento(nuevoUsuario.getFechaNacimineto());
 		contactoType.setEmail(nuevoUsuario.getEmail());
 		contactoType.setSexo(nuevoUsuario.getSexo());
 		contactoType.setEstado("AC");

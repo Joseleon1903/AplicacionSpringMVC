@@ -23,7 +23,7 @@ public class ContactoType implements BuscableType<ContactoType, Contacto>, Seria
 	private String nombre;
 	private String apellido;
 	private String sexo;
-	private Date fechaNacimineto;
+	private Date fechaNacimiento;
 	private String email;
 	private String estado;
 
@@ -39,7 +39,7 @@ public class ContactoType implements BuscableType<ContactoType, Contacto>, Seria
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.sexo = sexo;
-		this.fechaNacimineto = fechaNacimineto;
+		this.fechaNacimiento = fechaNacimineto;
 		this.email = email;
 	}
 
@@ -84,12 +84,12 @@ public class ContactoType implements BuscableType<ContactoType, Contacto>, Seria
 		this.sexo = sexo;
 	}
 
-	public Date getFechaNacimineto() {
-		return fechaNacimineto;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFechaNacimineto(Date fechaNacimineto) {
-		this.fechaNacimineto = fechaNacimineto;
+	public void setFechaNacimiento(Date fechaNacimineto) {
+		this.fechaNacimiento = fechaNacimineto;
 	}
 
 	public String getEmail() {
@@ -111,7 +111,7 @@ public class ContactoType implements BuscableType<ContactoType, Contacto>, Seria
 	@Override
 	public String toString() {
 		return "ContactoType [contactoId=" + contactoId + ", detalleContactoId=" + detalleContactoId + ", nombre="
-				+ nombre + ", apellido=" + apellido + ", sexo=" + sexo + ", fechaNacimineto=" + fechaNacimineto + ", email=" + email + "]";
+				+ nombre + ", apellido=" + apellido + ", sexo=" + sexo + ", fechaNacimineto=" + fechaNacimiento + ", email=" + email + "]";
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class ContactoType implements BuscableType<ContactoType, Contacto>, Seria
 		this.nombre =entity.getNombre();
 		this.apellido = entity.getApellido();
 		this.sexo = entity.getSexo();
-		this.fechaNacimineto = entity.getFechaNacimiento();
+		this.fechaNacimiento = entity.getFechaNacimiento();
 		this.email= entity.getEmail();
 		if (this.detalleContactoId != null) {
 			this.detalleContactoId= new DetalleContactoType().toType(entity.getDetalleContacto());
@@ -138,7 +138,7 @@ public class ContactoType implements BuscableType<ContactoType, Contacto>, Seria
 		entity.setNombre(type.getNombre());
 		entity.setApellido(type.getApellido());
 		entity.setSexo(type.getSexo());
-		entity.setFechaNacimiento(type.getFechaNacimineto());
+		entity.setFechaNacimiento(type.getFechaNacimiento());
 		entity.setEmail(type.getEmail());
 		if (type.getDetalleContactoId() != null) {
 			entity.setDetalleContacto(new DetalleContactoType().toEntity(type.getDetalleContactoId()));

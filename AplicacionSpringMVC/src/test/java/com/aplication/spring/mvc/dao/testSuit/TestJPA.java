@@ -24,7 +24,7 @@ public class TestJPA {
 		ContactoType contactoType=  new ContactoType();
 		contactoType.setNombre("Prueba Usuario");
 		contactoType.setApellido("Test");
-		contactoType.setFechaNacimineto(new Date());
+		contactoType.setFechaNacimiento(new Date());
 		contactoType.setEmail("prueba@gmail.com");
 		//seteando datos detalle contacto
 		DetalleContactoType detalleType = new DetalleContactoType();

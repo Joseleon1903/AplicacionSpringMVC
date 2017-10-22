@@ -158,7 +158,7 @@ public class UsuarioRepositoryDao {
 			ps.setString(1, user.getContacto().getNombre());
 			ps.setString(2, user.getContacto().getApellido());
 			ps.setString(3, user.getContacto().getSexo());
-			ps.setDate(4,new java.sql.Date(user.getContacto().getFechaNacimineto().getTime()));
+			ps.setDate(4,new java.sql.Date(user.getContacto().getFechaNacimiento().getTime()));
 			ps.setString(5, user.getContacto().getEmail());
 			ps.setInt(6, user.getContacto().getContactoId());
 			ps.executeUpdate();

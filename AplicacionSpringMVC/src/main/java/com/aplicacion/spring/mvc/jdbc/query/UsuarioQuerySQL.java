@@ -1,5 +1,12 @@
 package com.aplicacion.spring.mvc.jdbc.query;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.aplication.spring.mvc.layer.type.ContactoType;
+import com.aplication.spring.mvc.layer.type.DetalleContactoType;
+import com.aplication.spring.mvc.layer.type.UsuarioType;
+
 public class UsuarioQuerySQL {
 	
 	/**
@@ -26,8 +33,8 @@ public class UsuarioQuerySQL {
 		/**
 		 * Inserta nuevo Usuario en la tabla USUARIO
 		 */
-		String INSERT_USUARIO          = "INSERT INTO USUARIO(CODIGO_USUARIO,PASSWORD,FECHA_CREACION,FECHA_ULTIMO_ACCESO,CONTACTO_ID)"+ 
-                                           "VALUES(?,?,?,?,?)";
+		String INSERT_USUARIO          = "INSERT INTO USUARIO(USUARIO_ID, CODIGO_USUARIO,PASSWORD,FECHA_CREACION,FECHA_ULTIMO_ACCESO,CONTACTO_ID)"+ 
+                                           "VALUES(?,?,?,?,?,?)";
 		
 		/**
 		 * Inserta nuevo Usuario en la tabla CONTACTO
@@ -48,5 +55,35 @@ public class UsuarioQuerySQL {
                 "and TABLE_NAME ='"+nombreTabla+"'";
 	}
 	
+	public static PreparedStatement agregarUsuarioStatement(PreparedStatement preparedStatement , UsuarioType user, Integer index) throws SQLException{
+		preparedStatement.setInt(1, index);
+		preparedStatement.setString(2, user.getCodigoUsuario());
+		preparedStatement.setString(3, user.getPassword());
+		preparedStatement.setDate(4, new java.sql.Date(user.getFechaCreacion().getTime()));
+		preparedStatement.setDate(5, new java.sql.Date(user.getFechaUltimoAcceso().getTime()));
+		preparedStatement.setInt(6, index);		
+		return preparedStatement;
+	}
+	
+	public static PreparedStatement agregarContactoStatement(PreparedStatement preparedStatement, ContactoType contacto,Integer index) throws SQLException {
+		preparedStatement.setInt(1, index);
+		preparedStatement.setString(2, contacto.getNombre());
+		preparedStatement.setString(3, contacto.getApellido());
+		preparedStatement.setString(4, contacto.getSexo());
+		preparedStatement.setDate(5,  new java.sql.Date(contacto.getFechaNacimiento().getTime()));
+		preparedStatement.setString(6, contacto.getEmail());
+		preparedStatement.setInt(7, index);
+		preparedStatement.setString(8, contacto.getEstado());
+		return preparedStatement;
+	}
+	
+	public static PreparedStatement agregarDetalleContactoStatement(PreparedStatement preparedStatement , DetalleContactoType detalle, Integer index) throws SQLException{
+		preparedStatement.setInt(1, index);
+		preparedStatement.setString(2, detalle.getCorreoAlterno());
+		preparedStatement.setString(3, detalle.getDireccion());
+		preparedStatement.setString(4, detalle.getTelefono());
+		preparedStatement.setString(5, detalle.getCelular());
+		return preparedStatement;
+	}
 
 }

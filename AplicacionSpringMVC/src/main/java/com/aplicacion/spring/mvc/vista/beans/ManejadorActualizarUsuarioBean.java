@@ -49,7 +49,7 @@ public class ManejadorActualizarUsuarioBean {
 		actualizarBean.setApellido(usuarioSistema.getContacto().getApellido());
 		actualizarBean.setEmail(usuarioSistema.getContacto().getEmail());
 		actualizarBean.setSexo(usuarioSistema.getContacto().getSexo());
-		actualizarBean.setFechaNacimiento(usuarioSistema.getContacto().getFechaNacimineto());
+		actualizarBean.setFechaNacimiento(usuarioSistema.getContacto().getFechaNacimiento());
 		actualizarBean.setUsername(usuarioSistema.getCodigoUsuario());
 		if (!ValidationUtil.isObjectNotNull(usuarioSistema.getContacto().getDetalleContactoId())) {
 			actualizarBean.setEmailAlternativa(usuarioSistema.getContacto().getDetalleContactoId().getCorreoAlterno());
@@ -96,7 +96,7 @@ public class ManejadorActualizarUsuarioBean {
 		usuarioSistema.getContacto().setApellido(input.getApellido());
 		usuarioSistema.getContacto().setEmail(input.getEmail());
 		usuarioSistema.getContacto().setSexo(input.getSexo());
-		usuarioSistema.getContacto().setFechaNacimineto(input.getFechaNacimiento());
+		usuarioSistema.getContacto().setFechaNacimiento(input.getFechaNacimiento());
 		if (ValidationUtil.isObjectNotNull(input.getDireccion()) ||  
 			ValidationUtil.isObjectNotNull(input.getEmailAlternativa()) ||
 			ValidationUtil.isObjectNotNull(input.getCelular()) ||
