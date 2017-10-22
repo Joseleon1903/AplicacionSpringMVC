@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import com.aplication.spring.mvc.layer.type.ContactoType;
 import com.aplication.spring.mvc.layer.type.DetalleContactoType;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
+import com.aplication.spring.mvc.util.ValidationUtil;
 
 public class UsuarioQuerySQL {
 	
@@ -39,9 +40,10 @@ public class UsuarioQuerySQL {
 		/**
 		 * Inserta nuevo Usuario en la tabla CONTACTO
 		 */
-		String INSERT_CONTACTO         = "INSERT INTO CONTACTO (CONTACTO_ID,NOMBRE,APELLIDO,SEXO, FECHA_NACIMIENTO,EMAIL, DETALLE_CONTACTO_ID,ESTADO)"+
+		String INSERT_CONTACTO_CON_DETALLE        = "INSERT INTO CONTACTO (CONTACTO_ID,NOMBRE,APELLIDO,SEXO, FECHA_NACIMIENTO,EMAIL, DETALLE_CONTACTO_ID,ESTADO)"+
                                          "VALUES(?,?,?,?,?,?,?,?)";
-		
+		String INSERT_CONTACTO         = "INSERT INTO CONTACTO (CONTACTO_ID,NOMBRE,APELLIDO,SEXO, FECHA_NACIMIENTO,EMAIL,ESTADO)"+
+                "VALUES(?,?,?,?,?,?,?)";
 		/**
 		 * Inserta nuevo Usuario en la tabla DETALLE_CONTACTO
 		 */
@@ -72,8 +74,12 @@ public class UsuarioQuerySQL {
 		preparedStatement.setString(4, contacto.getSexo());
 		preparedStatement.setDate(5,  new java.sql.Date(contacto.getFechaNacimiento().getTime()));
 		preparedStatement.setString(6, contacto.getEmail());
-		preparedStatement.setInt(7, index);
-		preparedStatement.setString(8, contacto.getEstado());
+		if (!ValidationUtil.isObjectNotNull(contacto.getDetalleContactoId())) {
+			preparedStatement.setInt(7, index);
+			preparedStatement.setString(8, contacto.getEstado());
+		}else{
+			preparedStatement.setString(7, contacto.getEstado());
+		}
 		return preparedStatement;
 	}
 	

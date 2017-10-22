@@ -2,7 +2,6 @@ package com.aplicacion.spring.mvc.repository.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.annotation.Resource;
@@ -24,6 +23,7 @@ import com.aplicacion.spring.mvc.jdbc.query.UsuarioQuerySQL;
 import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.jpa.util.DatabaseUtil;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
+import com.aplication.spring.mvc.util.ValidationUtil;
 
 @Repository("UsuarioDao")
 public class UsuarioRepositoryDao {
@@ -78,35 +78,51 @@ public class UsuarioRepositoryDao {
 	@Transactional(propagation= Propagation.REQUIRES_NEW)
 	public boolean registrarNuevoUsuarioSistema(UsuarioType user) throws InternalServiceException{
 		logger.info("Entrando en la capacidad registrarNuevoUsuarioSistema");
-		boolean registrado = false;
+		boolean registrado = true;
+		boolean detalle = false;
 		logger.info("Inicinado ejecucion funcion: "+ DatabaseUtil.OPTENER_VALOR_INDEX_TABLA_SQL);
 		logger.info("Creando conexion desde el datasource.");
-		Connection conn = null;
+		Connection connexion = null;
 		Integer indexOut = 0;
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		try {
-           conn = dataSource.getConnection();              
-           stmt = conn.prepareStatement(DatabaseUtil.OPTENER_VALOR_INDEX_TABLA_SQL);
-           stmt.setString(1, UsuarioQuerySQL.Tablas.USUARIO_TBL);
-           stmt.executeQuery();
-           rs = stmt.getResultSet();
-           while(rs.next()){
-        	   indexOut = rs.getInt(1);        	   
-           }
+		   logger.info("Opteneiendo conexion data Source");
+           connexion = dataSource.getConnection();
+           logger.info("Terminando optener conexion.");
+           Integer indexId = DatabaseUtil.buscarValorIndexTabla(UsuarioQuerySQL.Tablas.USUARIO_TBL, connexion);
+           logger.info("Registrando detalle usuario si tiene");
+			if (!ValidationUtil.isObjectNotNull(user.getContacto().getDetalleContactoId())) {
+				stmt = connexion.prepareStatement(UsuarioQuerySQL.Insert.INSERT_DETALLE_CONTACTO);
+				stmt = UsuarioQuerySQL.agregarDetalleContactoStatement(stmt, user.getContacto().getDetalleContactoId(),indexId);
+				stmt.executeUpdate();
+				detalle = true;
+			}          
+	        logger.info("Finalizando registrar detalle usuario si tiene");
+	        logger.info("Registrando contacto");
+			stmt = connexion.prepareStatement(UsuarioQuerySQL.Insert.INSERT_CONTACTO);
+			if (detalle) {
+				stmt = connexion.prepareStatement(UsuarioQuerySQL.Insert.INSERT_CONTACTO_CON_DETALLE);	
+			}
+			stmt = UsuarioQuerySQL.agregarContactoStatement(stmt, user.getContacto(),indexId);
+			stmt.executeUpdate();
+	        logger.info("Finalizando registrar contacto");
+	        logger.info("Registrar usuario");
+           stmt= connexion.prepareStatement(UsuarioQuerySQL.Insert.INSERT_USUARIO);
+           stmt = UsuarioQuerySQL.agregarUsuarioStatement(stmt, user, indexId);
+           stmt.executeUpdate();
+	       logger.info("Finalizando registrar usuario");
+         
 		} catch (SQLException e) {
 			logger.info("Error Actualizando Contacto "+e.getMessage());
 			throw new InternalServiceException();
 		}finally{
-			if (conn != null) {
+			if (connexion != null) {
 				try {
-					conn.close();
+					connexion.close();
 				} catch (SQLException e) {}
 			}
 		}
-		logger.info("Terminando buscar index");
-		logger.info("Index: "+ indexOut);
-		
+		logger.info("Terminando registrar Usuario");
 		return registrado;
 	}
 	

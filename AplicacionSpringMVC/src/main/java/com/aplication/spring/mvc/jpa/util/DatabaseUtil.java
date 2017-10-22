@@ -52,7 +52,7 @@ public class DatabaseUtil {
 	public static Integer buscarValorIndexTabla(String tablaName, Connection conn) throws SQLException {
 		Integer index = 0;
 		ResultSet rs = null;
-		PreparedStatement stmt = conn.prepareStatement(tablaName);
+		PreparedStatement stmt = conn.prepareStatement(DatabaseUtil.OPTENER_VALOR_INDEX_TABLA_SQL);
 		stmt.setString(1, UsuarioQuerySQL.Tablas.USUARIO_TBL);
 		stmt.executeQuery();
 		rs = stmt.getResultSet();
