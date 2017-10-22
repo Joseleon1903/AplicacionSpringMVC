@@ -2,6 +2,7 @@ package com.aplicacion.spring.mvc.repository.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.annotation.Resource;
@@ -14,15 +15,14 @@ import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.aplicacion.spring.mvc.interfaces.IUsuarioES;
 import com.aplicacion.spring.mvc.interfaces.impl.UsuarioESImpl;
+import com.aplicacion.spring.mvc.jdbc.query.UsuarioQuerySQL;
 import com.aplication.spring.mvc.exception.InternalServiceException;
+import com.aplication.spring.mvc.jpa.util.DatabaseUtil;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
 
 @Repository("UsuarioDao")
@@ -78,23 +78,35 @@ public class UsuarioRepositoryDao {
 	@Transactional(propagation= Propagation.REQUIRES_NEW)
 	public boolean registrarNuevoUsuarioSistema(UsuarioType user) throws InternalServiceException{
 		logger.info("Entrando en la capacidad registrarNuevoUsuarioSistema");
-//		IUsuarioES dao = new UsuarioESImpl(entityManagerF);
-		Boolean registrado = false;
+		boolean registrado = false;
+		logger.info("Inicinado ejecucion funcion: "+ DatabaseUtil.OPTENER_VALOR_INDEX_TABLA_SQL);
+		logger.info("Creando conexion desde el datasource.");
+		Connection conn = null;
+		Integer indexOut = 0;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		try {
-			entityManagerF.getTransaction().begin();
-		
-//			registrado = dao.registrarUsuario(new UsuarioType().toEntity(user));
-			entityManagerF.persist(new UsuarioType().toEntity(user));
-			entityManagerF.flush();
-			entityManagerF.getTransaction().commit();
-			registrado =true;
-		} catch (Exception e) {
-			logger.info("ERROR realizando la consulta..");
-			logger.info(e.getMessage());
+           conn = dataSource.getConnection();              
+           stmt = conn.prepareStatement(DatabaseUtil.OPTENER_VALOR_INDEX_TABLA_SQL);
+           stmt.setString(1, UsuarioQuerySQL.Tablas.USUARIO_TBL);
+           stmt.executeQuery();
+           rs = stmt.getResultSet();
+           while(rs.next()){
+        	   indexOut = rs.getInt(1);        	   
+           }
+		} catch (SQLException e) {
+			logger.info("Error Actualizando Contacto "+e.getMessage());
 			throw new InternalServiceException();
+		}finally{
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
 		}
-		logger.info("Saliendo del metodo registrarNuevoUsuarioSistema");
-		logger.info("Returning: "+user );
+		logger.info("Terminando buscar index");
+		logger.info("Index: "+ indexOut);
+		
 		return registrado;
 	}
 	
