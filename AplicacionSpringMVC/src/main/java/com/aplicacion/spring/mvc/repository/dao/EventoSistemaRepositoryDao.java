@@ -7,8 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.PersistenceException;
+import javax.sql.DataSource;
 
 import org.jboss.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +25,8 @@ public class EventoSistemaRepositoryDao {
 
 	private static final Logger logger = Logger.getLogger(EventoSistemaRepositoryDao.class.getName());
 	
-	@PersistenceContext(type = PersistenceContextType.EXTENDED) 
-	private EntityManager entityManager;
+	@Autowired
+	private DataSource dataSource;
 
 	public EventoSistemaRepositoryDao() {
 		// TODO Auto-generated constructor stub
@@ -41,15 +43,15 @@ public class EventoSistemaRepositoryDao {
 	@Transactional(propagation= Propagation.REQUIRES_NEW)
 	public boolean registrarEnvioEmail(EventoSistemaType evento) {
 		boolean exito = false;
-		logger.info("Entrando en la capacidad : registrarEnvioEmail");
-		logger.info("EventoSistemaType: " + evento);
-		IEventoSistemaES dao = new EventoSistemaESImpl(entityManager);
-		try {
-			exito = dao.registrarNuevoEvento(new EventoSistemaType().toEntity(evento));
-		} catch (PersistenceException e) {
-			logger.info("ocurrio un error registrando EnvioEmail");
-			logger.info("ERROR " + e.getMessage());
-		}
+//		logger.info("Entrando en la capacidad : registrarEnvioEmail");
+//		logger.info("EventoSistemaType: " + evento);
+//		IEventoSistemaES dao = new EventoSistemaESImpl(entityManager);
+//		try {
+//			exito = dao.registrarNuevoEvento(new EventoSistemaType().toEntity(evento));
+//		} catch (PersistenceException e) {
+//			logger.info("ocurrio un error registrando EnvioEmail");
+//			logger.info("ERROR " + e.getMessage());
+//		}
 		return exito;
 	}
 	
@@ -60,19 +62,19 @@ public class EventoSistemaRepositoryDao {
 	 */
 	@Transactional(propagation= Propagation.REQUIRED)
 	public List<EventoSistemaType> buscarListaEmailSistema() {
-		logger.info("Entrando en la capacidad : buscarListaEmailSistema");
-		logger.info("Iniciando busqueda email registrada en el sistema");
-		List<EventoSistemaType> lista = new ArrayList<>();
-		IEventoSistemaES dao = new EventoSistemaESImpl(entityManager);
-		try {
-			lista = dao.buscarElencoEmailSistema();
-		} catch (InternalServiceException e) {
-			logger.info("ocurrio un error registrando EnvioEmail");
-			logger.info("ERROR " + e.getMessage());
-		}
-		logger.info("Terminando busqueda email sistema");
-		logger.info("returnning: "+lista);
-		return lista;
+//		logger.info("Entrando en la capacidad : buscarListaEmailSistema");
+//		logger.info("Iniciando busqueda email registrada en el sistema");
+//		List<EventoSistemaType> lista = new ArrayList<>();
+//		IEventoSistemaES dao = new EventoSistemaESImpl(entityManager);
+//		try {
+//			lista = dao.buscarElencoEmailSistema();
+//		} catch (InternalServiceException e) {
+//			logger.info("ocurrio un error registrando EnvioEmail");
+//			logger.info("ERROR " + e.getMessage());
+//		}
+//		logger.info("Terminando busqueda email sistema");
+//		logger.info("returnning: "+lista);
+		return null;
 	}
 	
 	/**
@@ -88,19 +90,19 @@ public class EventoSistemaRepositoryDao {
 	@Transactional(propagation= Propagation.REQUIRED)
 	public List<EventoSistemaType> buscarListaEmailPorDatosGenerales(String nombreUsuario, String asunto, String destinatario,
 			String estado) {
-		logger.info("Entrando en la capacidad : buscarListaEmailPorDatosGenerales");
-		logger.info("Iniciando busqueda email registrada en el sistema");
-		List<EventoSistemaType> lista = new ArrayList<>();
-		IEventoSistemaES dao = new EventoSistemaESImpl(entityManager);
-		try {
-			lista = dao.buscarEmailPorDatosGenerales(nombreUsuario, asunto, destinatario, estado);
-		} catch (InternalServiceException e) {
-			logger.info("ocurrio un error buscando lista Email enviadas");
-			logger.info("ERROR " + e.getMessage());
-		}
-		logger.info("Terminando busqueda email sistema");
-		logger.info("returnning: "+lista);
-		return lista;
+//		logger.info("Entrando en la capacidad : buscarListaEmailPorDatosGenerales");
+//		logger.info("Iniciando busqueda email registrada en el sistema");
+//		List<EventoSistemaType> lista = new ArrayList<>();
+//		IEventoSistemaES dao = new EventoSistemaESImpl(entityManager);
+//		try {
+//			lista = dao.buscarEmailPorDatosGenerales(nombreUsuario, asunto, destinatario, estado);
+//		} catch (InternalServiceException e) {
+//			logger.info("ocurrio un error buscando lista Email enviadas");
+//			logger.info("ERROR " + e.getMessage());
+//		}
+//		logger.info("Terminando busqueda email sistema");
+//		logger.info("returnning: "+lista);
+		return null;
 	}
 
 

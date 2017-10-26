@@ -1,6 +1,7 @@
 package com.aplicacion.spring.mvc.jdbc.query;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.aplication.spring.mvc.layer.type.ContactoType;
@@ -21,6 +22,20 @@ public class UsuarioQuerySQL {
 		String CONTACTO_TBL         = "CONTACTO";
 		String DETALLE_CONTACTO_TBL = "DETALLE_CONTACTO";
 	}
+	
+	public static interface Consulta{
+		/**
+		 * Query para buscar un usuario por Id 
+		 */
+		String BUSCAR_USUARIO_POR_ID  = "SELECT us.USUARIO_ID, us.CODIGO_USUARIO, con.CONTACTO_ID, con.NOMBRE, con.APELLIDO, con.EMAIL, con.ESTADO, "
+				+ "                            con.SEXO, con.FECHA_NACIMIENTO, con.DETALLE_CONTACTO_ID, con.ESTADO, det.DETALLE_CONTACTO_ID, det.EMAIL_ALTERNATIVA, "
+				+ "                            det.TELEFONO, det.CELULAR, det.DIRECCION"
+				+ "                        FROM USUARIO us JOIN CONTACTO con ON con.CONTACTO_ID = us.CONTACTO_ID"
+				+ "                        LEFT JOIN DETALLE_CONTACTO det ON con.DETALLE_CONTACTO_ID = det.DETALLE_CONTACTO_ID"
+				+ "                        WHERE us.USUARIO_ID = ?";
+
+	}
+
 	
 	/**
 	 * 
@@ -91,5 +106,28 @@ public class UsuarioQuerySQL {
 		preparedStatement.setString(5, detalle.getCelular());
 		return preparedStatement;
 	}
+	
+	
+	public static ContactoType casteoResulsetContactoType(ResultSet rs) throws SQLException{
+		ContactoType contacto = new ContactoType();
+		contacto.setContactoId(rs.getInt("CONTACTO_ID"));
+		contacto.setNombre(rs.getString("NOMBRE"));
+		contacto.setApellido(rs.getString("APELLIDO"));
+		contacto.setFechaNacimiento(rs.getDate("FECHA_NACIMIENTO"));
+		contacto.setSexo(rs.getString("SEXO"));
+		contacto.setEmail(rs.getString("EMAIL"));
+		contacto.setEstado(rs.getString("ESTADO"));
+		Integer detalleContacto = rs.getInt("DETALLE_CONTACTO_ID");
+		if (!ValidationUtil.isObjectNotNull(detalleContacto)) {
+			DetalleContactoType detalle = new DetalleContactoType();
+			detalle.setDetalleContactoId(rs.getInt("DETALLE_CONTACTO_ID"));
+			detalle.setCelular(rs.getString("CELULAR"));
+			detalle.setCorreoAlterno(rs.getString("EMAIL_ALTERNATIVA"));
+			detalle.setTelefono(rs.getString("TELEFONO"));
+			detalle.setDireccion(rs.getString("DIRECCION"));
+			contacto.setDetalleContactoId(detalle);
+		}		
+		return  contacto;
+	} 
 
 }
