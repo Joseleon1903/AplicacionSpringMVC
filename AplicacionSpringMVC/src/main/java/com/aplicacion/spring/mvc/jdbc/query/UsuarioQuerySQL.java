@@ -33,6 +33,16 @@ public class UsuarioQuerySQL {
 				+ "                        FROM USUARIO us JOIN CONTACTO con ON con.CONTACTO_ID = us.CONTACTO_ID"
 				+ "                        LEFT JOIN DETALLE_CONTACTO det ON con.DETALLE_CONTACTO_ID = det.DETALLE_CONTACTO_ID"
 				+ "                        WHERE us.USUARIO_ID = ?";
+		
+		/**
+		 * Query para buscar un usuario codigo usuario
+		 */
+		String BUSCAR_USUARIO_POR_CODIGO_USUARIO  = "SELECT us.USUARIO_ID, us.CODIGO_USUARIO,us.PASSWORD, con.CONTACTO_ID, con.NOMBRE, con.APELLIDO, con.EMAIL, con.ESTADO, "
+				+ "                                  con.SEXO, con.FECHA_NACIMIENTO, con.DETALLE_CONTACTO_ID, con.ESTADO, det.DETALLE_CONTACTO_ID, det.EMAIL_ALTERNATIVA, "
+				+ "                                  det.TELEFONO, det.CELULAR, det.DIRECCION"
+				+ "                             FROM USUARIO us JOIN CONTACTO con ON con.CONTACTO_ID = us.CONTACTO_ID"
+				+ "                             LEFT JOIN DETALLE_CONTACTO det ON con.DETALLE_CONTACTO_ID = det.DETALLE_CONTACTO_ID"
+				+ "                             WHERE us.CODIGO_USUARIO = ?";
 
 	}
 
@@ -65,6 +75,13 @@ public class UsuarioQuerySQL {
 		String INSERT_DETALLE_CONTACTO = "INSERT INTO DETALLE_CONTACTO (DETALLE_CONTACTO_ID,EMAIL_ALTERNATIVA,DIRECCION,TELEFONO,CELULAR) "+
 		                                  "VALUES(?,?,?,?,?)";
 	}
+	
+	public static interface Update{
+		
+		String ACTUALIZAR_CONTACTO_USUARIO = "UPDATE CONTACTO SET NOMBRE = ? , APELLIDO = ? , SEXO = ? , FECHA_NACIMIENTO= ?, EMAIL = ? WHERE CONTACTO_ID = ?";
+		String ACTUALIZAR_DETALLE_CONTACTO_USUARIO = "UPDATE DETALLE_CONTATO det SET det.EMAIL_ALTERNATIVA = ?, det.DIRECCION = ? , det.TELEFONO = ?, det.CELULAR = ? WHERE det.DETALLE_CONTACTO_ID = ?";
+	}
+
 	
 	public static String QUERY_VALOR_AUTOINCREMENT(String nombreTabla){
 		

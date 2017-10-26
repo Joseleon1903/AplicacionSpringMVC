@@ -18,8 +18,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aplicacion.spring.mvc.interfaces.IUsuarioES;
-import com.aplicacion.spring.mvc.interfaces.impl.UsuarioESImpl;
 import com.aplicacion.spring.mvc.jdbc.query.UsuarioQuerySQL;
 import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.jpa.util.DatabaseUtil;
@@ -55,17 +53,33 @@ public class UsuarioRepositoryDao {
 	@Transactional(propagation= Propagation.REQUIRED)
 	public UsuarioType buscarUsuarioPorCodigo(String codigoUsuario) throws InternalServiceException{
 		logger.info("Entrando en la capacidad buscarUsuarioPorCodigo");
-		IUsuarioES dao = new UsuarioESImpl(entityManagerF);
-		UsuarioType user = null;
+		logger.info("Inicinado ejecucion select: "+ UsuarioQuerySQL.Consulta.BUSCAR_USUARIO_POR_CODIGO_USUARIO);
+		logger.info("Creando conexion desde el datasource.");
+		Connection connexion = null;
+		PreparedStatement stmt = null;
+		UsuarioType user = new UsuarioType();
 		try {
-			user = dao.buscarUsuarioPorCodigo(codigoUsuario);
-		} catch (InternalServiceException e) {
-			logger.info("ERROR realizando la consulta..");
-			logger.info(e.getMessage());
-			throw new InternalServiceException();
+			logger.info("Opteneiendo conexion data Source");
+			connexion = dataSource.getConnection();
+			logger.info("Finalizando Optener conexion datasource.");
+			stmt = connexion.prepareStatement(UsuarioQuerySQL.Consulta.BUSCAR_USUARIO_POR_CODIGO_USUARIO);
+			stmt.setString(1, codigoUsuario);
+			ResultSet rs = stmt.executeQuery();
+			logger.info("Terminando efectuar consulta.");
+			logger.info("Inicio casteo resultSet usuario : "+ user);
+			while(rs.next()){
+				user.setCodigoUsuario(rs.getString("CODIGO_USUARIO"));
+				user.setPassword(rs.getString("PASSWORD"));
+				user.setUsuarioId(rs.getInt("USUARIO_ID"));
+				ContactoType contact = UsuarioQuerySQL.casteoResulsetContactoType(rs);
+				user.setContacto(contact);
+			}
+			logger.info("Finalizando casteo resultSet usuario : "+ user);
+		} catch (SQLException e) {
+			logger.info("Error realizando la consulta..");
+			logger.info("Error: "+ e.getMessage());
 		}
-		logger.info("Saliendo del metodo buscarUsuarioPorCodigo");
-		logger.info("Returning: "+user );
+		logger.info("Terminando realizar Consulta.");	
 		return user;
 	}
 	
@@ -219,17 +233,33 @@ public class UsuarioRepositoryDao {
 	@Transactional(propagation= Propagation.REQUIRED)
 	public UsuarioType buscarUsuarioPorNombre(String codigoUsuario) throws InternalServiceException{
 		logger.info("Entrando en la capacidad buscarUsuarioPorCodigo");
-		IUsuarioES dao = new UsuarioESImpl(entityManagerF);
-		UsuarioType user = null;
+		logger.info("Inicinado ejecucion select: "+ UsuarioQuerySQL.Consulta.BUSCAR_USUARIO_POR_CODIGO_USUARIO);
+		logger.info("Creando conexion desde el datasource.");
+		Connection connexion = null;
+		PreparedStatement stmt = null;
+		UsuarioType user = new UsuarioType();
 		try {
-			user = dao.buscarUsuarioNombre(codigoUsuario);
-		} catch (InternalServiceException e) {
-			logger.info("ERROR realizando la consulta..");
-			logger.info(e.getMessage());
-			throw new InternalServiceException();
+			logger.info("Opteneiendo conexion data Source");
+			connexion = dataSource.getConnection();
+			logger.info("Finalizando Optener conexion datasource.");
+			stmt = connexion.prepareStatement(UsuarioQuerySQL.Consulta.BUSCAR_USUARIO_POR_CODIGO_USUARIO);
+			stmt.setString(1, codigoUsuario);
+			ResultSet rs = stmt.executeQuery();
+			logger.info("Terminando efectuar consulta.");
+			logger.info("Inicio casteo resultSet usuario : "+ user);
+			while(rs.next()){
+				user.setCodigoUsuario(rs.getString("CODIGO_USUARIO"));
+				user.setPassword(rs.getString("PASSWORD"));
+				user.setUsuarioId(rs.getInt("USUARIO_ID"));
+				ContactoType contact = UsuarioQuerySQL.casteoResulsetContactoType(rs);
+				user.setContacto(contact);
+			}
+			logger.info("Finalizando casteo resultSet usuario : "+ user);
+		} catch (SQLException e) {
+			logger.info("Error realizando la consulta..");
+			logger.info("Error: "+ e.getMessage());
 		}
-		logger.info("Saliendo del metodo buscarUsuarioPorCodigo");
-		logger.info("Returning: "+user );
+		logger.info("Terminando realizar Consulta.");	
 		return user;
 	}
 
