@@ -1,6 +1,6 @@
 AplicacionSpringMVC: Example using Spring 4.x
 ==============================================================
-Author: Marius Bogoevici, Tejas Mehta, Joshua Wilson  
+Author: jose De Leon 
 Level: Intermediate  
 Technologies: JSP, JPA, JSON, Spring, JUnit  
 Summary: The `AplicacionSpringMVC` quickstart is an example of a Java EE 6 application using JSP, JPA 2.0 and Spring 4.x.  
