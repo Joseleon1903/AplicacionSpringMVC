@@ -79,7 +79,7 @@ public class UsuarioQuerySQL {
 	public static interface Update{
 		
 		String ACTUALIZAR_CONTACTO_USUARIO = "UPDATE CONTACTO SET NOMBRE = ? , APELLIDO = ? , SEXO = ? , FECHA_NACIMIENTO= ?, EMAIL = ? WHERE CONTACTO_ID = ?";
-		String ACTUALIZAR_DETALLE_CONTACTO_USUARIO = "UPDATE DETALLE_CONTATO det SET det.EMAIL_ALTERNATIVA = ?, det.DIRECCION = ? , det.TELEFONO = ?, det.CELULAR = ? WHERE det.DETALLE_CONTACTO_ID = ?";
+		String ACTUALIZAR_DETALLE_CONTACTO_USUARIO = "UPDATE DETALLE_CONTACTO det SET det.EMAIL_ALTERNATIVA = ?, det.DIRECCION = ? , det.TELEFONO = ?, det.CELULAR = ? WHERE det.DETALLE_CONTACTO_ID = ?";
 	}
 
 	
@@ -125,7 +125,7 @@ public class UsuarioQuerySQL {
 	}
 	
 	
-	public static ContactoType casteoResulsetContactoType(ResultSet rs) throws SQLException{
+	public static ContactoType casteoResulsetContactoType(ResultSet rs,boolean agregarContacto) throws SQLException{
 		ContactoType contacto = new ContactoType();
 		contacto.setContactoId(rs.getInt("CONTACTO_ID"));
 		contacto.setNombre(rs.getString("NOMBRE"));
@@ -135,7 +135,7 @@ public class UsuarioQuerySQL {
 		contacto.setEmail(rs.getString("EMAIL"));
 		contacto.setEstado(rs.getString("ESTADO"));
 		Integer detalleContacto = rs.getInt("DETALLE_CONTACTO_ID");
-		if (!ValidationUtil.isObjectNotNull(detalleContacto)) {
+		if (!ValidationUtil.isObjectNotNull(detalleContacto) && agregarContacto) {
 			DetalleContactoType detalle = new DetalleContactoType();
 			detalle.setDetalleContactoId(rs.getInt("DETALLE_CONTACTO_ID"));
 			detalle.setCelular(rs.getString("CELULAR"));

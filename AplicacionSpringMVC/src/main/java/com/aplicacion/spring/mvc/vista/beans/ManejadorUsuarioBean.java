@@ -48,6 +48,7 @@ public class ManejadorUsuarioBean {
 			sessionUsuario.setNombre(user.getContacto().getNombre());
 			sessionUsuario.setAutenticado(true);
 			sessionUsuario.setUsuarioId(user.getUsuarioId());
+			sessionUsuario.setContactoId(user.getContacto().getContactoId());
 			loginBean.setCodigoUsuario("");
 			return "redirect:/views/portal/pagina/Home";
 		}

@@ -8,14 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.aplicacion.spring.mvc.constante.ParametrosErrorConstantes;
 import com.aplicacion.spring.mvc.repository.dao.EventoSistemaRepositoryDao;
 import com.aplicacion.spring.mvc.repository.dao.UsuarioRepositoryDao;
 import com.aplicacion.spring.mvc.session.beans.UsuarioSession;
-import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.layer.type.EventoSistemaType;
-import com.aplication.spring.mvc.layer.type.MotivoEstadoType;
-import com.aplication.spring.mvc.layer.type.UsuarioType;
 
 @Component
 public class ManejadorListaEmailSistemaBean {
@@ -40,11 +36,11 @@ public class ManejadorListaEmailSistemaBean {
 	}
 	
 	
-	public List<ListaEmailEnviadasBean> buscarListaEmailDefault(UsuarioSession session){
+	public List<ListaEmailEnviadasBean> buscarListaEmailDefault(UsuarioSession session, UsuarioSession sessionUser){
 		logger.info("Entrando en el metodo buscarListaEmailDefault..");
 		List<ListaEmailEnviadasBean> lista = new ArrayList<>();	
 		logger.info("Iniciando busqueda...");
-		List<EventoSistemaType> listaType = EventoSistemaES.buscarListaEmailSistema();
+		List<EventoSistemaType> listaType = EventoSistemaES.buscarListaEmailSistema(sessionUser.getContactoId());
 		logger.info("Iniciando casteo a lista de salida..");
 		ListaEmailEnviadasBean bean = null;
 		for (EventoSistemaType eventoType : listaType) {

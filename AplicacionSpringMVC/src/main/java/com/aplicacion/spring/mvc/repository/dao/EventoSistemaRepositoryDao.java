@@ -1,12 +1,12 @@
 package com.aplicacion.spring.mvc.repository.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
-import javax.persistence.PersistenceException;
 import javax.sql.DataSource;
 
 import org.jboss.logging.Logger;
@@ -15,9 +15,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aplicacion.spring.mvc.interfaces.IEventoSistemaES;
-import com.aplicacion.spring.mvc.interfaces.impl.EventoSistemaESImpl;
-import com.aplication.spring.mvc.exception.InternalServiceException;
+import com.aplicacion.spring.mvc.jdbc.query.SistemaQuerySQL;
+import com.aplicacion.spring.mvc.jdbc.query.UsuarioQuerySQL;
+import com.aplication.spring.mvc.layer.type.ContactoType;
+import com.aplication.spring.mvc.layer.type.EnvioSistemaType;
 import com.aplication.spring.mvc.layer.type.EventoSistemaType;
 
 @Repository("EventoSistemaDao")
@@ -28,7 +29,7 @@ public class EventoSistemaRepositoryDao {
 	@Autowired
 	private DataSource dataSource;
 
-	public EventoSistemaRepositoryDao() {
+	public EventoSistemaRepositoryDao() {	
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -61,20 +62,40 @@ public class EventoSistemaRepositoryDao {
 	 * @return List<EventoSistemaType>
 	 */
 	@Transactional(propagation= Propagation.REQUIRED)
-	public List<EventoSistemaType> buscarListaEmailSistema() {
-//		logger.info("Entrando en la capacidad : buscarListaEmailSistema");
-//		logger.info("Iniciando busqueda email registrada en el sistema");
-//		List<EventoSistemaType> lista = new ArrayList<>();
-//		IEventoSistemaES dao = new EventoSistemaESImpl(entityManager);
-//		try {
-//			lista = dao.buscarElencoEmailSistema();
-//		} catch (InternalServiceException e) {
-//			logger.info("ocurrio un error registrando EnvioEmail");
-//			logger.info("ERROR " + e.getMessage());
-//		}
-//		logger.info("Terminando busqueda email sistema");
-//		logger.info("returnning: "+lista);
-		return null;
+	public List<EventoSistemaType> buscarListaEmailSistema(Integer contactoId) {
+		logger.info("Entrando en la capacidad : buscarListaEmailSistema");
+		logger.info("Inicinado ejecucion select: "+ SistemaQuerySQL.Consulta.BUSCAR_lISTA_EMAIL_POR_CONTACTO);
+		logger.info("Creando conexion desde el datasource.");
+		Connection connexion = null;
+		PreparedStatement stmt = null;
+		List<EventoSistemaType> listaOutput = new ArrayList<>();
+		try {
+			logger.info("Opteneiendo conexion data Source");
+			connexion = dataSource.getConnection();
+			logger.info("Finalizando Optener conexion datasource.");
+			stmt = connexion.prepareStatement(SistemaQuerySQL.Consulta.BUSCAR_lISTA_EMAIL_POR_CONTACTO);
+			stmt.setInt(1, contactoId);
+			ResultSet rs = stmt.executeQuery();
+			logger.info("Terminando efectuar consulta.");
+			EventoSistemaType evento = null;
+			EnvioSistemaType envio = null;
+			ContactoType contacto = null;
+			while(rs.next()){
+				contacto = new ContactoType();
+				contacto = UsuarioQuerySQL.casteoResulsetContactoType(rs, false);
+				envio = new EnvioSistemaType();
+				envio = SistemaQuerySQL.casteoResultSetEnvioSistemaType(rs);
+				evento = new EventoSistemaType();
+				evento = SistemaQuerySQL.casteoResultSetEventoSistemaType(rs, contacto, envio);
+				listaOutput.add(evento);
+			}
+			logger.info("Finalizando casteo resultSet usuario : "+ listaOutput);
+		} catch (SQLException e) {
+			logger.info("Error realizando la consulta..");
+			logger.info("Error: "+ e.getMessage());
+		}
+		logger.info("Terminando realizar Consulta.");	
+		return listaOutput;
 	}
 	
 	/**

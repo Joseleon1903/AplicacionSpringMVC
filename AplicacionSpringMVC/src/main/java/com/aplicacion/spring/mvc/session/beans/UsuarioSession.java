@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 public class UsuarioSession {
 	
 	private Integer usuarioId;
+	private Integer contactoId;
 	private boolean autenticado;
 	private String nombre;
 	private boolean error;
@@ -59,16 +60,25 @@ public class UsuarioSession {
 	public void setUsuarioId(Integer usuarioId) {
 		this.usuarioId = usuarioId;
 	}
+	
+	public Integer getContactoId() {
+		return contactoId;
+	}
+
+	public void setContactoId(Integer contactoId) {
+		this.contactoId = contactoId;
+	}
 
 	@Override
 	public String toString() {
-		return "UsuarioSession [autenticado=" + autenticado + ", nombre=" + nombre + ", error=" + error
-				+ ", mensajeError=" + mensajeError + "]";
+		return "UsuarioSession [usuarioId=" + usuarioId + ", contactoId=" + contactoId + ", autenticado=" + autenticado
+				+ ", nombre=" + nombre + ", error=" + error + ", mensajeError=" + mensajeError + "]";
 	}
 
 	@PostConstruct
 	private void init(){
 		this.usuarioId = 0;
+		this.contactoId = 0;
 		this.autenticado = false;
 		this.error = false;
 		this.nombre= "NONE";
@@ -79,6 +89,7 @@ public class UsuarioSession {
 	@PreDestroy
 	public void destroy() throws Exception {
 		this.usuarioId = 0;
+		this.contactoId = 0;
 		this.autenticado = false;
 		this.error = false;
 		this.nombre= "NONE";

@@ -71,7 +71,7 @@ public class UsuarioRepositoryDao {
 				user.setCodigoUsuario(rs.getString("CODIGO_USUARIO"));
 				user.setPassword(rs.getString("PASSWORD"));
 				user.setUsuarioId(rs.getInt("USUARIO_ID"));
-				ContactoType contact = UsuarioQuerySQL.casteoResulsetContactoType(rs);
+				ContactoType contact = UsuarioQuerySQL.casteoResulsetContactoType(rs, true);
 				user.setContacto(contact);
 			}
 			logger.info("Finalizando casteo resultSet usuario : "+ user);
@@ -169,7 +169,7 @@ public class UsuarioRepositoryDao {
 			while(rs.next()){
 				user.setCodigoUsuario(rs.getString("CODIGO_USUARIO"));
 				user.setUsuarioId(rs.getInt("USUARIO_ID"));
-				ContactoType contact = UsuarioQuerySQL.casteoResulsetContactoType(rs);
+				ContactoType contact = UsuarioQuerySQL.casteoResulsetContactoType(rs, true);
 				user.setContacto(contact);
 			}
 			logger.info("Finalizando casteo resultSet usuario : "+ user);
@@ -207,6 +207,13 @@ public class UsuarioRepositoryDao {
 			ps.setDate(4,new java.sql.Date(user.getContacto().getFechaNacimiento().getTime()));
 			ps.setString(5, user.getContacto().getEmail());
 			ps.setInt(6, user.getContacto().getContactoId());
+			ps.executeUpdate();
+			ps = conn.prepareStatement(UsuarioQuerySQL.Update.ACTUALIZAR_DETALLE_CONTACTO_USUARIO);
+			ps.setString(1,user.getContacto().getDetalleContactoId().getCorreoAlterno());
+			ps.setString(2,user.getContacto().getDetalleContactoId().getDireccion());
+			ps.setString(3,user.getContacto().getDetalleContactoId().getTelefono());
+			ps.setString(4,user.getContacto().getDetalleContactoId().getCelular());
+			ps.setInt(5, user.getContacto().getDetalleContactoId().getDetalleContactoId());
 			ps.executeUpdate();
 			ps.close();
 		} catch (SQLException e) {
@@ -251,7 +258,7 @@ public class UsuarioRepositoryDao {
 				user.setCodigoUsuario(rs.getString("CODIGO_USUARIO"));
 				user.setPassword(rs.getString("PASSWORD"));
 				user.setUsuarioId(rs.getInt("USUARIO_ID"));
-				ContactoType contact = UsuarioQuerySQL.casteoResulsetContactoType(rs);
+				ContactoType contact = UsuarioQuerySQL.casteoResulsetContactoType(rs, true);
 				user.setContacto(contact);
 			}
 			logger.info("Finalizando casteo resultSet usuario : "+ user);

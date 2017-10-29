@@ -22,6 +22,10 @@ public class MotivoEstadoType implements BuscableType<MotivoEstadoType, MotivoEs
 	private String estado;
 	
 	public MotivoEstadoType(){}
+	
+	public MotivoEstadoType(Integer motivoId){
+		this.motivoId = motivoId;
+	}
 
 	public MotivoEstadoType(Integer motivoId, String descripcion, String estado) {
 		super();

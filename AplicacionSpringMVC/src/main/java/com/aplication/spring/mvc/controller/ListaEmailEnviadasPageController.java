@@ -50,7 +50,7 @@ public class ListaEmailEnviadasPageController {
 	public String displayListaEmailEnviadasPage(HttpServletRequest request,  Model model) {
 		String pagina = manejadorSistemaUtil.validandoSession(sessionUsuario, "portal/pagina/jsp/listaEmailEnviadas");
 		if (sessionUsuario.isAutenticado() && listaEmailSistema.getListaBean()== null) {
-			List<ListaEmailEnviadasBean> listOutput = manejadorListaEmailBean.buscarListaEmailDefault(sessionUsuario);
+			List<ListaEmailEnviadasBean> listOutput = manejadorListaEmailBean.buscarListaEmailDefault(sessionUsuario,sessionUsuario);
 			listaEmailSistema.setListaBean(listOutput);
 		}
 		model.addAttribute("ListaEmailEnviadasBean", listaEmailSistema.getListaBean());
