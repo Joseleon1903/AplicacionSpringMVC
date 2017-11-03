@@ -22,9 +22,20 @@ public class SistemaQuerySQL {
 				+ "                  con.SEXO, con.FECHA_NACIMIENTO, con.DETALLE_CONTACTO_ID, con.ESTADO,"
 				+ "                  env.FECHA_ENVIO, env.ASUNTO, env.DESTINATARIO, env.CONTENIDO, env.ESTADO, env.MOTIVO_ID"
 				+ "                  FROM EVENTO_SISTEMA even JOIN ENVIO_SISTEMA env ON even.ENVIO_ID = env.ENVIO_ID"
-				+ "                  JOIN CONTACTO con ON even.CONTACTO_ID = con.CONTACTO_ID WHERE con.CONTACTO_ID = ?";		
-	}
+				+ "                  JOIN CONTACTO con ON even.CONTACTO_ID = con.CONTACTO_ID WHERE con.CONTACTO_ID = ?";
+		
+		String BUSCAR_lISTA_EMAIL_CON_DATOS_GENERALES = "SELECT even.ENVIO_ID,even.CONTACTO_ID,even.EVENTO_SISTEMA_ID,even.FECHA_EVENTO,"
+											+ "          con.CONTACTO_ID,con.NOMBRE, con.APELLIDO, con.EMAIL, con.ESTADO,"
+											+ "          con.SEXO, con.FECHA_NACIMIENTO, con.DETALLE_CONTACTO_ID, con.ESTADO,"
+											+ "          env.FECHA_ENVIO, env.ASUNTO, env.DESTINATARIO, env.CONTENIDO, env.ESTADO, env.MOTIVO_ID"
+											+ "          FROM EVENTO_SISTEMA even JOIN ENVIO_SISTEMA env ON even.ENVIO_ID = env.ENVIO_ID"
+											+ "          JOIN CONTACTO con ON even.CONTACTO_ID = con.CONTACTO_ID"
+											+ "			 WHERE (:nombre IS NULL OR con.NOMBRE = :nombre)"
+											+ "          AND (:asunto IS NULL OR env.ASUNTO = :asunto)"
+							                + "          AND (:destinatario IS NULL OR env.DESTINATARIO = :destinatario)"
+							                + "          AND env.ESTADO= ?";	
 	
+	}
 	
 	public static EventoSistemaType casteoResultSetEventoSistemaType(ResultSet rs, ContactoType contacto, EnvioSistemaType envio) throws SQLException{
 		EventoSistemaType evento = new EventoSistemaType();
@@ -45,10 +56,7 @@ public class SistemaQuerySQL {
 		envio.setFechaEnvio(rs.getDate("FECHA_ENVIO"));
 		envio.setMotivoId(new MotivoEstadoType(rs.getInt("MOTIVO_ID")));
 		return envio;
-	} 
-
-	
-	
+	} 	
 	
 
 }

@@ -127,7 +127,6 @@
 		</div>
 		<!-- ********* Final DIV principal *********** -->
 
-
    <!-- *************contenedor footer de fin de pagina inicio codigo ************ -->
      <%@ include file="../html/footer.html" %>
    <!-- *************contenedor footer de fin de pagina final codigo ************ -->

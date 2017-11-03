@@ -62,5 +62,15 @@ public class DatabaseUtil {
 		return index;
 	}	
 	
+	public static String remplazarParametroSelect(String query, String nombreParam, String parametro){
+		String comilla ="'";
+		if (parametro == null || parametro.isEmpty()) {
+			parametro = "null";
+			return query.replaceAll(nombreParam, parametro);
+		}
+		parametro = comilla+ parametro+ comilla;		
+		return query.replaceAll(nombreParam, parametro);
+	}
+	
 	
 }

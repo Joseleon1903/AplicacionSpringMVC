@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aplicacion.spring.mvc.jdbc.query.SistemaQuerySQL;
 import com.aplicacion.spring.mvc.jdbc.query.UsuarioQuerySQL;
+import com.aplication.spring.mvc.jpa.util.DatabaseUtil;
 import com.aplication.spring.mvc.layer.type.ContactoType;
 import com.aplication.spring.mvc.layer.type.EnvioSistemaType;
 import com.aplication.spring.mvc.layer.type.EventoSistemaType;
@@ -111,19 +112,44 @@ public class EventoSistemaRepositoryDao {
 	@Transactional(propagation= Propagation.REQUIRED)
 	public List<EventoSistemaType> buscarListaEmailPorDatosGenerales(String nombreUsuario, String asunto, String destinatario,
 			String estado) {
-//		logger.info("Entrando en la capacidad : buscarListaEmailPorDatosGenerales");
-//		logger.info("Iniciando busqueda email registrada en el sistema");
-//		List<EventoSistemaType> lista = new ArrayList<>();
-//		IEventoSistemaES dao = new EventoSistemaESImpl(entityManager);
-//		try {
-//			lista = dao.buscarEmailPorDatosGenerales(nombreUsuario, asunto, destinatario, estado);
-//		} catch (InternalServiceException e) {
-//			logger.info("ocurrio un error buscando lista Email enviadas");
-//			logger.info("ERROR " + e.getMessage());
-//		}
-//		logger.info("Terminando busqueda email sistema");
-//		logger.info("returnning: "+lista);
-		return null;
+		logger.info("Entrando en la capacidad : buscarListaEmailPorDatosGenerales");
+		logger.info("Iniciando busqueda email registrada en el sistema");
+		List<EventoSistemaType> lista = new ArrayList<>();
+		Connection connexion = null;
+		PreparedStatement stmt = null;
+		try {
+			logger.info("Opteneiendo conexion data Source");
+			connexion = dataSource.getConnection();
+			logger.info("Finalizando Optener conexion datasource.");
+			String query = SistemaQuerySQL.Consulta.BUSCAR_lISTA_EMAIL_CON_DATOS_GENERALES;
+			query = DatabaseUtil.remplazarParametroSelect(query, ":nombre", nombreUsuario);
+			query = DatabaseUtil.remplazarParametroSelect(query, ":asunto", asunto);
+			query = DatabaseUtil.remplazarParametroSelect(query, ":destinatario", destinatario);
+			logger.info("Inicinado ejecucion select: "+ query);
+			stmt = connexion.prepareStatement(query);
+			stmt.setString(1, estado);
+			ResultSet rs = stmt.executeQuery(); 
+			logger.info("Terminando efectuar consulta.");
+			EventoSistemaType evento = null;
+			EnvioSistemaType envio = null;
+			ContactoType contacto = null;
+			while(rs.next()){
+				contacto = new ContactoType();
+				contacto = UsuarioQuerySQL.casteoResulsetContactoType(rs, false);
+				envio = new EnvioSistemaType();
+				envio = SistemaQuerySQL.casteoResultSetEnvioSistemaType(rs);
+				evento = new EventoSistemaType();
+				evento = SistemaQuerySQL.casteoResultSetEventoSistemaType(rs, contacto, envio);
+				lista.add(evento);
+			}
+			logger.info("resultSet Sizer : "+ lista);
+			logger.info("Finalizando casteo resultSet usuario : "+ lista);
+		} catch (SQLException e) {
+			logger.info("Error realizando la consulta..");
+			logger.info("Error: "+ e.getMessage());
+		}
+		logger.info("Terminando realizar Consulta.");
+		return lista;
 	}
 
 
