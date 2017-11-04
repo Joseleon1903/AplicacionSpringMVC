@@ -5,13 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import com.aplicacion.spring.mvc.interfaces.comunes.BuscableType;
 import com.aplication.spring.mvc.entity.Usuario;
 import com.aplication.spring.mvc.util.ValidationUtil;
 
-@XmlRootElement(name="UsuarioType")
 public class UsuarioType implements BuscableType<UsuarioType, Usuario>, Serializable {
 
 	/**

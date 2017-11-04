@@ -62,6 +62,14 @@ public class DatabaseUtil {
 		return index;
 	}	
 	
+	/**
+	 * Descripcion: metodo para replazar los parametro pos su valor.
+	 * 
+	 * @param String Query
+	 * @param NombreParametro
+	 * @param ValorParametro
+	 * @return String Query con Valor
+	 */
 	public static String remplazarParametroSelect(String query, String nombreParam, String parametro){
 		String comilla ="'";
 		if (parametro == null || parametro.isEmpty()) {

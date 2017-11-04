@@ -39,5 +39,14 @@ public class EnviarEmailPageController {
 		logger.info("cargando pagina: "+ pagina);
 		return pagina;
 	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public String procesarFormEnviaEmail(HttpServletRequest request,  Model model) {
+		String pagina = manejadorSistemaUtil.validandoSession(sessionUsuario, "portal/pagina/jsp/enviarEmail");
+//		model.addAttribute("usuarioSession", sessionUsuario);
+//		logger.info("cargando pagina: "+ pagina);
+		return pagina;
+	}
+
 
 }

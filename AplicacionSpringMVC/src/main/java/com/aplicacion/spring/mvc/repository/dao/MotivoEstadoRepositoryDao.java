@@ -1,18 +1,21 @@
 package com.aplicacion.spring.mvc.repository.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
+import javax.sql.DataSource;
 
 import org.jboss.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aplicacion.spring.mvc.interfaces.IMotivoEstadoES;
-import com.aplicacion.spring.mvc.interfaces.impl.MotivoEstadoESImpl;
+import com.aplicacion.spring.mvc.jdbc.query.MotivoEstadoQuerySQL;
 import com.aplication.spring.mvc.layer.type.MotivoEstadoType;
 
 @Repository("MotivoEstadoDao")
@@ -21,8 +24,8 @@ public class MotivoEstadoRepositoryDao {
 
 	private static final Logger logger = Logger.getLogger(MotivoEstadoRepositoryDao.class.getName());
 	
-	@PersistenceContext(type = PersistenceContextType.EXTENDED) 
-	private EntityManager entityManager;
+	@Autowired
+	private DataSource dataSource;
 	
 	public MotivoEstadoRepositoryDao() {
 		// TODO Auto-generated constructor stub
@@ -38,11 +41,30 @@ public class MotivoEstadoRepositoryDao {
 	public MotivoEstadoType buscarMotivoPorId(Integer id) {
 		logger.info("Entrondo en capacidad buscarMotivoPorId..");
 		logger.info("Parametro ID : "+ id);
-		IMotivoEstadoES dao = new MotivoEstadoESImpl(entityManager);
-		MotivoEstadoType motivo = dao.buscarMotivoEstadoPorId(id);
-		logger.info("Retornando motivo: "+ motivo);
-		logger.debug("Saliendo capacidad buscarMotivoPorId");
-	   return motivo;
+		logger.info("Inicinado ejecucion select: "+ MotivoEstadoQuerySQL.Consulta.BUSCAR_MOTIVO_ESTADO_POR_ID);
+		logger.info("Creando conexion desde el datasource.");
+		Connection connexion = null;
+		PreparedStatement stmt = null;
+		MotivoEstadoType motivo = new MotivoEstadoType();
+		try {
+			logger.info("Opteneiendo conexion data Source");
+			connexion = dataSource.getConnection();
+			logger.info("Finalizando Optener conexion datasource.");
+			stmt = connexion.prepareStatement(MotivoEstadoQuerySQL.Consulta.BUSCAR_MOTIVO_ESTADO_POR_ID);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			logger.info("Terminando efectuar consulta.");
+			logger.info("Inicio casteo resultSet usuario : "+ motivo);
+			while(rs.next()){
+				motivo = MotivoEstadoQuerySQL.casteoResultSetEnvioSistemaType(rs);
+			}
+			logger.info("Finalizando casteo resultSet usuario : "+ motivo);
+		} catch (SQLException e) {
+			logger.info("Error realizando la consulta..");
+			logger.info("Error: "+ e.getMessage());
+		}
+		logger.info("Terminando realizar Consulta.");	
+		return motivo;
 	}
 
 	/**
@@ -50,16 +72,34 @@ public class MotivoEstadoRepositoryDao {
 	 * 
 	 * @return List<MotivoEstadoType>
 	 */
-	@Transactional(propagation= Propagation.REQUIRED)
+	@Transactional(propagation = Propagation.REQUIRED)
 	public List<MotivoEstadoType> buscarTodosLosMotivos() {
 		logger.info("Entrondo en capacidad buscarTodosLosMotivos..");
-		List<MotivoEstadoType> listaMotivos = null;
-		IMotivoEstadoES dao = new MotivoEstadoESImpl(entityManager);		
-	    listaMotivos = dao.buscarMotivoEstadoSistema();
-		logger.info("Retornando motivos: "+ listaMotivos);
-		logger.debug("Saliendo capacidad buscarTodosLosMotivos");
-		return listaMotivos;
+		logger.info("Inicinado ejecucion select: " + MotivoEstadoQuerySQL.Consulta.BUSCAR_MOTIVOS_ESTADOS_SISTEMA);
+		logger.info("Creando conexion desde el datasource.");
+		Connection connexion = null;
+		PreparedStatement stmt = null;
+		List<MotivoEstadoType> motivoLista = new ArrayList<>();
+		MotivoEstadoType motivo = null;
+		try {
+			logger.info("Opteneiendo conexion data Source");
+			connexion = dataSource.getConnection();
+			logger.info("Finalizando Optener conexion datasource.");
+			stmt = connexion.prepareStatement(MotivoEstadoQuerySQL.Consulta.BUSCAR_MOTIVOS_ESTADOS_SISTEMA);
+			ResultSet rs = stmt.executeQuery();
+			logger.info("Terminando efectuar consulta.");
+			logger.info("Inicio casteo resultSet usuario : " + motivo);
+			while (rs.next()) {
+				motivo = MotivoEstadoQuerySQL.casteoResultSetEnvioSistemaType(rs);
+				motivoLista.add(motivo);
+			}
+			logger.info("Finalizando casteo resultSet usuario : " + motivo);
+		} catch (SQLException e) {
+			logger.info("Error realizando la consulta..");
+			logger.info("Error: " + e.getMessage());
+		}
+		logger.info("Terminando realizar Consulta.");
+		return motivoLista;
 	}
-
 
 }

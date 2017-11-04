@@ -5,15 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.annotation.Resource;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.sql.DataSource;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,15 +24,9 @@ import com.aplication.spring.mvc.util.ValidationUtil;
 public class UsuarioRepositoryDao {
 
 	private static final Logger logger = Logger.getLogger(UsuarioRepositoryDao.class.getName());
-	
-	@PersistenceContext(unitName="PersistenceManager", type = PersistenceContextType.EXTENDED) 
-	private EntityManager entityManagerF;
-	
+		
 	@Autowired
 	private DataSource dataSource;
-	
-	@Resource
-	private JpaTransactionManager JtaTransaction;
 	
 	public UsuarioRepositoryDao() {
 	

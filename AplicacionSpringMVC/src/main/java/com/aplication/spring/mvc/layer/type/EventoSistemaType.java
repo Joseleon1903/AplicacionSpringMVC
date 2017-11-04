@@ -5,12 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import com.aplicacion.spring.mvc.interfaces.comunes.BuscableType;
 import com.aplication.spring.mvc.entity.EventoSistema;
 
-@XmlRootElement(name = "EventoSistemaType")
 public class EventoSistemaType implements BuscableType<EventoSistemaType, EventoSistema>, Serializable {
 
 	/**

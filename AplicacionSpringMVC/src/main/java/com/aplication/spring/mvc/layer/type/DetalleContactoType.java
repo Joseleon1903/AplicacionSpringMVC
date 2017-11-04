@@ -4,12 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import com.aplicacion.spring.mvc.interfaces.comunes.BuscableType;
 import com.aplication.spring.mvc.entity.DetalleContacto;
 
-@XmlRootElement(name="DetalleContactoType")
 public class DetalleContactoType implements BuscableType<DetalleContactoType, DetalleContacto>, Serializable{
 	
 	/**

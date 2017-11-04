@@ -5,12 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import com.aplicacion.spring.mvc.interfaces.comunes.BuscableType;
 import com.aplication.spring.mvc.entity.EnvioSistema;
 
-@XmlRootElement(name="EnvioSistemaType")
 public class EnvioSistemaType implements BuscableType<EnvioSistemaType, EnvioSistema>, Serializable{
 	
 	/**
