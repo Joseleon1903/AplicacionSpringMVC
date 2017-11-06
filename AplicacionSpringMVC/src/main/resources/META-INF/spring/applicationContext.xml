@@ -11,46 +11,29 @@
 	
 	<context:component-scan base-package="com.aplicacion.spring.mvc.repository.dao" />
 
-<!-- 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> -->
-<!-- 		<property name="jtaDataSource" ref="dataSource" /> -->
-<!-- 		<property name="persistenceUnitName" value="PersistenceManager" /> -->
-<!-- 	<property name="jpaPropertyMap"> -->
-<!-- 		<map> -->
-<!-- 			<entry key="eclipselink.weaving" value="false" /> -->
-<!-- 			<entry key="eclipselink.logging.level" value="INFO" /> -->
-<!-- 			<entry key="eclipselink.target-database" value="org.eclipse.persistence.platform.database.MySQLPlatform" /> -->
-<!-- 			<entry key="javax.persistence.nonJtaDataSource" value-ref="dataSource" /> -->
-<!-- 			<entry key="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup" /> -->
-<!-- 			<entry key="hibernate.transaction.flush_before_completion" value="true" /> -->
-<!-- 			<entry key="hibernate.transaction.auto_close_session" value="true" /> -->
-<!-- 			<entry key="hibernate.current_session_context_class" value="jta" /> -->
-<!-- 			<entry key="hibernate.connection.release_mode" value="auto" /> -->
-<!-- 		</map> -->
-<!-- 	</property> -->
-<!-- 		<property name="jpaVendorAdapter"> -->
-<!-- 			<bean -->
-<!-- 				class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter"> -->
-<!-- 				<property name="showSql" value="true" /> -->
-<!-- 				<property name="generateDdl" value="true" /> -->
-<!-- 				<property name="databasePlatform" value="org.eclipse.persistence.platform.database.MySQLPlatform" /> -->
-<!-- 			</bean> -->
-<!-- 		</property> -->
-<!-- 		<property name="jpaDialect"> -->
-<!-- 				<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" /> -->
-<!-- 			</property> -->
-<!-- 	  </bean> -->
-
-	<jee:jndi-lookup jndi-name="java:/DsAplicacionWeb" id="dataSource"
-		expected-type="javax.sql.DataSource" resource-ref="true" />
-
-
-<!-- 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> -->
-<!-- 		<property name="entityManagerFactory" ref="entityManagerFactory" /> -->
-<!-- 	</bean> -->
+	<jee:jndi-lookup jndi-name="java:/DsAplicacionWeb" id="dataSource" expected-type="javax.sql.DataSource" resource-ref="true" />
 	
 	<!-- Decimos que para este Transaction Manager vamos a usar anotaciones -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	
+<!-- 	Bean para el manejo de email con spring  -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!-- SMTP settings -->
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="jdelflow95@gmail.com" />
+		<property name="password" value="callejero" />
+	
+		<property name="javaMailProperties">
+			<!-- additional properties specific to JavaMail -->
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
 
 </beans>

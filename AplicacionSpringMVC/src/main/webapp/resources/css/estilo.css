@@ -232,7 +232,9 @@ header div.warning{
 	position: relative;
 	top: -25px;
 }
-
+.pure-group input[type="submit"] {
+	width: 600px;
+}
 /******************************************************************************************/
 /* 
 ****************************************************************************************
@@ -240,7 +242,8 @@ header div.warning{
  
 ****************************************************************************************
 */
-<!--  div contenido navegacion de la pagina -->
+<!--
+div contenido navegacion de la pagina -->
 .container-menu-navegacion{
 }
 .menu-navegacion{

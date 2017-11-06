@@ -11,6 +11,8 @@ import javax.sql.DataSource;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +31,9 @@ public class EventoSistemaRepositoryDao {
 	
 	@Autowired
 	private DataSource dataSource;
+	
+    @Autowired
+	private JavaMailSender mailSender;
 
 	public EventoSistemaRepositoryDao() {	
 		// TODO Auto-generated constructor stub
@@ -151,6 +156,21 @@ public class EventoSistemaRepositoryDao {
 		logger.info("Terminando realizar Consulta.");
 		return lista;
 	}
+	
+	public void enviarEmail(String asunto, String destinatario,String contenido){
+		logger.info("Entrando en el metodo enviarEmail");
+		logger.info("asunto : "+ asunto);
+		logger.info("destinatario : "+ destinatario);
+		logger.info("contenido : "+ contenido);
+		SimpleMailMessage email = new SimpleMailMessage();
+		email.setTo(destinatario);
+		email.setSubject(asunto);
+		email.setText(contenido);
+		logger.info("Iniciando Envio Email");
+		mailSender.send(email);		
+		logger.info("Finalizando Envio Email");
+	}
+
 
 
 }

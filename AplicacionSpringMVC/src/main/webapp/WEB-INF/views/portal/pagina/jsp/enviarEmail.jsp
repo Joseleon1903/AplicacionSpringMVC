@@ -24,29 +24,32 @@
 
     <!-- *************contenedor contenido codigo inicio ************ -->
 	<div class="form-envio-email">
-	    <h1>Formaulario para enviar email</h1>
-		<form name="envio-email" id="form-4" method="post" class="pure-form">
+	    <h1>Formulario para enviar email</h1>
+		<form name="envioEmail" action="EnviarEmail/enviarEmail" id="form-4" method="post" class="pure-form">
 			  <fieldset>
 			  	<div class="pure-group">
-				<input type="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" placeholder="Destinatario">
+				<input type="email" id="destinatario" name="destinatario" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" placeholder="Destinatario" 
+				value="<c:out value="${EnviarMailBean.destinatario}"/>" required>
 			</div>
 			</fieldset>
 			 <fieldset>
 			  	<div class="pure-group">
-				<input type="text"  placeholder="Asunto">
+				<input type="text" id="asunto" name="asunto" placeholder="Asunto" value="<c:out value="${EnviarMailBean.asunto}"/>" required>
 			</div>
 			</fieldset>
 
 			<fieldset>
 			<div class="pure-group">
-				<textarea placeholder="Textareas work too"></textarea>
+				<textarea id="contenido" name="contenido" placeholder="Textareas work too" value="<c:out value="${EnviarMailBean.contenido}"/>" required> </textarea>
 			</div>
 			</fieldset>
-
+			
+			<fieldset>
 			<div class="pure-group">
-			<button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Envio</button>
+			<input type="submit" class="pure-button pure-input-1-2 pure-button-primary" value="Envio" />
 			</div>
-
+			</fieldset>
+			
 		</form>
 	</div>
     <!-- *************contenedor contenido codigo final ************ -->

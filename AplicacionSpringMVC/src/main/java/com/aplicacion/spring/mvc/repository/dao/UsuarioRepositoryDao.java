@@ -28,9 +28,7 @@ public class UsuarioRepositoryDao {
 	@Autowired
 	private DataSource dataSource;
 	
-	public UsuarioRepositoryDao() {
-	
-	}
+	public UsuarioRepositoryDao() {}
 
 	/**
 	 * Descripcion: Capacidad que permite buscar un usuario por el codigo de usuario.
@@ -204,7 +202,6 @@ public class UsuarioRepositoryDao {
 			ps.setString(4,user.getContacto().getDetalleContactoId().getCelular());
 			ps.setInt(5, user.getContacto().getDetalleContactoId().getDetalleContactoId());
 			ps.executeUpdate();
-			ps.close();
 		} catch (SQLException e) {
 			logger.info("Error Actualizando Contacto "+e.getMessage());
 			throw new InternalServiceException();
