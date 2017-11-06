@@ -5,6 +5,11 @@ import java.sql.SQLException;
 
 import com.aplication.spring.mvc.layer.type.MotivoEstadoType;
 
+/**
+ * 
+ * @author Jose Eduardo
+ *
+ */
 public class MotivoEstadoQuerySQL {
 	
 	public static interface Consulta{

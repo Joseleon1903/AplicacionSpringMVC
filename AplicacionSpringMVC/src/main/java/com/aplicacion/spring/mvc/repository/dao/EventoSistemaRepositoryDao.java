@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.NestedRuntimeException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
@@ -19,10 +20,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aplicacion.spring.mvc.jdbc.query.SistemaQuerySQL;
 import com.aplicacion.spring.mvc.jdbc.query.UsuarioQuerySQL;
+import com.aplication.spring.mvc.exception.InternalServiceException;
 import com.aplication.spring.mvc.jpa.util.DatabaseUtil;
 import com.aplication.spring.mvc.layer.type.ContactoType;
 import com.aplication.spring.mvc.layer.type.EnvioSistemaType;
 import com.aplication.spring.mvc.layer.type.EventoSistemaType;
+import com.aplication.spring.mvc.util.ValidationUtil;
 
 @Repository("EventoSistemaDao")
 public class EventoSistemaRepositoryDao {
@@ -46,19 +49,48 @@ public class EventoSistemaRepositoryDao {
 	 *              
 	 * @param EventoSistemaType: evento
 	 * @return boolean
+	 * @throws InternalServiceException 
 	 */
 	@Transactional(propagation= Propagation.REQUIRES_NEW)
-	public boolean registrarEnvioEmail(EventoSistemaType evento) {
+	public boolean registrarEnvioEmail(EventoSistemaType evento) throws InternalServiceException {
 		boolean exito = false;
-//		logger.info("Entrando en la capacidad : registrarEnvioEmail");
-//		logger.info("EventoSistemaType: " + evento);
-//		IEventoSistemaES dao = new EventoSistemaESImpl(entityManager);
-//		try {
-//			exito = dao.registrarNuevoEvento(new EventoSistemaType().toEntity(evento));
-//		} catch (PersistenceException e) {
-//			logger.info("ocurrio un error registrando EnvioEmail");
-//			logger.info("ERROR " + e.getMessage());
-//		}
+		logger.info("Entrando en la capacidad registrarEnvioEmail");
+		logger.info("Inicinado ejecucion funcion: "+ DatabaseUtil.OPTENER_VALOR_INDEX_TABLA_SQL);
+		logger.info("Creando conexion desde el datasource.");
+		Connection connexion = null;
+		PreparedStatement stmt = null;
+		try {
+			logger.info("Opteneiendo conexion data Source");
+			connexion = dataSource.getConnection();
+			logger.info("Terminando optener conexion.");
+			Integer indexId = DatabaseUtil.buscarValorIndexTabla(SistemaQuerySQL.Tablas.EVENTO_SISTEMA_TBL, connexion);
+			logger.info("Iniciando registrar envio sistema");
+			stmt = connexion.prepareStatement(SistemaQuerySQL.Insert.INSERT_ENVIO_SISTEMA);
+			boolean agregarMotivo = ValidationUtil.isObjectNotNull(evento.getEnvioId().getMotivoId());
+			logger.info("Indicador Motivo: "+ agregarMotivo);
+			if (!agregarMotivo) {
+				stmt = connexion.prepareStatement(SistemaQuerySQL.Insert.INSERT_ENVIO_SISTEMA_MOTIVO);
+			}
+			stmt = SistemaQuerySQL.agregarEnvioSistemaStatement(stmt, evento, indexId, !agregarMotivo);
+			stmt.executeUpdate();
+			logger.info("Finalizando registrar envio sistema");
+			logger.info("Registrando evento sistema.");
+			stmt = connexion.prepareStatement(SistemaQuerySQL.Insert.INSERT_EVENTO_SISTEMA);
+			stmt = SistemaQuerySQL.agregarEventoSistemaStatement(stmt, evento, indexId);
+			stmt.executeUpdate();
+			logger.info("Finalizando evento sistema");
+		} catch (SQLException e) {
+			logger.info("Error registrar envio sistema " + e.getMessage());
+			throw new InternalServiceException();
+		} finally {
+			if (connexion != null) {
+				try {
+					connexion.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		logger.info("Terminando registrar eventoSistema");
 		return exito;
 	}
 	
@@ -157,7 +189,7 @@ public class EventoSistemaRepositoryDao {
 		return lista;
 	}
 	
-	public void enviarEmail(String asunto, String destinatario,String contenido){
+	public void enviarEmail(String asunto, String destinatario,String contenido) throws NestedRuntimeException{
 		logger.info("Entrando en el metodo enviarEmail");
 		logger.info("asunto : "+ asunto);
 		logger.info("destinatario : "+ destinatario);
@@ -167,7 +199,7 @@ public class EventoSistemaRepositoryDao {
 		email.setSubject(asunto);
 		email.setText(contenido);
 		logger.info("Iniciando Envio Email");
-		mailSender.send(email);		
+		mailSender.send(email);	
 		logger.info("Finalizando Envio Email");
 	}
 

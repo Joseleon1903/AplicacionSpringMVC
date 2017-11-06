@@ -52,9 +52,7 @@ public class EnviarEmailPageController {
 		logger.info("EnviarEmailBean asunto : "+asunto );
 		logger.info("EnviarEmailBean destinatario : "+destinatario );
 		logger.info("EnviarEmailBean contenido : "+contenido );
-		manejadorEnviarMail.enviarEmailFormulario(asunto, destinatario, contenido);
-//		model.addAttribute("usuarioSession", sessionUsuario);
-//		logger.info("cargando pagina: "+ pagina);	
+		manejadorEnviarMail.enviarEmailFormulario(asunto, destinatario, contenido, sessionUsuario.getUsuarioId());
 		String pagina = "redirect:/views/portal/pagina/EnviarEmail";
 		return pagina;
 	}

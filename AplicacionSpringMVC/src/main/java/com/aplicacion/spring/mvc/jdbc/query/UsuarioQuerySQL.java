@@ -9,11 +9,15 @@ import com.aplication.spring.mvc.layer.type.DetalleContactoType;
 import com.aplication.spring.mvc.layer.type.UsuarioType;
 import com.aplication.spring.mvc.util.ValidationUtil;
 
+/**
+ * 
+ * @author Jose Eduardo
+ *
+ */
 public class UsuarioQuerySQL {
 	
 	/**
 	 * 
-	 * @author Jose Eduardo
 	 * @Descripcion nombre tablas de usuario
 	 *
 	 */
@@ -24,6 +28,7 @@ public class UsuarioQuerySQL {
 	}
 	
 	public static interface Consulta{
+		
 		/**
 		 * Query para buscar un usuario por Id 
 		 */
@@ -45,11 +50,9 @@ public class UsuarioQuerySQL {
 				+ "                             WHERE us.CODIGO_USUARIO = ?";
 
 	}
-
 	
 	/**
 	 * 
-	 * @author Jose Eduardo
 	 * @category Query
 	 * @Descripcion Query para insertar un nuevo usuario en el sistema.
 	 *
@@ -81,14 +84,7 @@ public class UsuarioQuerySQL {
 		String ACTUALIZAR_CONTACTO_USUARIO = "UPDATE CONTACTO SET NOMBRE = ? , APELLIDO = ? , SEXO = ? , FECHA_NACIMIENTO= ?, EMAIL = ? WHERE CONTACTO_ID = ?";
 		String ACTUALIZAR_DETALLE_CONTACTO_USUARIO = "UPDATE DETALLE_CONTACTO det SET det.EMAIL_ALTERNATIVA = ?, det.DIRECCION = ? , det.TELEFONO = ?, det.CELULAR = ? WHERE det.DETALLE_CONTACTO_ID = ?";
 	}
-
-	
-	public static String QUERY_VALOR_AUTOINCREMENT(String nombreTabla){
 		
-		return "select auto_increment from `information_schema`.tables where TABLE_SCHEMA = 'aplicacion_web_rest' "+
-                "and TABLE_NAME ='"+nombreTabla+"'";
-	}
-	
 	public static PreparedStatement agregarUsuarioStatement(PreparedStatement preparedStatement , UsuarioType user, Integer index) throws SQLException{
 		preparedStatement.setInt(1, index);
 		preparedStatement.setString(2, user.getCodigoUsuario());
