@@ -64,6 +64,7 @@ public class EventoSistemaRepositoryDao {
 			connexion = dataSource.getConnection();
 			logger.info("Terminando optener conexion.");
 			Integer indexId = DatabaseUtil.buscarValorIndexTabla(SistemaQuerySQL.Tablas.EVENTO_SISTEMA_TBL, connexion);
+			logger.info("Index : "+ indexId);
 			logger.info("Iniciando registrar envio sistema");
 			stmt = connexion.prepareStatement(SistemaQuerySQL.Insert.INSERT_ENVIO_SISTEMA);
 			boolean agregarMotivo = ValidationUtil.isObjectNotNull(evento.getEnvioId().getMotivoId());

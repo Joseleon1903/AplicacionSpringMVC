@@ -33,16 +33,16 @@ public class SistemaQuerySQL {
 		 * 
 		 */
 		String BUSCAR_lISTA_EMAIL_POR_CONTACTO = "   SELECT even.ENVIO_ID,even.CONTACTO_ID,even.EVENTO_SISTEMA_ID,even.FECHA_EVENTO,"
-				+ "                  con.CONTACTO_ID,con.NOMBRE, con.APELLIDO, con.EMAIL, con.ESTADO,"
-				+ "                  con.SEXO, con.FECHA_NACIMIENTO, con.DETALLE_CONTACTO_ID, con.ESTADO,"
+				+ "                  con.CONTACTO_ID,con.NOMBRE, con.APELLIDO, con.EMAIL,"
+				+ "                  con.SEXO, con.FECHA_NACIMIENTO, con.DETALLE_CONTACTO_ID,"
 				+ "                  env.FECHA_ENVIO, env.ASUNTO, env.DESTINATARIO, env.CONTENIDO, env.ESTADO, env.MOTIVO_ID"
 				+ "                  FROM EVENTO_SISTEMA even JOIN ENVIO_SISTEMA env ON even.ENVIO_ID = env.ENVIO_ID"
 				+ "                  JOIN CONTACTO con ON even.CONTACTO_ID = con.CONTACTO_ID WHERE con.CONTACTO_ID = ?";
 		
 		
 		String BUSCAR_lISTA_EMAIL_CON_DATOS_GENERALES = "SELECT even.ENVIO_ID,even.CONTACTO_ID,even.EVENTO_SISTEMA_ID,even.FECHA_EVENTO,"
-											+ "          con.CONTACTO_ID,con.NOMBRE, con.APELLIDO, con.EMAIL, con.ESTADO,"
-											+ "          con.SEXO, con.FECHA_NACIMIENTO, con.DETALLE_CONTACTO_ID, con.ESTADO,"
+											+ "          con.CONTACTO_ID,con.NOMBRE, con.APELLIDO, con.EMAIL,"
+											+ "          con.SEXO, con.FECHA_NACIMIENTO, con.DETALLE_CONTACTO_ID,"
 											+ "          env.FECHA_ENVIO, env.ASUNTO, env.DESTINATARIO, env.CONTENIDO, env.ESTADO, env.MOTIVO_ID"
 											+ "          FROM EVENTO_SISTEMA even JOIN ENVIO_SISTEMA env ON even.ENVIO_ID = env.ENVIO_ID"
 											+ "          JOIN CONTACTO con ON even.CONTACTO_ID = con.CONTACTO_ID"

@@ -5,7 +5,7 @@
  */
 DELIMITER $$
 
-CREATE FUNCTION optenerValorIndexTabla ( p_nombre_tabla VARCHAR(10) ) RETURNS INT(11)
+CREATE FUNCTION optenerValorIndexTabla ( p_nombre_tabla VARCHAR(20) ) RETURNS INT(11)
 BEGIN
 
     DECLARE _schema VARCHAR(20);  

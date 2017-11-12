@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Calendar;
 
-import com.aplicacion.spring.mvc.jdbc.query.UsuarioQuerySQL;
-
 public class DatabaseUtil {
 	
 	
@@ -53,7 +51,7 @@ public class DatabaseUtil {
 		Integer index = 0;
 		ResultSet rs = null;
 		PreparedStatement stmt = conn.prepareStatement(DatabaseUtil.OPTENER_VALOR_INDEX_TABLA_SQL);
-		stmt.setString(1, UsuarioQuerySQL.Tablas.USUARIO_TBL);
+		stmt.setString(1, tablaName);
 		stmt.executeQuery();
 		rs = stmt.getResultSet();
 		while (rs.next()) {
